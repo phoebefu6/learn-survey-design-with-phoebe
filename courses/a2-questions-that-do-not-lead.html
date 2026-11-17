@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Analyst session 2 of 6. Questions that do not lead: wording, response options, question order and cognitive pretesting, with published experiments and a rewrite of the constructed Ottervale council's draft questionnaire.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Questions that do not lead - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Analyst session 2 of 6. Leading and double-barrelled items, balanced scales, the midpoint and don't know, order effects and pretests: where the answer starts in the wording.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/a2-questions-that-do-not-lead.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Questions that do not lead - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Analyst session 2 of 6. One added clause moved a published poll from 68% in favour to 43%. Measurement error starts in the wording.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Analyst session 2 · Questions that do not lead - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Analyst session 2 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Analyst session 2 of 6</div>
+    <h1>Questions that do not lead: <span class="accent">the answer starts in the wording</span></h1>
+    <p class="sub">A perfect sample still returns the wrong number if the question pushes people toward an answer, asks two things at once, or offers a scale that leans one way. This is measurement error, and it is the one error a bigger sample, a better list or a cleverer weight cannot touch. Tonight you learn to spot the faults that cause it, with published experiments that show how far wording and order move an answer, and you rewrite the cabinet member's draft questionnaire for Ottervale, a constructed town council, into a version 2 you can pretest.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Analyst</span>
+      <span class="chip audience">Analysts, researchers and data scientists who run surveys</span>
+      <span class="chip audience">Hands-on in the browser</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Wording, options, order</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: questionnaire v2</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">In Analyst session 1 the error budget carried a row called measurement, marked "not measured". This session fills it. The survey error lab sets measurement error to zero on purpose: it asks every one of its 20,000 census residents the census health question exactly as the census asked it, so nothing in the wording can move the answer. That is why there is no lab on this page. Real questionnaires are written by people with a view, under deadline, and the faults they carry are predictable enough to find with a checklist and a small pretest.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone builds it</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Ottervale's questionnaire v2: the cabinet member's six draft items, each tagged with its fault, rewritten into neutral items with balanced options and an honest way out, put in an order that does not prime the answer, plus a three-probe cognitive pretest script for the two items most likely to be misread.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers wording</span>
+      <h2>Five faults that put the answer in the question</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A survey question is an instrument, and a bent instrument reads high or low every time. The common bends are few: a cue that tells the respondent which answer is wanted, a premise that loads the dice, two questions sharing one answer box, a frequency word every reader defines differently, and a term the respondent has to guess at. Under all of them sits a quieter error: asking about something other than the concept the decision needs.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 346" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left panel, marked as the wrong way: the cabinet member's draft item, Don't you agree the council should protect the vital route 7 bus and the library. A resident who wants the bus kept but rarely uses the library has two opinions, drawn as two bubbles, and both arrows run into one single Yes or No box, so one tick must stand for two opinions. Right panel: version 2 splits it into two neutral items, one on the bus and one on library hours, each with its own balanced options and a don't know. Constructed Ottervale example.">
+        <defs>
+          <filter id="a2aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a2aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a2aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a2aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a2aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a2aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a2aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a2aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+          .a2aR { font: 800 11px Inter, sans-serif; fill: #991B1B; }
+        </style>
+
+        <text class="a2aH" x="30" y="28">ONE ANSWER BOX, TWO QUESTIONS INSIDE IT</text>
+        <text class="a2aS" x="520" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#a2aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="390" height="250" rx="10" transform="rotate(-0.5 225 175)" fill="#FEF2F2" stroke="#991B1B"/>
+          <rect x="60" y="148" width="140" height="44" rx="8" transform="rotate(-2 130 170)" fill="#FFFFFF"/>
+          <rect x="250" y="148" width="140" height="44" rx="8" transform="rotate(2 320 170)" fill="#FFFFFF"/>
+          <rect x="170" y="226" width="90" height="40" rx="6" transform="rotate(-1 215 246)" fill="#F5C04A"/>
+          <path d="M130 194 L198 222" marker-end="url(#a2aAr)"/>
+          <path d="M320 194 L234 222" marker-end="url(#a2aAr)"/>
+          <path d="M428 175 L466 175" marker-end="url(#a2aAr)"/>
+          <rect x="474" y="50" width="376" height="250" rx="10" transform="rotate(0.4 662 175)" fill="#FFFFFF"/>
+          <rect x="490" y="92" width="344" height="90" rx="8" transform="rotate(-0.6 662 137)" fill="#F9EDF5"/>
+          <rect x="490" y="196" width="344" height="90" rx="8" transform="rotate(0.6 662 241)" fill="#F9EDF5"/>
+          <!-- doodle: a pencil -->
+          <path d="M826 46 L850 20 L856 26 L832 52 Z M826 46 L822 56 L832 52" stroke="#7F0A67"/>
+        </g>
+
+        <text class="a2aR" x="46" y="76">DRAFT ITEM 3, AS THE CABINET MEMBER WROTE IT</text>
+        <text class="a2aL" x="46" y="100">Don't you agree the council should protect</text>
+        <text class="a2aL" x="46" y="116">the vital route 7 bus and the library?</text>
+        <text class="a2aR" x="46" y="136">leading cues: "Don't you agree", "vital"</text>
+        <text class="a2aL" x="74" y="168">the bus: yes</text>
+        <text class="a2aS" x="74" y="183">wants it kept</text>
+        <text class="a2aL" x="264" y="168">the library: no</text>
+        <text class="a2aS" x="264" y="183">rarely goes</text>
+        <text class="a2aL" x="184" y="251">Yes / No ?</text>
+        <text class="a2aR" x="46" y="288">one tick has to stand for two opinions</text>
+
+        <text class="a2aS" x="428" y="164">split</text>
+
+        <text class="a2aH" x="490" y="76">VERSION 2: TWO NEUTRAL ITEMS</text>
+        <text class="a2aL" x="504" y="114">3a. How important, if at all, is keeping</text>
+        <text class="a2aL" x="504" y="130">the route 7 bus to you?</text>
+        <text class="a2aS" x="504" y="160">Very · Fairly · Not very · Not at all · Don't know</text>
+        <text class="a2aL" x="504" y="218">3b. How important, if at all, is extending</text>
+        <text class="a2aL" x="504" y="234">library opening hours to you?</text>
+        <text class="a2aS" x="504" y="264">Very · Fairly · Not very · Not at all · Don't know</text>
+
+        <text class="a2aN" x="30" y="330">Each opinion gets its own answer, and neither item tells the resident which answer is wanted.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a double-barrelled item forces one answer to cover two questions, so the number cannot be read back</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Five faults to look for first<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Leading.</strong> The item signals the expected answer: "don't you agree", "most residents feel", a description like "vital" attached to one option. Fix: state the topic and offer both directions in the stem, "support or oppose", "important, if at all".</p>
+        <p><strong>Loaded.</strong> A premise does the persuading before the question starts: "given rising costs, would you accept cutting the bus?" Every respondent is handed the council's argument and asked to agree with it. Fix: drop the premise, or give both sides' reasons in matched form.</p>
+        <p><strong>Double-barrelled.</strong> Two objects or two judgements share one answer, joined by "and" or "or". A "yes" could mean yes to both or yes to the one the respondent cared about. Fix: one item per object, as in the figure above.</p>
+        <p><strong>Vague quantifier.</strong> "Regularly", "often", "a lot" mean daily to one resident and monthly to another, so the same behaviour lands in different boxes. Fix: a reference period and a count, "in the past four weeks, on how many days".</p>
+        <p><strong>Undefined term.</strong> "Council services", "public transport", "the library offer": if the respondent has to guess what is included, different respondents answer different questions. Fix: name what counts, or ask about a specific thing.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Specification: asking about the decision's concept<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A question can be perfectly neutral and still measure the wrong thing. Ottervale's council must choose between keeping the route 7 bus and extending library hours. "How important is the bus to you?" and "How important are library hours to you?" will both come back mostly "important", because almost everything is important when it costs the respondent nothing to say so. The decision is a trade-off, so the questionnaire needs at least one item that asks for the trade: if the council can fund only one, which should it be.</p>
+        <p>Work backwards from the decision memo. Write the sentence the council wants to be able to say ("most residents who depend on the bus would rather keep it than have longer library hours") and check that some item, or some pair of items, can support it. If none can, the error is specification, and no amount of neutral wording fixes it. Analyst session 1 named this error; here it becomes a test every draft item has to pass.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>One clause, a different majority.</strong> In January 2003 Pew Research Center asked Americans whether they would favour military action in Iraq. Asked plainly, 68% favoured it and 25% opposed. When the item added the clause "even if it meant that U.S. forces might suffer thousands of casualties" (Pew Research Center), 43% favoured and 48% opposed. Both versions were honest questions; they measured different concepts, and the clause decided which one. (Pew Research Center, "Writing survey questions", read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers response options</span>
+      <h2>The answer options are part of the question</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Respondents read the answer list as a hint about what is normal. A scale with three good options and one bad one tells them the expected answer is good; a list with no middle and no "don't know" makes an undecided resident pick a side the designer chose for them. The options decide where uncertainty goes, so they deserve the same scrutiny as the stem.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 372" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two hand-drawn answer scales for the same question, how would you rate the library's opening hours. Left, marked as the wrong way: an unbalanced four-option scale, Excellent, Very good, Good, Poor, with no middle; an undecided resident drawn as a marigold dot is pushed by an arrow into Good. Right: a balanced five-option scale, Very good, Fairly good, Neither, Fairly poor, Very poor, with a separate Don't know box; the undecided resident has two exits, the middle or don't know. Constructed Ottervale example; no percentages are drawn.">
+        <defs>
+          <filter id="a2bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a2bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a2bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a2bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a2bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a2bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a2bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a2bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+          .a2bR { font: 800 11px Inter, sans-serif; fill: #991B1B; }
+        </style>
+
+        <text class="a2bH" x="30" y="28">WHERE AN UNDECIDED RESIDENT LANDS</text>
+        <text class="a2bS" x="520" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#a2bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="390" height="280" rx="10" transform="rotate(-0.4 225 190)" fill="#FEF2F2" stroke="#991B1B"/>
+          <rect x="60" y="112" width="170" height="30" rx="6" transform="rotate(-1 145 127)" fill="#FFFFFF"/>
+          <rect x="60" y="150" width="170" height="30" rx="6" transform="rotate(1 145 165)" fill="#FFFFFF"/>
+          <rect x="60" y="188" width="170" height="30" rx="6" transform="rotate(-1 145 203)" fill="#FFFFFF"/>
+          <rect x="60" y="226" width="170" height="30" rx="6" transform="rotate(1 145 241)" fill="#FFFFFF"/>
+          <circle cx="340" cy="150" r="16" fill="#F5C04A"/>
+          <path d="M322 160 L238 200" marker-end="url(#a2bAr)"/>
+
+          <rect x="460" y="50" width="390" height="280" rx="10" transform="rotate(0.4 655 190)" fill="#FFFFFF"/>
+          <rect x="490" y="108" width="170" height="26" rx="6" transform="rotate(-1 575 121)" fill="#F9EDF5"/>
+          <rect x="490" y="140" width="170" height="26" rx="6" transform="rotate(1 575 153)" fill="#F9EDF5"/>
+          <rect x="490" y="172" width="170" height="26" rx="6" transform="rotate(-1 575 185)" fill="#FFFFFF"/>
+          <rect x="490" y="204" width="170" height="26" rx="6" transform="rotate(1 575 217)" fill="#F9EDF5"/>
+          <rect x="490" y="236" width="170" height="26" rx="6" transform="rotate(-1 575 249)" fill="#F9EDF5"/>
+          <path d="M676 108 L676 262" stroke-dasharray="5 5"/>
+          <rect x="690" y="236" width="130" height="26" rx="6" transform="rotate(2 755 249)" fill="url(#a2bHc)"/>
+          <circle cx="770" cy="150" r="16" fill="#F5C04A"/>
+          <path d="M752 156 L668 182" marker-end="url(#a2bAr)"/>
+          <path d="M770 168 L760 230" stroke-dasharray="5 5" marker-end="url(#a2bAr)"/>
+          <!-- doodle: a tick box -->
+          <rect x="828" y="12" width="20" height="20" rx="3" stroke="#7F0A67"/>
+          <path d="M832 22 L837 28 L846 15" stroke="#7F0A67"/>
+        </g>
+        <rect x="698" y="240" width="114" height="18" rx="4" fill="#FFFFFF"/>
+
+        <text class="a2bR" x="46" y="76">UNBALANCED: 3 GOOD, 1 BAD, NO MIDDLE</text>
+        <text class="a2bS" x="46" y="96">How would you rate the library's opening hours?</text>
+        <text class="a2bL" x="74" y="132">Excellent</text>
+        <text class="a2bL" x="74" y="170">Very good</text>
+        <text class="a2bL" x="74" y="208">Good</text>
+        <text class="a2bL" x="74" y="246">Poor</text>
+        <text class="a2bS" x="316" y="124">undecided</text>
+        <text class="a2bR" x="46" y="290">no middle, no way out: pushed into Good</text>
+        <text class="a2bS" x="46" y="310">three of four options say the hours are fine</text>
+
+        <text class="a2bH" x="476" y="76">BALANCED, WITH A SEPARATE DON'T KNOW</text>
+        <text class="a2bS" x="476" y="96">How would you rate the library's opening hours?</text>
+        <text class="a2bL" x="504" y="126">Very good</text>
+        <text class="a2bL" x="504" y="158">Fairly good</text>
+        <text class="a2bL" x="504" y="190">Neither</text>
+        <text class="a2bL" x="504" y="222">Fairly poor</text>
+        <text class="a2bL" x="504" y="254">Very poor</text>
+        <text class="a2bL" x="712" y="254">Don't know</text>
+        <text class="a2bS" x="746" y="124">undecided</text>
+        <text class="a2bB" x="476" y="290">two honest exits: the middle, or don't know</text>
+        <text class="a2bS" x="476" y="310">the trade: exits can also invite the easy answer</text>
+
+        <text class="a2bN" x="30" y="356">No percentages drawn: how many undecided residents move depends on the item, so test it in a pretest.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the options decide where an undecided respondent goes; an unbalanced scale sends them to the side the designer favoured</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Balanced scales, the midpoint and don't know<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Balance first.</strong> A rating scale should have as many steps on the negative side as on the positive, with labels that mirror each other: very good and very poor, fairly good and fairly poor. This is the uncontested part. An unbalanced scale shifts answers toward the heavy side, and the report then reads the shift as opinion.</p>
+        <p><strong>The midpoint and don't know are a genuine design trade.</strong> One camp of designers includes a middle option and a separate "don't know" so that people without an opinion are not forced to invent one; a forced answer from an undecided resident is noise dressed up as a view. Another camp omits them, or tucks them away, because an easy exit also attracts people who do have a view but do not want to work it out, which is the low-effort answering described below. Both positions are held by careful practitioners. Neither is right for every item, and no single effect size settles it, so the professional move is to decide per item, say what you decided in the methods note, and check it in the pretest.</p>
+        <p><strong>Keep don't know separate.</strong> If you offer it, put it apart from the scale, as in the figure, so it does not read as a point between "fairly poor" and "very poor", and report it as its own share rather than dropping it silently.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Agree and disagree items, acquiescence and satisficing<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Agree-disagree items ("The library's hours meet my needs: strongly agree to strongly disagree") are cheap to write and fast to answer, which is the problem. Some respondents tend to agree with whatever statement is put to them, a pattern called acquiescence, so the share agreeing depends partly on which way the statement was written. The safer form names the dimension and offers both ends: "How well, if at all, do the library's hours meet your needs?"</p>
+        <p>Jon Krosnick's 1991 paper describes a broader behaviour he called satisficing: when answering well takes more effort than a respondent wants to give, they settle for an answer that is merely acceptable, such as picking the first reasonable option, agreeing, or choosing whatever keeps things as they are (Krosnick, Applied Cognitive Psychology, 1991, reported from secondary sources, not read in full). Long grids, late items in a long questionnaire and agree-disagree batteries all make satisficing easier. Shorter questionnaires, item-specific options and varied formats make it harder.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A name for the low-effort answer.</strong> Krosnick's satisficing account (reported) gives questionnaire writers a simple test for every item: what is the easiest answer here, and would a tired respondent give it regardless of their view? If the easiest answer is "agree", "the first option" or "no change", the item is measuring effort as well as opinion. Ottervale's draft puts its most important item, the trade-off between the bus and the library, last, where effort is lowest.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers order and context, and pretesting</span>
+      <h2>The question before sets up the question after</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Respondents answer each item in the light of the ones before it. A preceding question brings certain facts to mind, and the next answer is built from what is already in mind. So an identical item can return a different number depending only on its position. The defence has two parts: order the questionnaire deliberately, and test the order before fielding it.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 336" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two hand-drawn question orders from Pew Research Center, December 2008. Order A: a presidential approval question comes first, and a curved arrow shows it setting the context for the second question, satisfaction with the way things are going in the country; 88 percent said dissatisfied. Order B: no question before it, the same second question; 78 percent said dissatisfied. A note adds the October 2003 result: legal agreements for same-sex couples were favoured by 45 percent after a marriage question and 37 percent without it.">
+        <defs>
+          <filter id="a2cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a2cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a2cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a2cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a2cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a2cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a2cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a2cV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .a2cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a2cH" x="30" y="28">THE FIRST QUESTION SETS THE FRAME FOR THE SECOND</text>
+        <text class="a2cS" x="500" y="28">Pew Research Center, December 2008, read at source</text>
+
+        <g filter="url(#a2cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="84" width="280" height="72" rx="8" transform="rotate(-0.8 170 120)" fill="url(#a2cHc)"/>
+          <rect x="370" y="84" width="280" height="72" rx="8" transform="rotate(0.6 510 120)" fill="#FFFFFF"/>
+          <rect x="690" y="88" width="160" height="64" rx="8" transform="rotate(-1 770 120)" fill="#F5C04A"/>
+          <path d="M312 120 L364 120" marker-end="url(#a2cAr)"/>
+          <path d="M654 120 L684 120" marker-end="url(#a2cAr)"/>
+          <path d="M200 82 C 260 50, 420 50, 500 80" stroke="#7F0A67" marker-end="url(#a2cAr)"/>
+
+          <rect x="30" y="204" width="280" height="72" rx="8" transform="rotate(0.6 170 240)" stroke-dasharray="6 6"/>
+          <rect x="370" y="204" width="280" height="72" rx="8" transform="rotate(-0.6 510 240)" fill="#FFFFFF"/>
+          <rect x="690" y="208" width="160" height="64" rx="8" transform="rotate(1 770 240)" fill="#FFFFFF"/>
+          <path d="M312 240 L364 240" stroke-dasharray="4 6"/>
+          <path d="M654 240 L684 240" marker-end="url(#a2cAr)"/>
+          <!-- doodle: a numbered list -->
+          <path d="M828 296 L850 296 M828 306 L850 306 M828 316 L842 316" stroke="#7F0A67"/>
+        </g>
+        <rect x="44" y="100" width="252" height="42" rx="6" fill="#FFFFFF"/>
+
+        <text class="a2cH" x="30" y="72">ORDER A</text>
+        <text class="a2cB" x="520" y="66">Q1 sets the context</text>
+        <text class="a2cL" x="52" y="117">Q1. Approve of the way the</text>
+        <text class="a2cL" x="52" y="134">president is handling his job?</text>
+        <text class="a2cL" x="384" y="114">Q2. Satisfied with the way things</text>
+        <text class="a2cL" x="384" y="131">are going in the country?</text>
+        <text class="a2cV" x="706" y="116">88%</text>
+        <text class="a2cL" x="706" y="138">dissatisfied</text>
+
+        <text class="a2cH" x="30" y="194">ORDER B</text>
+        <text class="a2cS" x="48" y="244">no question before it</text>
+        <text class="a2cL" x="384" y="234">Q2. Satisfied with the way things</text>
+        <text class="a2cL" x="384" y="251">are going in the country?</text>
+        <text class="a2cV" x="706" y="236">78%</text>
+        <text class="a2cL" x="706" y="258">dissatisfied</text>
+
+        <text class="a2cN" x="30" y="304">Same Q2, same month. Only what came before it changed, and the answer moved from 78% to 88%.</text>
+        <text class="a2cN" x="30" y="324">Oct 2003: same-sex legal agreements, 45% favour after the marriage item, 37% without it.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a preceding question brings its topic to mind, and the next answer is built from what is already in mind</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Ordering a questionnaire on purpose<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>General before specific.</strong> An overall rating ("how satisfied are you with council services") asked after a specific item about bus cuts is answered with the bus cuts in mind. Asked first, it gets the respondent's own overall view. Ottervale's draft has exactly this problem.</p>
+        <p><strong>Neutral before contentious.</strong> Behaviour and experience items (how often you use the bus, when you last visited the library) are easier and less loaded than opinion items, and they put relevant facts in mind evenly for every respondent.</p>
+        <p><strong>Watch adjacent pairs.</strong> When two items share a topic, as Pew's marriage and legal-agreement items did, the first can make the second look like a compromise or a contrast. Separate them, or test both orders.</p>
+        <p><strong>Rotate when there is no right order.</strong> If several items have equal claim to go first, rotating their order across respondents spreads the context effect instead of fixing it in one direction, and lets you measure it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Cognitive pretesting: the cheapest defence<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Every fault on this page is easier to catch with five conversations than with five thousand completes. A cognitive pretest puts the draft in front of a handful of people like the respondents and watches how they answer it.</p>
+        <p><strong>Think-aloud.</strong> The respondent says what they are thinking while they answer. You hear where they hesitate, what they think a term means and which answer they nearly gave.</p>
+        <p><strong>Probing.</strong> After an item, you ask targeted follow-ups: what did "regularly" mean to you, which journeys were you counting, was the answer you wanted on the list. Write the probes before the session so every respondent gets the same ones.</p>
+        <p><strong>Split-ballot test.</strong> On a small sample, half get one wording or order and half get the other. A small split will not give you a precise effect, but it will tell you whether the two versions behave very differently, which is the thing you need to know before fielding.</p>
+        <p>This page covers the pretest only. Running interviews as research in their own right, recruiting for them and coding what people say, is taught in <a href="https://phoebefu6.github.io/learn-ai-research-with-phoebe/courses/b9-qualitative-coding.html">AI research, qualitative coding ↗</a>.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A compromise that depends on what came first.</strong> In October 2003 Pew Research Center asked about legal agreements for same-sex couples that would give many of the same rights as married couples. Asked straight after a question on same-sex marriage, 45% favoured them; asked without that question first, 37% did. Next to the marriage item, legal agreements read as a middle way; on their own, they did not. (Pew Research Center, "Writing survey questions", read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Rewrite the cabinet member's draft into questionnaire v2</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The cabinet member for transport has sent over a six-item draft for the resident survey that will inform the bus route versus library hours decision. It is a constructed Ottervale example, written to carry one of each fault from tonight. Work the five steps in a text editor or on paper. The goal is not elegant prose: it is items that measure what the council needs to decide, in an order that does not push the answer.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn pipeline of four boxes left to right: the six-item draft from the cabinet member, the draft tagged with one fault per item, version 2 with items rewritten and reordered, and a cognitive pretest with three probes on two items. A dashed arrow loops back from the pretest to version 2, labelled revise what the probes break. Constructed Ottervale example.">
+        <defs>
+          <filter id="a2dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="59" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a2dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a2dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a2dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a2dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a2dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <g filter="url(#a2dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="170" height="110" rx="10" transform="rotate(-0.8 115 105)" fill="url(#a2dHc)"/>
+          <rect x="250" y="50" width="170" height="110" rx="10" transform="rotate(0.6 335 105)" fill="#F9EDF5"/>
+          <rect x="470" y="50" width="170" height="110" rx="10" transform="rotate(-0.6 555 105)" fill="#F5C04A"/>
+          <rect x="690" y="50" width="160" height="110" rx="10" transform="rotate(0.8 770 105)" fill="#FFFFFF"/>
+          <path d="M204 105 L244 105" marker-end="url(#a2dAr)"/>
+          <path d="M424 105 L464 105" marker-end="url(#a2dAr)"/>
+          <path d="M644 105 L684 105" marker-end="url(#a2dAr)"/>
+          <path d="M770 166 C 770 206, 560 206, 556 170" stroke-dasharray="6 6" marker-end="url(#a2dAr)"/>
+          <!-- doodle: a pencil -->
+          <path d="M826 36 L850 12 L856 18 L832 42 Z M826 36 L822 46 L832 42" stroke="#7F0A67"/>
+        </g>
+        <rect x="42" y="66" width="146" height="78" rx="6" fill="#FFFFFF"/>
+
+        <text class="a2dH" x="52" y="88">1 DRAFT</text>
+        <text class="a2dS" x="52" y="108">six items from the</text>
+        <text class="a2dS" x="52" y="124">cabinet member</text>
+        <text class="a2dH" x="266" y="88">2 TAGGED</text>
+        <text class="a2dS" x="266" y="108">one fault per item</text>
+        <text class="a2dS" x="266" y="124">named from Parts 1-3</text>
+        <text class="a2dH" x="486" y="88">3 VERSION 2</text>
+        <text class="a2dS" style="fill:#2A1526" x="486" y="108">items rewritten</text>
+        <text class="a2dS" style="fill:#2A1526" x="486" y="124">and reordered</text>
+        <text class="a2dH" x="706" y="88">4 PRETEST</text>
+        <text class="a2dS" x="706" y="108">three probes on</text>
+        <text class="a2dS" x="706" y="124">two items</text>
+
+        <text class="a2dS" x="580" y="218">revise what the probes break</text>
+        <text class="a2dN" x="30" y="244">Constructed Ottervale example. The artifact you leave with is questionnaire v2, pretested on two items.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the pretest loops back into version 2; a questionnaire is finished when the probes stop breaking it, not when it is written</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Paste the draft.</strong> Copy the cabinet member's six items into your working file exactly as written, options included. Do not fix anything yet; the tagging in step 2 is easier on the raw text.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · Ottervale resident survey, draft 1 (constructed)</span>Q1  Given rising costs, would you accept cutting the route 7 bus?
+    Yes / No
+Q2  How satisfied are you with council services overall?
+    Very satisfied / Fairly satisfied / Neither / Fairly dissatisfied / Very dissatisfied
+Q3  Don't you agree the council should protect the vital route 7 bus and the library?
+    Yes / No
+Q4  How would you rate the library's opening hours?
+    Excellent / Very good / Good / Poor
+Q5  Do you use the bus regularly?
+    Yes / No
+Q6  Which should the council fund: the route 7 bus or longer library hours?
+    The bus / The library</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · Tag each item with its fault.</strong> One main fault per item, in the vocabulary from Parts 1 to 3. Some items carry a second fault; note it, but fix the main one first.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the fault tags</span>Q1  leading and loaded: the premise "rising costs" plus "accept" frames the cut as reasonable
+Q2  order: sits straight after a bus-cuts item, so "council services" is rated with cuts in mind
+Q3  double-barrelled: two objects, one answer (also leading: "Don't you agree", "vital")
+Q4  unbalanced scale: three positive options, one negative, no middle
+Q5  vague frequency: "regularly" has no reference period and no count
+Q6  no don't know: undecided residents, and those who want both or neither, must pick a side</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Rewrite items 1 to 3.</strong> Neutral stems, both directions offered, one object per item. Q2's wording is sound; its problem is position, which step 4 fixes.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · items 1 to 3, version 2</span>Q1  Would you support or oppose ending the route 7 bus service?
+    Strongly support / Somewhat support / Neither / Somewhat oppose / Strongly oppose / Don't know
+Q2  How satisfied are you with the services Ottervale council provides overall?
+    Very satisfied / Fairly satisfied / Neither / Fairly dissatisfied / Very dissatisfied / Don't know
+Q3a How important, if at all, is keeping the route 7 bus to you?
+    Very / Fairly / Not very / Not at all / Don't know
+Q3b How important, if at all, is extending library opening hours to you?
+    Very / Fairly / Not very / Not at all / Don't know</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Rewrite items 4 to 6, then reorder.</strong> Balance the scale, give the frequency item a period and a count, give the trade-off item honest exits. Then put the whole questionnaire in order: general before specific, behaviour before opinion, the trade-off last but not buried behind a long grid.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · items 4 to 6, and the v2 order</span>Q4  How would you rate the library's current opening hours?
+    Very good / Fairly good / Neither / Fairly poor / Very poor      [separate] Don't know
+Q5  In the past four weeks, on how many days did you travel on the route 7 bus?
+    None / 1 to 3 days / 4 to 8 days / 9 or more days / Can't remember
+Q6  If the council can fund only one of these next year, which should it be?
+    Keep the route 7 bus / Extend library hours / No preference / Don't know
+
+Questionnaire v2 order:
+  1  Q2   overall satisfaction (general, asked before any specific service)
+  2  Q5   bus use, past four weeks (behaviour)
+  3  Q4   library hours rating
+  4  Q3a  importance of the bus
+  5  Q3b  importance of library hours  (rotate 4 and 5 across respondents)
+  6  Q1   support or oppose ending route 7
+  7  Q6   the trade-off the decision needs</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Write a three-probe pretest script for two items.</strong> Pick the two items most likely to be misread. For Ottervale that is Q5, where "the route 7 bus" and "days" can be counted many ways, and Q6, the item the decision rests on. Run the script with a handful of residents before fielding; your findings will differ from anyone else's, so record what each person actually said.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · cognitive pretest script (constructed)</span>Opening: "Please read each question aloud and tell me what you are thinking as you answer."
+
+Q5  bus days, past four weeks
+  P1 comprehension: Which journeys did you count as the route 7 bus?
+  P2 retrieval:     How did you work out the number of days?
+  P3 judgement:     How sure are you of that number? Was there a box you nearly picked?
+
+Q6  the trade-off
+  P1 comprehension: In your own words, what is this question asking you to choose?
+  P2 judgement:     What were you weighing up when you chose?
+  P3 options:       Was the answer you wanted on the list? If not, what was it?
+
+Record per item: what was misread __________  what to change in v2 __________</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Pretest the order, not only the items.</strong> If you are unsure whether Q2 still picks up the bus topic from the invitation letter or the survey title, a small split-ballot pretest with Q2 first for half and later for the other half will show whether the two versions behave very differently. It will not give a precise effect; it will tell you whether to worry.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Analyst session 3</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Audit a live questionnaire.</strong> Take a survey you or your team has fielded and tag every item with the five faults from Part 1, plus unbalanced scale, missing don't know and order.</li>
+      <li><strong>Fix the worst three items</strong> in the style of step 3, and write one sentence each on what the old wording would have done to the number.</li>
+      <li><strong>Decide the midpoint and don't-know question for each rating item,</strong> and write the reason in one line, as it would appear in a methods note.</li>
+      <li><strong>Run your step 5 script</strong> with two people outside your team. Write down one thing either of them misread that you did not expect.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Analyst session 2 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Pew's January 2003 item on military action in Iraq drew 68% in favour asked plainly and 43% with a clause about thousands of casualties. What does that show?</p>
+      <button class="qopt" type="button">A · The second sample was smaller, so its margin of error was wider</button>
+      <button class="qopt" type="button">B · Respondents changed their minds between the two surveys</button>
+      <button class="qopt" type="button">C · The wording defines what is being measured; the added clause asked about a different concept and moved the majority</button>
+      <button class="qopt" type="button">D · One of the two versions must have been a leading question, and the other one is the true opinion</button>
+      <p class="qwhy">Both versions were honest questions about different things. The number belongs to the wording, which is why the exact wording is a disclosure item and why specification comes first.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Ottervale's draft rates the library's hours as Excellent / Very good / Good / Poor. What is the main problem?</p>
+      <button class="qopt" type="button">A · The scale is unbalanced, three positive options against one negative with no middle, so undecided residents are pushed toward a positive answer</button>
+      <button class="qopt" type="button">B · Four options are too few for any rating item</button>
+      <button class="qopt" type="button">C · Rating scales should always be replaced by agree-disagree statements</button>
+      <button class="qopt" type="button">D · There is nothing wrong as long as the sample is large</button>
+      <p class="qwhy">A balanced scale mirrors its labels on both sides. A larger sample measures the lean more precisely; it does not remove it.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · In Pew's December 2008 survey, 88% said they were dissatisfied with the way things were going when the item came after a presidential approval question, and 78% without it. What is the practical lesson?</p>
+      <button class="qopt" type="button">A · Put the most important item first, whatever it is</button>
+      <button class="qopt" type="button">B · Question order matters only for political topics</button>
+      <button class="qopt" type="button">C · Always drop general satisfaction items</button>
+      <button class="qopt" type="button">D · A preceding question sets the context for the next one, so order items deliberately (general before specific) and test the order when it could matter</button>
+      <p class="qwhy">The first question brought its topic to mind. In Ottervale's draft, the overall council-services item sat right after a bus-cuts item; v2 moves it to the front.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Iraq item, January 2003: 68% favour and 25% oppose without the casualties clause; 43% favour and 48% oppose with it</span><span class="note">Pew Research Center, "Writing survey questions", read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Order effects: 88% dissatisfied after a presidential approval question vs 78% without (December 2008); legal agreements for same-sex couples 45% after the marriage question vs 37% without (October 2003)</span><span class="note">Pew Research Center, "Writing survey questions", read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Satisficing: settling for a merely acceptable answer when optimal answering takes too much effort</span><span class="note">Krosnick, "Response strategies for coping with the cognitive demands of attitude measures in surveys", Applied Cognitive Psychology 5(3), 1991, reported</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Ottervale's draft questionnaire, its fault tags, version 2 and the pretest script</span><span class="note">Constructed for teaching; no real council, survey or respondent</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The lab's measurement error is zero by construction</span><span class="note">The survey error lab asks the census question as written; no lab numbers are quoted on this page</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Analyst session 2 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Five wording faults</b><span>Leading, loaded, double-barrelled, vague quantifier, undefined term.</span></div>
+      <div class="cheat-item"><b>Specification first</b><span>Write the sentence the decision needs, then check an item can support it.</span></div>
+      <div class="cheat-item"><b>Balance the scale</b><span>Mirror the labels on both sides. An unbalanced scale leans the answer.</span></div>
+      <div class="cheat-item"><b>Midpoint and don't know</b><span>A real trade: forced answers versus easy exits. Decide per item and disclose it.</span></div>
+      <div class="cheat-item"><b>Order on purpose</b><span>General before specific, behaviour before opinion; rotate when no order is right.</span></div>
+      <div class="cheat-item"><b>Pretest before fielding</b><span>Think-aloud, scripted probes, a small split ballot. Revise what breaks.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>A perfect questionnaire still only hears from the people you can reach. Analyst session 3, who you could have reached, compares the population the council cares about with the lists it can actually draw from (address lists, online panels, street intercepts), and works out how many addresses to issue for the margin the decision needs.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Analyst session 2 of 6 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="a1-every-way-a-survey-misses.html">← Prev: Every way a survey misses</a> &nbsp;·&nbsp; <a href="a3-who-you-could-have-reached.html">Next: Who you could have reached →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

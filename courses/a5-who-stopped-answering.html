@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Analyst session 5 of 6. Who stopped answering, and weighting them back: response rates against nonresponse bias as a live argument, post-stratification and raking, and what trimming weights trades, on real census rows for the constructed town of Ottervale.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Who stopped answering, and weighting them back - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Analyst session 5 of 6. The same response rate can hide no bias or nine points of it; weights pull the number back and push the margin out.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/a5-who-stopped-answering.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Who stopped answering, and weighting them back - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Analyst session 5 of 6. A response rate is not a bias. Raking and trimming, with the variance each one costs.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Analyst session 5 · Who stopped answering, and weighting them back - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Analyst session 5 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Analyst session 5 of 6</div>
+    <h1>Who stopped answering: <span class="accent">and weighting them back</span></h1>
+    <p class="sub">Fewer and fewer people answer surveys, and every report that prints a low response rate invites the same question: can the number still be trusted? Survey methodologists have argued about it for two decades, with good evidence on both sides. Tonight you take that argument apart on the bench, where the same response rate can hide no bias at all or nine points of it, and then you do the repair work: post-stratify, rake, trim, and pay for each weight in a wider margin. By the end Ottervale, a constructed town council, has a weighting spec it can defend.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Analyst</span>
+      <span class="chip audience">Analysts, researchers and data scientists who run surveys</span>
+      <span class="chip audience">Hands-on in the browser</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Rates, weights, trimming</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: rake the skewed-old sample</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Four sessions in, Ottervale's survey has a questionnaire, an address frame and a stratified design. What it does not have is a plan for the three in four households who will not answer. Since Analyst session 1 the lab's R1 has been telling you what that costs: older residents answer more, older residents report poorer health more often, and the estimate sits 5.2 points too high on average. Tonight you separate two questions people constantly merge, how many answered and whether the ones who answered differ, and then you weight the answers back toward the town. The 20,000 adults and the truth, 21.7%, are real Census 2021 rows from the Office for National Statistics; who answers is simulated and labelled on the widget.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone builds it</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> Ottervale's weighting spec: which variables, which census targets, the trimming rule, the design effect each step costs, and one written paragraph on the nonresponse risk no weight can see. You also leave able to argue both sides of the response-rate debate with sources, without pretending it is settled.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers response rates against nonresponse bias</span>
+      <h2>Same response rate, three different biases</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A response rate tells you how many of the people you picked answered. Nonresponse bias is about who: whether the people who answered differ, on the thing you are measuring, from the people who did not. The two are related, but how strongly is one of the live arguments in survey methodology. Below, the lab holds the rate at roughly one in four and changes only who answers.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three rows, each showing 20 issued residents as circles with about 5 of them answering. Hatched circles are residents in fair, bad or very bad health. Row one, 22% answer evenly: answered residents mirror the issued sample, bias minus 0.3 points, the honest margin covers the truth 94% of the time. Row two, older answer more (R1, 25% answered): poorer-health residents are over-represented among those who answered, bias plus 5.2 points, covers 58%. Row three, answering linked to the answer itself (R5, 23% answered): poorer-health residents rarely answer, bias minus 8.9 points, covers 5%. A marigold line marks zero bias.">
+        <defs>
+          <filter id="a5aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="51" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a5aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a5aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a5aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a5aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a5aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a5aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a5aV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .a5aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a5aH" x="30" y="28">SAME RATE, DIFFERENT PEOPLE: WHO ANSWERED WITHIN THE SAMPLE</text>
+        <text class="a5aS" x="220" y="54">20 issued residents per row, for shape</text>
+        <text class="a5aS" x="540" y="54">bias over 1,000 repeats, points</text>
+
+        <g filter="url(#a5aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- row 1: uniform. answered (solid): 1 hatched + 4 white -->
+          <circle cx="228" cy="88" r="7" fill="url(#a5aHc)"/>
+          <circle cx="252" cy="88" r="7" fill="#FFFFFF"/>
+          <circle cx="276" cy="88" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="88" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="324" cy="88" r="7" fill="#FFFFFF"/>
+          <circle cx="348" cy="88" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="372" cy="88" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="396" cy="88" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="420" cy="88" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="88" r="7" fill="#FFFFFF"/>
+          <circle cx="228" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="252" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="276" cy="112" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="324" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="348" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="372" cy="112" r="7" fill="#FFFFFF"/>
+          <circle cx="396" cy="112" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="420" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="112" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <!-- row 2: skewed old. answered: 2 hatched + 3 white -->
+          <circle cx="228" cy="188" r="7" fill="url(#a5aHc)"/>
+          <circle cx="252" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="276" cy="188" r="7" fill="#FFFFFF"/>
+          <circle cx="300" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="324" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="348" cy="188" r="7" fill="url(#a5aHc)"/>
+          <circle cx="372" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="396" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="420" cy="188" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="188" r="7" fill="#FFFFFF"/>
+          <circle cx="228" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="252" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="276" cy="212" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="324" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="348" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="372" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="396" cy="212" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="420" cy="212" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="212" r="7" fill="#FFFFFF"/>
+          <!-- row 3: outcome-linked. answered: 0 hatched + 5 white -->
+          <circle cx="228" cy="288" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="252" cy="288" r="7" fill="#FFFFFF"/>
+          <circle cx="276" cy="288" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="288" r="7" fill="#FFFFFF"/>
+          <circle cx="324" cy="288" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="348" cy="288" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="372" cy="288" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="396" cy="288" r="7" fill="#FFFFFF"/>
+          <circle cx="420" cy="288" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="288" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="228" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="252" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="276" cy="312" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="300" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="324" cy="312" r="7" fill="#FFFFFF"/>
+          <circle cx="348" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="372" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="396" cy="312" r="7" fill="url(#a5aHc)" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="420" cy="312" r="7" fill="#FFFFFF" stroke="#D9CAD4" stroke-dasharray="3 3"/>
+          <circle cx="444" cy="312" r="7" fill="#FFFFFF"/>
+          <!-- bias scales: -10 at 540, 0 at 690, +10 at 840 -->
+          <path d="M540 100 L840 100 M540 200 L840 200 M540 300 L840 300" stroke="#D9CAD4"/>
+          <path d="M540 294 L540 306 M840 294 L840 306"/>
+          <circle cx="686" cy="100" r="7" fill="#55064A" stroke="#55064A"/>
+          <circle cx="768" cy="200" r="7" fill="#55064A" stroke="#55064A"/>
+          <circle cx="556" cy="300" r="7" fill="#55064A" stroke="#55064A"/>
+          <!-- doodle: an unopened envelope -->
+          <rect x="818" y="16" width="34" height="22" rx="3" transform="rotate(3 835 27)" stroke="#7F0A67"/>
+          <path d="M819 18 L835 30 L851 18" stroke="#7F0A67"/>
+        </g>
+        <path d="M690 74 L690 312" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="a5aB" x="698" y="80">no bias</text>
+
+        <text class="a5aL" x="30" y="94">22% answer, evenly</text>
+        <text class="a5aS" x="30" y="110">uniform · answered 22%</text>
+        <text class="a5aL" x="30" y="194">Skewed old (R1)</text>
+        <text class="a5aS" x="30" y="210">older answer more · 25%</text>
+        <text class="a5aL" x="30" y="294">Answer-linked (R5)</text>
+        <text class="a5aS" x="30" y="310">poorer health less · 23%</text>
+
+        <text class="a5aS" x="560" y="128">bias -0.3 pts · covers 94%</text>
+        <text class="a5aS" x="560" y="228">bias +5.2 pts · covers 58%</text>
+        <text class="a5aS" x="580" y="328">bias -8.9 pts · covers 5%</text>
+        <text class="a5aS" x="540" y="90" text-anchor="middle">-10</text>
+        <text class="a5aS" x="840" y="90" text-anchor="middle">+10</text>
+
+        <text class="a5aN" x="30" y="352">Hatched = fair, bad or very bad health. Solid ring = answered; dashed ring = never answered.</text>
+        <text class="a5aN" x="30" y="370">Circles for shape; biases as the lab prints them. Constructed Ottervale example, real census rows.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the rate barely moves across the three rows; what moves the bias is whether answering is tied to the answer</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Side A: low rates have not meant large bias<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Pew Research Center's 2012 study is the one most people cite. A typical Pew phone survey's response rate fell from 36% in 1997 to 9% in 2012. To test what that cost, Pew ran its standard five-day survey (1,507 interviews, 9% response) beside a high-effort survey fielded from 5 January to 15 March with incentives and refusal-conversion letters (2,226 interviews, 22% response). Of 40 comparisons, 28 differed by 2 points or less, 7 by 3 points and 5 by 4 points (read at source).</p>
+        <p>Two earlier lines of work point the same way. Keeter and colleagues (2006) repeated a 1997 experiment comparing a standard and a rigorous survey and found little to suggest nonresponse seriously threatened the estimates at the rates they obtained (reported). Groves and Peytcheva (2008) meta-analysed 59 methodological studies that measured nonresponse bias directly, using frame variables, record matches and follow-ups of nonrespondents (study count read at source in the abstract); the same analysis covered 959 estimates and found the response rate a weak predictor of bias (reported from a secondary summary).</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Side B: the rate was never the right measure<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Robert Groves' 2006 article makes the other half of the argument: nonresponse can, but need not, induce bias (abstract read at source). What decides it, in the propensity framing reported from summaries of the paper, is how strongly the chance of answering is linked to the survey variable itself. A low rate does not create bias on its own; it leaves more room for that link to matter. And Pew's own table is not all reassurance: 5 of its 40 measures moved by 4 points, which on a close council decision is the whole margin.</p>
+        <p>The bench row above is that mechanism made visible. At about the same one-in-four rate, answering spread evenly gives bias -0.3 and covers the truth 94% of the time; answering tied to age gives +5.2 and 58%; answering tied to the answer itself gives -8.9 and 5%. The lab cannot tell you which world a real survey is in. Neither can its response rate. That is why the debate is still open, and why a careful analyst reports both sides and the evidence each rests on.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Which response rate are you quoting?<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>"Response rate" is not one number. AAPOR's Standard Definitions, now in its 10th edition (2023), define a family of response, cooperation, refusal and contact rates, which differ in how they treat partial interviews and cases whose eligibility was never settled. Two surveys can quote different rates from the same fieldwork. When you report one, name which AAPOR rate it is, and when you compare two surveys, check they used the same one. The formulas are in the Standard Definitions; read them there rather than from a summary.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>From 36% to 9%, and mostly the same answers.</strong> Pew's 2012 comparison is the strongest evidence that low response rates need not wreck a survey, and its 4-point measures are the strongest reason not to stop checking. Both readings are honest. (Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source; Groves, Public Opinion Quarterly 70(5), 2006, abstract read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers post-stratification and raking</span>
+      <h2>Weights put the missing residents back, one cell at a time</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">If the young answer less, each young respondent has to speak for more young residents than an older respondent does. A weight is that ratio made explicit: how many people in the town this respondent stands for. Post-stratification sets one weight per cell of a cross-table, so the weighted sample matches the census in every cell. Raking matches only the margins, one variable at a time, and repeats until they all agree.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left panel: post-stratification. For young adults the census share bar is longer than the respondents bar, so each young respondent gets a weight above 1. For older adults the respondents bar is longer than the census share, so each gets a weight below 1. Right panel: the raking loop, three boxes for age, sex and area joined by arrows in a circle, adjusting weights to each census margin in turn and repeating until all three match. Bottom: post-stratifying age by sex gives bias minus 0.4 and design effect 1.08 on sample 1; raking on age, sex and area gives bias minus 0.4 and design effect 1.10; for raking the average split is nonresponse plus 5.5 and weighting minus 5.6.">
+        <defs>
+          <filter id="a5bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a5bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a5bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a5bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a5bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a5bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a5bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a5bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a5bH" x="30" y="28">POST-STRATIFY: ONE WEIGHT PER CELL</text>
+        <text class="a5bH" x="480" y="28">RAKE: FIT EACH MARGIN IN TURN</text>
+
+        <g filter="url(#a5bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- left panel -->
+          <rect x="24" y="44" width="424" height="250" rx="12" transform="rotate(-0.4 236 169)" fill="#FFFFFF"/>
+          <!-- young: census longer than respondents -->
+          <rect x="130" y="76" width="180" height="22" rx="4" fill="url(#a5bHc)"/>
+          <rect x="130" y="106" width="80" height="22" rx="4" fill="#F9EDF5"/>
+          <path d="M216 117 L300 117" marker-end="url(#a5bAr)"/>
+          <rect x="330" y="98" width="96" height="30" rx="6" transform="rotate(-2 378 113)" fill="#F5C04A"/>
+          <!-- older: respondents longer than census -->
+          <rect x="130" y="186" width="140" height="22" rx="4" fill="url(#a5bHc)"/>
+          <rect x="130" y="216" width="230" height="22" rx="4" fill="#F9EDF5"/>
+          <path d="M354 248 L280 248" marker-end="url(#a5bAr)"/>
+          <rect x="330" y="254" width="96" height="30" rx="6" transform="rotate(2 378 269)" fill="#F5C04A"/>
+          <!-- right panel: the loop -->
+          <rect x="468" y="44" width="388" height="250" rx="12" transform="rotate(0.4 662 169)" fill="#F9EDF5"/>
+          <rect x="612" y="62" width="100" height="40" rx="8" transform="rotate(-2 662 82)" fill="#FFFFFF"/>
+          <rect x="740" y="196" width="100" height="40" rx="8" transform="rotate(2 790 216)" fill="#FFFFFF"/>
+          <rect x="488" y="196" width="100" height="40" rx="8" transform="rotate(-1.5 538 216)" fill="#FFFFFF"/>
+          <path d="M716 90 C760 110 790 150 790 190" marker-end="url(#a5bAr)"/>
+          <path d="M736 226 C690 260 640 260 594 226" marker-end="url(#a5bAr)"/>
+          <path d="M534 192 C530 150 560 108 606 88" marker-end="url(#a5bAr)"/>
+          <!-- doodle: a set of balance scales -->
+          <path d="M836 56 L836 82 M822 62 L850 62 M822 62 L818 72 M822 62 L826 72 M850 62 L846 72 M850 62 L854 72 M816 72 L828 72 M844 72 L856 72" stroke="#7F0A67"/>
+        </g>
+        <rect x="604" y="140" width="116" height="42" rx="6" fill="#FFFFFF"/>
+
+        <text class="a5bL" x="40" y="92">Young</text>
+        <text class="a5bS" x="40" y="108">census share</text>
+        <text class="a5bS" x="40" y="124">respondents</text>
+        <text class="a5bH" x="340" y="118">weight up</text>
+        <text class="a5bS" x="130" y="148">few answered: each one stands</text>
+        <text class="a5bS" x="130" y="164">for more residents</text>
+
+        <text class="a5bL" x="40" y="202">Older</text>
+        <text class="a5bS" x="40" y="218">census share</text>
+        <text class="a5bS" x="40" y="234">respondents</text>
+        <text class="a5bH" x="340" y="274">weight down</text>
+
+        <text class="a5bS" x="40" y="286">weight = census share / sample share</text>
+
+        <text class="a5bH" x="640" y="87">AGE</text>
+        <text class="a5bH" x="770" y="221">SEX</text>
+        <text class="a5bH" x="514" y="221">AREA</text>
+        <text class="a5bL" x="614" y="158">repeat until</text>
+        <text class="a5bL" x="614" y="174">all margins fit</text>
+        <text class="a5bS" x="490" y="282">usually fast to converge, not guaranteed</text>
+
+        <text class="a5bB" x="30" y="324">post (age x sex, 12 cells): bias -0.4 · covers 94% · sample 1 deff 1.08</text>
+        <text class="a5bB" x="30" y="344">R3 rake (age, sex, area): bias -0.4 · covers 94% · sample 1 deff 1.10</text>
+        <text class="a5bN" x="30" y="368">R3 average split: nonresponse +5.5, weighting -5.6. The weights undo what the age skew did.</text>
+        <text class="a5bN" x="30" y="388">Bar lengths for shape. Constructed Ottervale example, real census rows.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a weight is how many residents one respondent stands for; raking sets it from the margins, one at a time</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Post-stratification: twelve cells, twelve weights<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Cross age by sex and you get 12 cells. For each cell, the census tells you its share of Ottervale's adults and the respondents tell you its share of the answers. The weight for everyone in that cell is the first share divided by the second. The youngest cells, who answer least, get the largest weights; the oldest, who answer most, the smallest. After weighting, the sample matches the census exactly on all 12 cells.</p>
+        <p>On the bench, the post preset (stratified by area, post-stratified on age by sex) brings R2's bias of +5.3 down to -0.4, and the honest margin covers the truth 94% of the time over 1,000 repeats. The price shows on the design line: sample 1's design effect rises to 1.08.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Raking: when the cross-table runs out of people<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Add area to age by sex and the cross-table has far more cells than a few hundred respondents can fill; some will be empty, and an empty cell cannot be weighted. Raking avoids the problem by matching only the margins. Adjust the weights so the age distribution matches the census; then adjust so sex matches, which knocks age slightly out; then area; then age again. Kalton and Flores-Cervantes (2003, read at source) describe this as iterative proportional fitting: row then column until the weights settle, usually fast, though convergence is not guaranteed.</p>
+        <p>R3 rakes Ottervale's respondents to age, sex and area. Over 1,000 repeats its bias is -0.4 and the honest margin covers 94%; its average split shows nonresponse +5.5 and weighting -5.6, the weights cancelling almost exactly what the age skew put in.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Why raking fixed R1, and when it will not<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Raking worked on R1's problem because the problem lived inside the weighting variables: older residents answered more, and older residents report poorer health more often. Once the weights restore the age mix, the health mix comes back with it. The condition is that, within each age, sex and area group, the people who answered resemble the people who did not on the thing being measured. When that fails, as in R5 where poorer health itself makes people less likely to answer, the weights match every census margin and the estimate is still far off. Weighting can only see what it is weighted on.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The method official statisticians reach for.</strong> Kalton and Flores-Cervantes' review of weighting methods sets out cell weighting, raking and their relatives side by side, and why raking is the usual choice when the sample is too small to fill a full cross-table but the population margins are known from a census or register. (Kalton and Flores-Cervantes, "Weighting methods", Journal of Official Statistics 19(2), 2003, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers trimming and the variance cost of weights</span>
+      <h2>Every weight pulls the estimate in and pushes the margin out</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Weighting is not free. When some respondents count for three residents and others for half of one, the estimate leans on a few people, and it moves more from sample to sample. That shows up as a design effect above 1, a smaller effective sample, and an honest margin wider than the naive one. Trimming caps the largest weights to win some precision back, and pays for it with a little bias.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Left: a hand-drawn histogram of raked weights. Most weights cluster around the mean; a few tall weights sit far to the right, beyond twice the mean. A marigold cap line at twice the mean, with an arrow showing the largest weights pulled back to the cap. R4 trimmed 10 weights on its first pass. Right: three margin bars for sample 1. Naive margin plus or minus 5.2 for both. R3 raked, honest plus or minus 5.5, design effect 1.10, effective n 206. R4 raked and trimmed, honest plus or minus 5.4, design effect 1.05, effective n 214. Over 1,000 repeats bias is minus 0.4 for R3 and plus 0.5 for R4.">
+        <defs>
+          <filter id="a5cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="57" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a5cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a5cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a5cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a5cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a5cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a5cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a5cV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .a5cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a5cH" x="30" y="28">THE WEIGHTS THAT PULLED A SMALL CELL TOO HARD</text>
+        <text class="a5cH" x="510" y="28">THE MARGIN THE WEIGHTS COST, SAMPLE 1</text>
+
+        <g filter="url(#a5cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M60 280 L460 280"/>
+          <path d="M160 274 L160 286 M60 274 L60 286"/>
+          <!-- histogram bars, most around the mean -->
+          <rect x="91" y="240" width="18" height="40" fill="#F9EDF5"/>
+          <rect x="111" y="200" width="18" height="80" fill="#F9EDF5"/>
+          <rect x="131" y="150" width="18" height="130" fill="#F9EDF5"/>
+          <rect x="151" y="130" width="18" height="150" fill="#F9EDF5"/>
+          <rect x="171" y="170" width="18" height="110" fill="#F9EDF5"/>
+          <rect x="191" y="210" width="18" height="70" fill="#F9EDF5"/>
+          <rect x="211" y="240" width="18" height="40" fill="#F9EDF5"/>
+          <rect x="231" y="256" width="18" height="24" fill="#F9EDF5"/>
+          <!-- the few large weights, beyond the cap -->
+          <rect x="311" y="262" width="18" height="18" fill="url(#a5cHc)"/>
+          <rect x="371" y="266" width="18" height="14" fill="url(#a5cHc)"/>
+          <rect x="421" y="268" width="18" height="12" fill="url(#a5cHc)"/>
+          <path d="M412 236 C380 216 320 210 272 222" marker-end="url(#a5cAr)"/>
+          <!-- right: margin bars -->
+          <path d="M560 96 L768 96" stroke="#D9CAD4" stroke-width="6"/>
+          <path d="M560 160 L780 160" stroke="#7F0A67" stroke-width="6"/>
+          <path d="M560 224 L776 224" stroke="#9B2A84" stroke-width="6"/>
+          <!-- doodle: scissors for the trim -->
+          <circle cx="826" cy="50" r="6" stroke="#7F0A67"/>
+          <circle cx="842" cy="50" r="6" stroke="#7F0A67"/>
+          <path d="M830 45 L848 24 M838 45 L820 24" stroke="#7F0A67"/>
+        </g>
+        <path d="M260 70 L260 282" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="a5cB" x="268" y="80">cap at 2x mean</text>
+        <text class="a5cS" x="160" y="300" text-anchor="middle">1x mean</text>
+        <text class="a5cS" x="260" y="300" text-anchor="middle">2x mean</text>
+        <text class="a5cS" x="60" y="300" text-anchor="middle">0</text>
+        <text class="a5cS" x="40" y="320">weight per respondent (count of respondents by height)</text>
+        <text class="a5cL" x="290" y="150">few residents,</text>
+        <text class="a5cL" x="290" y="166">big weights</text>
+        <text class="a5cS" x="290" y="186">R4 trimmed 10 weights</text>
+
+        <text class="a5cL" x="560" y="80">naive ±5.2 (R3 and R4)</text>
+        <text class="a5cL" x="560" y="144">R3 raked: honest ±5.5</text>
+        <text class="a5cS" x="560" y="182">deff 1.10 · effective n 206</text>
+        <text class="a5cL" x="560" y="208">R4 raked + trimmed: honest ±5.4</text>
+        <text class="a5cS" x="560" y="246">deff 1.05 · effective n 214</text>
+        <text class="a5cB" x="510" y="280">bias over 1,000 repeats: R3 -0.4 · R4 +0.5</text>
+        <text class="a5cS" x="510" y="298">precision bought with a little bias</text>
+
+        <text class="a5cN" x="30" y="356">Histogram heights for shape; the lab computes the design effect from the actual weights.</text>
+        <text class="a5cN" x="30" y="376">Constructed Ottervale example, real census rows; who answers is simulated.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a handful of big weights widen the margin for everyone; the cap trades a sliver of bias for a narrower one</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Read the design line after every weighting step<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>On sample 1, R3's 226 respondents carry a design effect of 1.10, so they are worth an effective sample of 206. Its honest margin is ±5.5 against a naive ±5.2 that pretends every respondent counted equally. The naive margin is the one most survey software prints by default, and it is too narrow whenever the weights vary.</p>
+        <p>A useful rule of thumb, from Kish (1992) as reported by Little and Vartivarian (2005): weighting raises the variance by roughly the squared coefficient of variation of the weights, so the design effect from weighting is about 1 plus that square. They note it holds best when the weighting variables are only weakly linked to the outcome (reported). The lab does not use the approximation; it computes the variance of each estimate directly from the weights. The interval mathematics itself is taught in <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/courses/b7-confidence-intervals.html">Statistics, confidence intervals ↗</a>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Trimming: cap the few, steady the many<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>R4 rakes as R3 does, then caps every weight at twice the mean, rescales the rest so the total is kept, and repeats the pass; on sample 1 it trimmed 10 weights on its first pass. The design effect falls from 1.10 to 1.05, effective n rises from 206 to 214, and the honest margin narrows from ±5.5 to ±5.4. The cost is on the repeat line: bias moves from -0.4 to +0.5, because the capped respondents now speak for slightly fewer of the residents they were standing in for. Kalton and Flores-Cervantes (2003, read at source) describe exactly this trade: bounding or trimming weights improves precision at some cost in bias reduction.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Choosing a cap you can defend<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Twice the mean is the lab's rule, not a law. Practitioners use caps at a multiple of the mean or median, or at a percentile of the weights, and the right one depends on how small the hardest-hit cell is and how much bias the decision can tolerate. Whatever you choose, write it down before fieldwork, report how many weights it touched, and show the design effect with and without it. A cap chosen after seeing which version gives the preferred answer is not a weighting rule; it is a thumb on the scale.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Does weighting for nonresponse always cost variance?</strong> Little and Vartivarian (2005) asked exactly that, and used Kish's cv-squared approximation as their starting point; their answer is that the cost depends on how the weighting variables relate to the outcome, which is the same condition that decides whether weighting removes bias at all. (Little and Vartivarian, Survey Methodology 31(2), 2005; the Kish approximation is reported from their paper.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Rake the skewed-old sample, then write the spec</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The lab below loads with R1: an address list, simple random, older residents answering more, no weights. You will first confirm that the problem is who answered and not how many, then weight three ways and read what each costs. Sample 1 is fixed so your numbers match the page. The 20,000 adults and the 21.7% truth are real Census 2021 rows (Open Government Licence v3.0); the share in fair, bad or very bad health stands in for an Ottervale question; who answers is simulated.</p>
+
+    <div class="svy-widget" data-rung="r1"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ottervale's weighting spec as a pipeline. Respondents: 226 answered, 23%, stratified by area, design effect 0.92, effective n 245. An arrow to raked weights on age, sex and area to census margins: design effect 1.10, effective n 206. An arrow to trimmed weights capped at twice the mean: design effect 1.05, effective n 214, bias over 1,000 repeats plus 0.5. Below the raking box, an alternative branch: post-stratify age by sex, design effect 1.08. Under the whole pipeline, a dashed box for the risk weights cannot see: answering linked to the answer itself, R5 bias minus 8.9, covers 5%.">
+        <defs>
+          <filter id="a5dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="59" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a5dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a5dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a5dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a5dL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a5dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a5dB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a5dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a5dH" x="30" y="28">OTTERVALE WEIGHTING SPEC, AS A PIPELINE</text>
+        <text class="a5dS" x="360" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a5dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="50" width="220" height="96" rx="10" transform="rotate(-0.6 140 98)" fill="url(#a5dHc)"/>
+          <rect x="320" y="50" width="220" height="96" rx="10" transform="rotate(0.5 430 98)" fill="#F9EDF5"/>
+          <rect x="610" y="50" width="240" height="96" rx="10" transform="rotate(-0.5 730 98)" fill="#F5C04A"/>
+          <path d="M254 98 L314 98" marker-end="url(#a5dAr)"/>
+          <path d="M544 98 L604 98" marker-end="url(#a5dAr)"/>
+          <!-- alternative branch -->
+          <rect x="320" y="176" width="220" height="50" rx="8" transform="rotate(-1 430 201)" fill="#FFFFFF" stroke-dasharray="6 5"/>
+          <path d="M430 150 L430 172" stroke-dasharray="4 4"/>
+          <!-- the risk weights cannot see -->
+          <rect x="30" y="246" width="820" height="40" rx="8" transform="rotate(0.3 440 266)" fill="#FFFFFF" stroke-dasharray="6 5"/>
+          <!-- doodle: a pair of weights on a bar -->
+          <path d="M790 210 L850 210" stroke="#7F0A67"/>
+          <rect x="784" y="198" width="10" height="24" rx="3" stroke="#7F0A67"/>
+          <rect x="846" y="198" width="10" height="24" rx="3" stroke="#7F0A67"/>
+        </g>
+        <rect x="44" y="62" width="192" height="72" rx="6" fill="#FFFFFF"/>
+
+        <text class="a5dH" x="52" y="80">RESPONDENTS</text>
+        <text class="a5dS" x="52" y="98">226 answered (23%)</text>
+        <text class="a5dS" x="52" y="114">stratified, no weights</text>
+        <text class="a5dS" x="52" y="130">deff 0.92 · eff n 245</text>
+
+        <text class="a5dH" x="336" y="80">RAKED</text>
+        <text class="a5dS" x="336" y="98">age, sex, area</text>
+        <text class="a5dS" x="336" y="114">to census margins</text>
+        <text class="a5dL" x="336" y="132">deff 1.10 · eff n 206</text>
+
+        <text class="a5dH" x="626" y="80">TRIMMED</text>
+        <text class="a5dS" style="fill:#2A1526" x="626" y="98">cap at 2x the mean</text>
+        <text class="a5dL" x="626" y="116">deff 1.05 · eff n 214</text>
+        <text class="a5dL" x="626" y="134">repeat bias +0.5 pts</text>
+
+        <text class="a5dL" x="336" y="198">or post-stratify age x sex</text>
+        <text class="a5dS" x="336" y="214">12 cells · deff 1.08</text>
+
+        <text class="a5dB" x="46" y="271">What no weight can see: answering linked to the answer itself. R5: bias -8.9 pts, covers 5%.</text>
+
+        <text class="a5dN" x="30" y="314">Every design effect and effective n is sample 1 as the lab prints it; the bias is over 1,000 repeats.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - each step buys back bias and spends effective sample; the dashed box is the paragraph your spec still has to write</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Read R1's record.</strong> The lab loads with R1. Copy the repeat line and the average split. Note which part of the split carries the bias.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · R1 over 1,000 repeats</span>Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.0 pts · honest margin covers the truth 58% · naive 58%
+Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.6 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · Change who answers, not how many.</strong> With R1 loaded, set Who answers (simulated) to "22% answer, evenly". The rate stays near one in four; only the pattern changes. Copy the repeat line.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · the same design, answering evenly</span>Issued 1000 · answered 223 (22%) · design effect 1.00 · effective n 222
+Over 1000 repeat surveys: bias -0.3 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 94%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Post-stratify.</strong> Click R2 (stratified by area, older answering more), then set Weighting to "Post-stratify: age x sex". Copy the estimate, design and repeat lines.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · post-stratified on age x sex</span>Estimate: 20.3% ± 5.5 (honest margin) · naive ±5.2
+Issued 1000 · answered 226 (23%) · design effect 1.08 · effective n 209
+Over 1000 repeat surveys: bias -0.4 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 94%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Rake, then trim.</strong> Click R3 and copy the same three lines; then click R4 and copy them again. Compare the design effects and the two biases.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · R3 raked, then R4 raked and trimmed</span>R3  Estimate: 20.2% ± 5.5 (honest margin) · naive ±5.2
+R3  Issued 1000 · answered 226 (23%) · design effect 1.10 · effective n 206
+R3  Over 1000 repeat surveys: bias -0.4 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 93%
+R4  Estimate: 20.1% ± 5.4 (honest margin) · naive ±5.2
+R4  Issued 1000 · answered 226 (23%) · design effect 1.05 · effective n 214
+R4  Over 1000 repeat surveys: bias +0.5 pts · spread (SD) 2.8 pts · honest margin covers the truth 95% · naive 94%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Spring R5, then write the spec.</strong> Click R5: the same raking and trimming, but poorer health itself makes people less likely to answer. Copy the repeat line and the average split. Then write Ottervale's weighting spec; the last line is the one only you can write.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · R5, and Ottervale's weighting spec</span>Over 1000 repeat surveys: bias -8.9 pts · spread (SD) 2.2 pts · honest margin covers the truth 5% · naive 4%
+Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse -6.0 · weighting -2.6
+
+OTTERVALE WEIGHTING SPEC (constructed Ottervale example)
+variables      : age, sex, area
+targets        : Census 2021 margins for each variable
+method         : rake (iterative proportional fitting) to the three margins
+trimming rule  : cap at 2x the mean weight; report how many were capped
+cost to report : design effect and effective n, honest margin beside naive
+response rate  : name the AAPOR rate used: ____________________
+risk unseen    : ______________________________________________
+                 (who might answer less BECAUSE of the answer, and how
+                  the council could check: a follow-up of nonrespondents,
+                  a frame variable, a record match)</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Margins matched is not truth matched.</strong> R5's weights match the census on age, sex and area exactly as R4's do, and its honest margin covers the truth 5% of the time. A weighting spec that does not name its blind spot reads as a guarantee it cannot give.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Analyst session 6</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find one survey report</strong> that prints a response rate, and check whether it says which AAPOR rate it is. If it does not, write the question you would send the authors.</li>
+      <li><strong>Argue both sides</strong> in two short paragraphs: why that survey's response rate does or does not worry you, citing Pew 2012 on one side and Groves 2006 on the other.</li>
+      <li><strong>List its weighting variables</strong>, and name one plausible reason people might answer less because of their answer that those variables cannot see.</li>
+      <li><strong>On the lab</strong>, load R3 and click "Draw another sample" three times, writing the design effect each time; then do the same on R4. Write one sentence on whether trimming lowered the design effect on every draw. Your numbers will differ from any on this page.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Analyst session 5 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · On the lab, "22% answer, evenly" gives bias -0.3; answering linked to the answer gives -8.9 at about the same rate. What does that show?</p>
+      <button class="qopt" type="button">A · Low response rates always produce large bias</button>
+      <button class="qopt" type="button">B · Response rates above 20% are safe</button>
+      <button class="qopt" type="button">C · Bias depends on whether answering is tied to the answer, which the rate alone cannot reveal</button>
+      <button class="qopt" type="button">D · The lab's response rates are computed wrongly</button>
+      <p class="qwhy">This is Groves' 2006 point made visible. Pew 2012 shows low rates often do little harm; the bench shows why they sometimes do a lot. Both stand.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · Raking on age, sex and area takes R1's design from bias +5.2 to R3's -0.4. Why did it work here?</p>
+      <button class="qopt" type="button">A · The skew was by age, and within each age group the people who answered resembled those who did not on health</button>
+      <button class="qopt" type="button">B · Raking always removes nonresponse bias</button>
+      <button class="qopt" type="button">C · Raking raised the response rate</button>
+      <button class="qopt" type="button">D · Raking made the design effect smaller</button>
+      <p class="qwhy">Weighting fixes what it is weighted on. R5, raked the same way, still misses by 8.9 points because the skew there is on the answer itself.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · R4 caps weights at twice the mean. Compared with R3, what does it trade?</p>
+      <button class="qopt" type="button">A · More bias for a wider margin</button>
+      <button class="qopt" type="button">B · Nothing; trimming is free</button>
+      <button class="qopt" type="button">C · A higher response rate for a lower one</button>
+      <button class="qopt" type="button">D · A little bias (-0.4 to +0.5) for precision (design effect 1.10 to 1.05, honest ±5.5 to ±5.4)</button>
+      <p class="qwhy">Bounding weights improves precision at some cost in bias reduction, as Kalton and Flores-Cervantes describe; the lab prints both sides of the trade.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Typical phone response fell from 36% (1997) to 9% (2012)</span><span class="note">Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">9% vs 22% response: 28 of 40 comparisons within 2 points, 7 at 3, 5 at 4</span><span class="note">Pew Research Center, 2012, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Meta-analysis of 59 studies that measured nonresponse bias</span><span class="note">Groves and Peytcheva, Public Opinion Quarterly 72(2), 2008, abstract read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">959 estimates; response rate a weak predictor of bias</span><span class="note">Groves and Peytcheva 2008, reported from a secondary summary</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Nonresponse can, but need not, induce bias; the link between answering and the variable decides</span><span class="note">Groves, Public Opinion Quarterly 70(5), 2006, abstract read at source; propensity framing reported</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">A repeated standard vs rigorous experiment found little threat from nonresponse</span><span class="note">Keeter et al., POQ 70(5), 2006, reported</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Response, cooperation, refusal and contact rates, current edition</span><span class="note">AAPOR, Standard Definitions, 10th ed. (2023), edition read at source; formulas not stated</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Raking as iterative proportional fitting; trimming trades bias reduction for precision</span><span class="note">Kalton and Flores-Cervantes, "Weighting methods", Journal of Official Statistics 19(2), 2003, read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Design effect from weighting is about 1 plus the squared cv of the weights</span><span class="note">Kish 1992 via Little and Vartivarian, Survey Methodology 31(2), 2005, reported</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every lab number on this page</span><span class="note">Computed by the widget on real ONS Census 2021 rows (Open Government Licence v3.0); who answers is simulated and labelled; a Python reference agrees on every value</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Analyst session 5 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Rate is not bias</b><span>Same one-in-four rate on the bench: bias -0.3, +5.2 or -8.9, depending on who answers.</span></div>
+      <div class="cheat-item"><b>Both sides stand</b><span>Pew 2012: 28 of 40 within 2 points. Groves 2006: the link to the answer decides.</span></div>
+      <div class="cheat-item"><b>Name the rate</b><span>AAPOR Standard Definitions, 10th ed.: say which rate you quote.</span></div>
+      <div class="cheat-item"><b>Post-stratify or rake</b><span>Cells when they fill; margins, fitted in turn, when they do not. R3 bias -0.4.</span></div>
+      <div class="cheat-item"><b>Weights cost precision</b><span>R3 deff 1.10, effective n 206, honest ±5.5 against naive ±5.2.</span></div>
+      <div class="cheat-item"><b>Trim, and say so</b><span>Cap at 2x mean: deff 1.05, bias +0.5. Weights cannot see R5's -8.9.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>You now hold every lever: frame, design, sample size, who answers and how to weight. Analyst session 6 puts them on one bench. You walk the full ladder from street intercept to trimmed raking, spring the anti-levers on purpose, and fill the scorecard that decides whether Ottervale's plan is fit to carry a bus route decision.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Analyst session 5 of 6 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="a4-designs-that-spend-the-budget-well.html">← Prev: Designs that spend the budget well</a> &nbsp;·&nbsp; <a href="a6-the-survey-error-lab.html">Next: The survey error lab →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

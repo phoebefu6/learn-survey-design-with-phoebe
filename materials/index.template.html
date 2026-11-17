@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Survey design and sampling, by Phoebe Fu. Six Analyst sessions on total survey error, questionnaires, frames, sample designs, nonresponse and weighting, ending in a survey error lab on real census rows; four Leader sessions on reading, commissioning, deciding with and reporting a survey.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Learn Survey Design &amp; Sampling with Phoebe">
+<meta property="og:description" content="Questionnaires, sampling frames, non-response and the bias a survey carries before the first answer. Run a real survey against census rows and see how far each choice moves the number from the truth.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Learn Survey Design &amp; Sampling with Phoebe">
+<meta name="twitter:description" content="Two tracks: Analysts design, field and weight the survey; Leaders read it, buy it and decide with it.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Learn Survey Design &amp; Sampling with Phoebe</title>
+<link rel="stylesheet" href="assets/style.css?v=1">
+<style>
+
+  .stats-row { display: flex; gap: 2.4rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .stat b { display: block; font-size: 2.1rem; font-weight: 800; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .72rem; opacity: 1; text-transform: uppercase; letter-spacing: .09em; font-weight: 600; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .course-card {
+    border: 1px solid var(--hairline);
+    border-top: 4px solid var(--diff, var(--indigo));
+    border-radius: var(--radius);
+    padding: 1.2rem 1.3rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    text-decoration: none;
+    color: var(--ink);
+    background: #fff;
+    transition: box-shadow .15s ease, border-color .15s ease, transform .15s ease;
+    position: relative;
+  }
+  .course-card:hover { border-color: var(--indigo-soft); border-top-color: var(--diff, var(--indigo)); box-shadow: 0 8px 28px rgba(var(--shadow-rgb),.16); transform: translateY(-3px); }
+  .course-card .cicon { font-size: 1.7rem; line-height: 1; }
+  .course-card .cnum { font-size: .72rem; font-weight: 700; color: var(--indigo); text-transform: uppercase; letter-spacing: .1em; }
+  .course-card h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.3; }
+  .course-card p { font-size: .85rem; color: var(--muted); flex: 1; }
+  .course-card .meta { display: flex; gap: .4rem; flex-wrap: wrap; }
+
+  .diff-legend { display: flex; gap: 1rem; margin-top: 1.6rem; font-size: .74rem; color: var(--muted); font-weight: 600; flex-wrap: wrap; }
+  .diff-legend i { display: inline-block; width: .85rem; height: .35rem; border-radius: 999px; margin-right: .35rem; vertical-align: middle; }
+
+  .paths { margin-top: 2.6rem; }
+  .paths h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
+  .paths .plede { color: var(--muted); font-size: .92rem; margin-bottom: .8rem; }
+  .path { display: flex; gap: .55rem; align-items: center; padding: .75rem 0; border-bottom: .5px solid var(--hairline); flex-wrap: wrap; }
+  .path:last-child { border-bottom: none; }
+  .path b { min-width: 15.5rem; font-size: .9rem; }
+  .path .pstep { background: var(--indigo-50); color: var(--indigo-deep); border-radius: 999px; padding: .16rem .68rem; font-weight: 700; font-size: .8rem; text-decoration: none; transition: all .12s ease; }
+  .path .pstep:hover { background: var(--indigo); color: #fff; }
+  .path .parr { color: var(--muted); font-weight: 700; }
+
+  .mm-section { margin-top: 1.6rem; }
+  .mm-section h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: .2rem; }
+  .mm-section .mm-lede { color: var(--muted); font-size: .92rem; margin-bottom: .4rem; }
+  .mm-wrap { border: 1px solid var(--hairline); border-radius: var(--radius); background: linear-gradient(180deg,#fff,var(--indigo-50)); padding: .6rem; overflow-x: auto; }
+  .mm-svg { width: 100%; height: auto; display: block; max-width: 60rem; margin: 0 auto; min-width: 34rem; }
+  .mm-link { cursor: pointer; text-decoration: none; }
+  .mm-node rect { transition: opacity .15s ease, filter .15s ease; }
+  .mm-node text { pointer-events: none; }
+  .mm-link:hover .mm-node rect { filter: brightness(1.06); }
+  .mm-edge { transition: opacity .15s ease; }
+
+  .not-this { border: 1px solid var(--hairline); border-left: 4px solid var(--clay); border-radius: var(--radius); background: #fff; padding: 1.1rem 1.3rem; margin-top: 1.2rem; }
+  .not-this h3 { font-size: .95rem; font-weight: 800; margin-bottom: .5rem; }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn with Phoebe · Data &amp; Research Methods</div>
+    <h1>Learn <span class="accent">Survey Design &amp; Sampling</span> with Phoebe</h1>
+    <p class="sub">A survey prints one number and one margin of error, and the margin describes only one of the ways the number can be wrong. The others arrive earlier: the question's wording, the list you drew from, who you picked, who answered, and how the answers were weighted. These ten sessions follow one question all the way through: how far is this survey's number from the truth, and which choice put it there? The bench answers it for real. It asks a question of 20,000 adults from the Census 2021 teaching sample of England and Wales, where the true answer is known, and measures every choice against it. Six Analyst sessions are for the people who design, field and weight surveys. Four Leader sessions are for the people who commission them, read them and decide with them.</p>
+    <div class="stats-row">
+      <div class="stat"><b data-count="10">10</b><span>sessions, two tracks</span></div>
+      <div class="stat"><b data-count="20000">20000</b><span>real census adults on the bench</span></div>
+      <div class="stat"><b data-count="1000">1000</b><span>repeat surveys per click</span></div>
+      <div class="stat"><b data-count="6">6</b><span>rungs, one that weighting cannot fix</span></div>
+      <div class="stat"><b data-count="5">5</b><span>questions to read any survey</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Analyst track 📋 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· six sessions, hands-on in the browser</span></h2>
+      <p class="plede">For analysts, researchers and data scientists who write the questionnaire, design the sample, weight the responses and report the number with an honest margin. Name every error, rewrite a leading questionnaire, choose a frame and a size, spend the budget on a design, weight the people who stopped answering back in, and score the whole plan in the survey error lab.</p>
+    </div>
+    <div class="course-grid">
+{{CARDS_A}}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Leader track 🧭 <span style="font-size:.85rem;font-weight:600;color:var(--muted)">· four sessions, no code</span></h2>
+      <p class="plede">For managers, policy and insight leads who commission surveys and act on them. Read any survey in five questions, buy one without regret, decide what its number can carry, and report it with the full margin and the methods that let a reader check it.</p>
+    </div>
+    <div class="course-grid">
+{{CARDS_B}}
+    </div>
+    <div class="diff-legend">
+      <span><i style="background:#34D399"></i>foundations</span>
+      <span><i style="background:#FBBF24"></i>core</span>
+      <span><i style="background:#FB923C"></i>stretch</span>
+      <span><i style="background:#F87171"></i>bench night and capstone</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>Your passport 🎫</h2>
+      <p class="plede">Clear all three quiz questions in a session and it gets stamped. Ten stamps means you can name every error a survey carries, write questions that do not lead, choose a frame, a design and a weighting scheme, and read, buy and report a survey honestly. Stamps live in this browser only.</p>
+    </div>
+    <div class="pp-strip"></div>
+  </section>
+
+  <section class="section">
+    <div class="not-this">
+      <h3>What this is not, so you land in the right place 🧭</h3>
+      <table class="clean">
+        <tr><th>If your question is</th><th>Go here instead</th></tr>
+        <tr><td>How do sampling distributions and confidence intervals work?</td><td><a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Statistics ↗</a></td></tr>
+        <tr><td>How big must an A/B test be to detect an effect?</td><td><a href="https://phoebefu6.github.io/learn-experimentation-with-phoebe/">Experimentation ↗</a></td></tr>
+        <tr><td>How do I run interviews and code qualitative answers?</td><td><a href="https://phoebefu6.github.io/learn-ai-research-with-phoebe/">AI for Research ↗</a></td></tr>
+        <tr><td>How do I analyse an employee engagement survey?</td><td><a href="https://phoebefu6.github.io/learn-people-analytics-with-phoebe/">People Analytics ↗</a></td></tr>
+        <tr><td>Did the bus route cause people to stay in town?</td><td><a href="https://phoebefu6.github.io/learn-causal-inference-with-phoebe/">Causal Inference ↗</a></td></tr>
+        <tr><td><strong>How far is this survey's number from the truth, and which choice put it there?</strong></td><td><strong>you are in the right place</strong></td></tr>
+      </table>
+      <p style="margin-top:.7rem;font-size:.86rem;color:var(--muted)"><strong>Total survey error, measured.</strong> Ottervale is constructed; the population on the bench is real; methods come from AAPOR, Pew Research Center, the Office for National Statistics and the survey methods literature, with how each was checked.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths">
+      <h2>Choose your path 🗺️</h2>
+      <p class="plede">Three doors into the same conviction: the margin of error is the smallest part of what can go wrong, and every other part can be measured, designed against or at least named.</p>
+      <div class="path"><b>📋 I run the survey</b>
+        <a class="pstep" href="courses/a1-every-way-a-survey-misses.html">A1</a><span class="parr">→</span><a class="pstep" href="courses/a3-who-you-could-have-reached.html">A3</a><span class="parr">→</span><a class="pstep" href="courses/a4-designs-that-spend-the-budget-well.html">A4</a><span class="parr">→</span><a class="pstep" href="courses/a5-who-stopped-answering.html">A5</a><span class="parr">→</span><a class="pstep" href="courses/a6-the-survey-error-lab.html">A6</a>
+        <span style="font-size:.82rem;color:var(--muted)">the errors, the frame, the design, the weights, the lab</span>
+      </div>
+      <div class="path"><b>✏️ I write the questions</b>
+        <a class="pstep" href="courses/a1-every-way-a-survey-misses.html">A1</a><span class="parr">→</span><a class="pstep" href="courses/a2-questions-that-do-not-lead.html">A2</a><span class="parr">→</span><a class="pstep" href="courses/b4-reporting-it-honestly.html">B4</a>
+        <span style="font-size:.82rem;color:var(--muted)">the errors, the wording, the report</span>
+      </div>
+      <div class="path"><b>🧭 I commission and decide</b>
+        <a class="pstep" href="courses/b1-read-a-survey-in-five-questions.html">B1</a><span class="parr">→</span><a class="pstep" href="courses/b2-commissioning-without-regret.html">B2</a><span class="parr">→</span><a class="pstep" href="courses/b3-what-the-number-can-carry.html">B3</a><span class="parr">→</span><a class="pstep" href="courses/b4-reporting-it-honestly.html">B4</a>
+        <span style="font-size:.82rem;color:var(--muted)">read it, buy it, decide with it, report it</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="paths" style="margin-top:0">
+      <h2>What is honest here 🧾</h2>
+      <p class="plede">The running town is constructed and says so on every page. The population is real. What is simulated is labelled on the widget. Where the evidence disagrees, the page teaches both sides.</p>
+    </div>
+    <table class="clean">
+      <tr><th>Claim</th><th>Status</th></tr>
+      <tr><td>Ottervale, its council, its bus route, its questionnaire and its draft reports</td><td><strong>Constructed,</strong> and labelled each time</td></tr>
+      <tr><td>The 20,000 adults on the bench and the true share in fair, bad or very bad health</td><td><strong>Real:</strong> Office for National Statistics, Census 2021 public microdata teaching sample, Open Government Licence v3.0; a seeded sample</td></tr>
+      <tr><td>Who joins the panel, who walks past the intercept, who answers, and the street grouping</td><td><strong>Simulated,</strong> labelled on the widget; the bench claims the mechanism, not the rates</td></tr>
+      <tr><td>Every bench number</td><td><strong>Computed in your browser;</strong> an independent Python copy of the engine prints the same values</td></tr>
+      <tr><td>AAPOR standards and reports, Pew Research Center methods studies, the weighting literature</td><td><strong>Read at source,</strong> paraphrased, dated; anything seen only second-hand says "reported"</td></tr>
+      <tr><td>How much low response rates matter; opt-in panels against probability samples</td><td><strong>Contested,</strong> and taught with evidence on both sides</td></tr>
+    </table>
+  </section>
+
+  <section class="section mm-section">
+    <h2>The knowledge map 🧠</h2>
+    <p class="mm-lede">Both tracks at a glance - hover a session to spotlight its concepts, click any node to jump in.</p>
+    <div class="mm-wrap"><div id="mindmap"></div></div>
+  </section>
+
+  <footer class="pagefoot">
+    <span>learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span>Neighbours on the shelf: <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/">Statistics ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-experimentation-with-phoebe/">Experimentation ↗</a> &nbsp;·&nbsp; <a href="https://phoebefu6.github.io/learn-data-literacy-with-phoebe/">Data Literacy ↗</a></span>
+  </footer>
+
+</main>
+
+<script>
+window.MINDMAP_DATA = {{MINDMAP}};
+</script>
+<script src="assets/mindmap.js?v=1"></script>
+<script src="assets/app.js?v=1"></script>
+</body>
+</html>

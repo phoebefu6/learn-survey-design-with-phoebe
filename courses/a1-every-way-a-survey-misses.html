@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Analyst session 1 of 6. Every way a survey misses: the total survey error frame, why the printed margin covers only sampling, and a first run of the survey error lab on real census rows for the constructed town of Ottervale.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Every way a survey misses - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Analyst session 1 of 6. Coverage, sampling, nonresponse, measurement, processing, adjustment: the six places a survey's number leaves the truth.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/a1-every-way-a-survey-misses.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every way a survey misses - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Analyst session 1 of 6. The margin of error printed in a report covers one source of error out of six.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Analyst session 1 · Every way a survey misses - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Analyst session 1 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Analyst session 1 of 6</div>
+    <h1>Every way a survey misses: <span class="accent">six errors, one margin</span></h1>
+    <p class="sub">A survey report prints one number and one margin of error, and most readers take the margin as the whole uncertainty. It is not. The margin describes what chance does when you draw a sample; it says nothing about who the list left out, who never answered, how the question was worded or how the weights were built. Tonight you meet the frame survey methodologists use for all of it, total survey error, and you run your first survey on real census rows standing in for Ottervale, a constructed town council with a bus route to defend.</p>
+    <div class="chip-row">
+      <span class="chip level">🟢 Analyst</span>
+      <span class="chip audience">Analysts, researchers and data scientists who run surveys</span>
+      <span class="chip audience">Hands-on in the browser</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Six errors, one margin</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: first run of the lab</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">The Analyst track is for the people who write the questionnaire, draw the sample, weight the answers and report the number. Six sessions: tonight, every way a survey misses; then questions that do not lead; who you could have reached; designs that spend the budget well; who stopped answering and how weighting brings them back; and the survey error lab, where the whole plan is scored against the truth. The Ottervale council, its questions and its choices are constructed and labelled wherever they appear. The population is not: it is 20,000 real adults from the Office for National Statistics' Census 2021 teaching sample, so every error the lab prints is measured against a truth you can check.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone builds it</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> The first page of Ottervale's survey plan: an error budget that names the six places the council's number can leave the truth, with the lab's measured split for two designs beside it. You also leave with one habit that the rest of the track depends on: reading every survey number as an estimate plus several errors, of which the printed margin covers one.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the total survey error frame</span>
+      <h2>From the town to the number, in five hand-offs</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A survey estimate is the end of a chain. You want to know something about a population; you can only reach the people on a list; you draw some of them; some of those answer; you weight the answers back toward the population. Each hand-off can lose people in a pattern, and a pattern that lines up with the answer moves the number. Survey methodologists call the sum of those gaps total survey error.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn chain of five shrinking boxes from left to right: target population, sampling frame, issued sample, respondents, weighted estimate. Between each pair a gap is labelled with the error it creates: coverage error between population and frame, sampling error between frame and sample, nonresponse error between sample and respondents, adjustment error between respondents and estimate. Above the chain, measurement error sits on the question itself, and processing error on the data file. Constructed Ottervale example on real census rows.">
+        <defs>
+          <filter id="a1aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a1aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a1aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a1aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a1aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a1aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a1aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a1aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a1aH" x="30" y="28">FIVE HAND-OFFS, AND WHAT EACH ONE CAN LOSE</text>
+        <text class="a1aS" x="380" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a1aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="120" width="140" height="150" rx="10" transform="rotate(-0.6 100 195)" fill="url(#a1aHc)"/>
+          <rect x="206" y="132" width="128" height="126" rx="10" transform="rotate(0.5 270 195)" fill="#F9EDF5"/>
+          <rect x="370" y="146" width="112" height="98" rx="10" transform="rotate(-0.5 426 195)" fill="#FFFFFF"/>
+          <rect x="518" y="160" width="100" height="70" rx="10" transform="rotate(0.6 568 195)" fill="#FFFFFF"/>
+          <rect x="680" y="160" width="170" height="70" rx="10" transform="rotate(-0.4 765 195)" fill="#F5C04A"/>
+          <path d="M172 195 L202 195" marker-end="url(#a1aAr)"/>
+          <path d="M336 195 L366 195" marker-end="url(#a1aAr)"/>
+          <path d="M484 195 L514 195" marker-end="url(#a1aAr)"/>
+          <path d="M620 195 L676 195" marker-end="url(#a1aAr)"/>
+          <!-- measurement and processing sit over the whole chain -->
+          <path d="M60 86 L820 86" stroke-dasharray="6 6"/>
+          <!-- doodle: a ballot slip -->
+          <rect x="826" y="44" width="22" height="28" rx="3" stroke="#7F0A67"/>
+          <path d="M831 54 L843 54 M831 62 L840 62" stroke="#7F0A67"/>
+        </g>
+        <rect x="44" y="140" width="112" height="44" rx="6" fill="#FFFFFF"/>
+
+        <text class="a1aH" x="52" y="158">POPULATION</text>
+        <text class="a1aS" x="52" y="174">every adult</text>
+        <text class="a1aH" x="218" y="186">FRAME</text>
+        <text class="a1aS" x="218" y="204">the list you</text>
+        <text class="a1aS" x="218" y="218">can draw from</text>
+        <text class="a1aH" x="382" y="190">SAMPLE</text>
+        <text class="a1aS" x="382" y="208">who you asked</text>
+        <text class="a1aH" x="528" y="192">ANSWERED</text>
+        <text class="a1aS" x="528" y="210">who replied</text>
+        <text class="a1aH" x="694" y="192">ESTIMATE</text>
+        <text class="a1aL" x="694" y="210">weighted number</text>
+
+        <text class="a1aB" x="150" y="296">coverage</text>
+        <text class="a1aB" x="322" y="296">sampling</text>
+        <text class="a1aB" x="462" y="296">nonresponse</text>
+        <text class="a1aB" x="608" y="296">adjustment</text>
+        <text class="a1aS" x="150" y="312">frame misses</text>
+        <text class="a1aS" x="322" y="312">chance</text>
+        <text class="a1aS" x="462" y="312">some never reply</text>
+        <text class="a1aS" x="608" y="312">weights miss</text>
+
+        <text class="a1aB" x="60" y="76">measurement: the question moves the answer</text>
+        <text class="a1aB" x="520" y="76">processing: coding and editing</text>
+
+        <text class="a1aN" x="30" y="346">Specification error sits before all of it: asking about the wrong concept for the decision.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - only one of the gaps, sampling, is what the printed margin of error describes</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>The errors, in the order a survey meets them<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Specification.</strong> The question measures something other than the concept the decision needs. Ottervale's council wants to know who depends on the bus; "do you use the bus?" counts the student who takes it twice a year.</p>
+        <p><strong>Coverage.</strong> The list you draw from is not the population. An address list of private households leaves out people in care homes and halls; an online panel leaves out people who never joined one.</p>
+        <p><strong>Sampling.</strong> You asked some, not all. This is the only error the textbook margin of error measures, and it shrinks as the sample grows.</p>
+        <p><strong>Nonresponse.</strong> Some of the people you picked never answered. If the ones who answer differ from the ones who do not on the thing you are measuring, the number moves.</p>
+        <p><strong>Measurement.</strong> The wording, the order, the mode or the interviewer moves the answer away from what the person would have said otherwise. Analyst session 2 is about nothing else.</p>
+        <p><strong>Processing and adjustment.</strong> Coding, editing and weighting can introduce errors of their own, or fail to remove the ones above.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Where the frame comes from<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Paul Biemer's 2010 article in Public Opinion Quarterly sets total survey error out as a framework for getting the best data quality a budget allows, inside a wider idea of quality he calls fitness for use. The point is economic, not academic: every survey has a fixed budget, and the frame tells you where a pound buys the most accuracy. A bigger sample buys down sampling error only. If the largest error is coverage or nonresponse, a bigger sample buys a more confident wrong answer, which you will see on the bench in Analyst session 4. The error sources Biemer's introduction names (frame, sampling, interviewers, respondents, missing data, coding and editing) are reported here from a summary of the article, not read in full.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Fitness for use, not error for its own sake.</strong> Biemer's framework asks which errors to reduce and which only to measure, because no budget removes them all. A council survey that will decide a bus route needs its nonresponse bias measured; a quick pulse on library opening hours may only need it named. (Biemer, Public Opinion Quarterly, 2010, abstract read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers what the margin of error covers</span>
+      <h2>The margin describes chance, and only chance</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The usual margin of error is 1.96 times the standard error of a proportion from a simple random sample. It answers one question: if you drew another sample the same way from the same list, how far would the number move? It assumes the list is the population, everyone answered, and the question measured what you meant. When those fail, the interval sits around the wrong centre, and no amount of width puts it back.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn number line from 10 to 35 percent. A marigold truth line stands at 21.7 percent. Above it, ten repeat surveys from the address frame with age-skewed nonresponse are drawn as short intervals centred near 27 percent; most of them do not reach the truth line. The lab prints that 58 percent of 1,000 such intervals cover the truth, not 95. Below, ten intervals from the same design with nonresponse spread evenly centre on the truth, and 94 percent cover it.">
+        <defs>
+          <filter id="a1bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="17" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a1bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a1bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a1bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a1bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a1bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a1bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a1bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a1bH" x="30" y="28">THE SAME WIDTH, TWO DIFFERENT CENTRES</text>
+
+        <g filter="url(#a1bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M120 270 L840 270"/>
+          <path d="M120 264 L120 276 M264 264 L264 276 M408 264 L408 276 M552 264 L552 276 M696 264 L696 276 M840 264 L840 276"/>
+          <!-- skewed-old design: centred near 27 -->
+          <path d="M470 56 L622 56" stroke="#7F0A67" stroke-width="4"/>
+          <path d="M440 70 L592 70" stroke="#7F0A67" stroke-width="4"/>
+          <path d="M498 84 L650 84" stroke="#7F0A67" stroke-width="4"/>
+          <path d="M380 98 L532 98" stroke="#7F0A67" stroke-width="4"/>
+          <path d="M452 112 L604 112" stroke="#7F0A67" stroke-width="4"/>
+          <!-- even nonresponse: centred on the truth -->
+          <path d="M290 168 L442 168" stroke="#9B2A84" stroke-width="4"/>
+          <path d="M330 182 L482 182" stroke="#9B2A84" stroke-width="4"/>
+          <path d="M262 196 L414 196" stroke="#9B2A84" stroke-width="4"/>
+          <path d="M318 210 L470 210" stroke="#9B2A84" stroke-width="4"/>
+          <path d="M346 224 L498 224" stroke="#9B2A84" stroke-width="4"/>
+        </g>
+        <rect x="451" y="40" width="6" height="226" rx="3" fill="#F5C04A"/>
+
+        <text class="a1bS" x="120" y="292" text-anchor="middle">10%</text>
+        <text class="a1bS" x="264" y="292" text-anchor="middle">15%</text>
+        <text class="a1bS" x="408" y="292" text-anchor="middle">20%</text>
+        <text class="a1bS" x="552" y="292" text-anchor="middle">25%</text>
+        <text class="a1bS" x="696" y="292" text-anchor="middle">30%</text>
+        <text class="a1bS" x="840" y="292" text-anchor="middle">35%</text>
+        <text class="a1bB" x="464" y="252">truth 21.7%</text>
+
+        <text class="a1bL" x="30" y="60">older answer</text>
+        <text class="a1bL" x="30" y="76">more (R1)</text>
+        <text class="a1bS" x="676" y="74">58% of 1,000 cover</text>
+        <text class="a1bS" x="676" y="90">bias +5.2 pts</text>
+        <text class="a1bL" x="30" y="190">everyone</text>
+        <text class="a1bL" x="30" y="206">equally likely</text>
+        <text class="a1bS" x="676" y="190">94% of 1,000 cover</text>
+        <text class="a1bS" x="676" y="206">bias -0.3 pts</text>
+
+        <text class="a1bN" x="30" y="318">Five drawn intervals each, for shape. The coverage shares are what the lab prints over 1,000 repeat surveys.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - widening the interval does not move it; only removing the bias does</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Read "95%" as a promise about a process<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A 95% interval is a statement about the method: drawn many times, 95% of such intervals would contain the true value, if the assumptions held. The lab can test that promise because it knows the truth. Draw 1,000 surveys of the same design, build each one's interval, count how many contain the truth. With age-skewed nonresponse and no weighting (the lab's R1), the count is 58%. With answering spread evenly (the "uniform" setting), it is 94%. Same sample size, same width; the difference is all bias.</p>
+        <p>The mathematics of the interval itself (standard errors, the central limit theorem, why 1.96) lives in <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/courses/b7-confidence-intervals.html">Statistics, confidence intervals ↗</a>. Here the interval is taken as given, and the question is what it leaves out.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Mean squared error: bias and spread in one number<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Survey methodologists summarise accuracy as mean squared error: the variance of the estimate plus its bias squared. Variance falls as the sample grows; bias does not. That is why a large biased survey can be less accurate than a small unbiased one, and why the total survey error frame insists on budgeting for every term. The lab prints both parts on its repeat line: "bias" and "spread (SD)".</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Two phone surveys, 9% and 22% response.</strong> In 2012 Pew Research Center ran its standard five-day survey (9% response) beside a high-effort version fielded over ten weeks with incentives and refusal conversion (22% response). Of 40 comparisons, 28 differed by 2 points or less. A low response rate did not, on most measures, mean a large bias. Analyst session 5 teaches why that is real and why it is not the whole story. (Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers the error budget</span>
+      <h2>An error budget names where each point came from</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">An error budget is a table with one row per error source and two columns: how big you expect it to be, and what the plan spends on it. The lab fills the expected column for you by splitting each run's error into coverage, sampling, nonresponse and weighting. On Ottervale's first two designs the split tells two different stories: the street intercept loses the people in poorer health before anyone is asked; the address list reaches them, and then the young stop answering.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two hand-drawn bar groups showing where the average error comes from over 1,000 repeat surveys. R0, street intercept with even answering: coverage minus 4.9 points, nonresponse plus 0.1 points, total bias minus 4.9 points. R1, address list with older residents answering more: coverage minus 0.3 points, nonresponse plus 5.6 points, total bias plus 5.2 points. Bars to the left of zero underestimate, to the right overestimate.">
+        <defs>
+          <filter id="a1cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="23" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a1cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a1cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a1cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a1cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a1cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a1cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a1cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a1cH" x="30" y="28">WHERE THE AVERAGE ERROR COMES FROM, IN POINTS</text>
+
+        <g filter="url(#a1cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M520 44 L520 272"/>
+          <!-- R0 -->
+          <rect x="324" y="62" width="196" height="26" rx="5" fill="url(#a1cHc)"/>
+          <rect x="520" y="98" width="6" height="26" rx="2" fill="#F9EDF5"/>
+          <rect x="324" y="134" width="196" height="26" rx="5" fill="#F5C04A"/>
+          <!-- R1 -->
+          <rect x="508" y="182" width="12" height="26" rx="3" fill="url(#a1cHc)"/>
+          <rect x="520" y="218" width="224" height="26" rx="5" fill="#F9EDF5"/>
+          <rect x="520" y="254" width="208" height="16" rx="5" fill="#F5C04A"/>
+          <!-- doodle: a clipboard -->
+          <rect x="822" y="40" width="26" height="32" rx="3" stroke="#7F0A67"/>
+          <path d="M829 50 L841 50 M829 58 L841 58 M829 66 L837 66" stroke="#7F0A67"/>
+        </g>
+
+        <text class="a1cH" x="30" y="66">R0 · street intercept</text>
+        <text class="a1cS" x="30" y="82">even answering</text>
+        <text class="a1cL" x="314" y="80" text-anchor="end">coverage -4.9</text>
+        <text class="a1cL" x="540" y="116">nonresponse +0.1</text>
+        <text class="a1cB" x="314" y="152" text-anchor="end">bias -4.9</text>
+
+        <text class="a1cH" x="30" y="186">R1 · address list</text>
+        <text class="a1cS" x="30" y="202">older answer more</text>
+        <text class="a1cL" x="498" y="200" text-anchor="end">coverage -0.3</text>
+        <text class="a1cL" x="754" y="236">nonresponse +5.6</text>
+        <text class="a1cB" x="738" y="267">bias +5.2</text>
+
+        <text class="a1cS" x="420" y="290">under</text>
+        <text class="a1cS" x="560" y="290">over</text>
+        <text class="a1cN" x="30" y="310">Average split over 1,000 repeat surveys, as the lab prints it; who answers is simulated. Sampling averages +0.0.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - fixing the frame removed one error and exposed the next; total error is not a ladder you climb in one direction</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>How the lab splits one run's error<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Because the lab knows every one of its 20,000 residents, it can measure four averages at each hand-off: the whole population (the truth), the frame, the issued sample and the respondents, then the weighted estimate. Coverage is frame minus truth. Sampling is issued sample minus frame. Nonresponse is respondents minus issued sample. Weighting is the estimate minus the respondents. The four add up to the total error, exactly, on every run.</p>
+        <p>The truth is the share of adults whose general health is fair, bad or very bad: 21.7% of the 20,000. It stands in for the council's real question, how many residents depend on the bus because getting about is hard. The stand-in is labelled on the widget. What is simulated is who joins a panel, who walks past an intercept and who answers; those propensities are printed on the widget and in the session where each one matters.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Measurement and processing are not on the bench<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The lab asks every resident the census question exactly as the census asked it, so its measurement error is zero by construction, and it does no coding. Real surveys are not so lucky. Analyst session 2 covers measurement with published wording and order experiments; your error budget should still carry a row for both, with a plan (pretesting, a coding check) instead of a number.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>First run: Ottervale's survey, scored against the truth</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The lab below draws a survey from 20,000 real adults, simulates who answers, weights if you ask it to, and prints the estimate, the truth and the split of the error. Then it repeats the same design 1,000 times and reports how often the honest margin covered the truth. Work the five steps and copy what the widget prints. Sample 1 is fixed so your numbers match the page; "Draw another sample" shows how much a single survey can wander.</p>
+
+    <div class="svy-widget" data-rung="r0"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn map of the lab. Your choices on the left: frame, design, sample size, who answers, weighting. The middle box draws from 20,000 real census adults with the simulated answering rates. The right box prints the estimate against the truth line, the error split into four parts, and the repeat line over 1,000 surveys.">
+        <defs>
+          <filter id="a1dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="31" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a1dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a1dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a1dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a1dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a1dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <g filter="url(#a1dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="40" width="210" height="150" rx="10" transform="rotate(-0.8 135 115)" fill="#F9EDF5"/>
+          <rect x="320" y="40" width="230" height="150" rx="10" transform="rotate(0.5 435 115)" fill="url(#a1dHc)"/>
+          <rect x="630" y="40" width="220" height="150" rx="10" transform="rotate(-0.5 740 115)" fill="#FFFFFF"/>
+          <path d="M244 115 L314 115" marker-end="url(#a1dAr)"/>
+          <path d="M554 115 L624 115" marker-end="url(#a1dAr)"/>
+        </g>
+        <rect x="338" y="62" width="194" height="106" rx="8" fill="#FFFFFF"/>
+        <path d="M791 66 L791 166" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="a1dH" x="46" y="66">YOUR CHOICES</text>
+        <text class="a1dS" x="46" y="88">frame: address, panel,</text>
+        <text class="a1dS" x="46" y="104">or street intercept</text>
+        <text class="a1dS" x="46" y="122">design and sample size</text>
+        <text class="a1dS" x="46" y="140">who answers (simulated)</text>
+        <text class="a1dS" x="46" y="158">weighting and trimming</text>
+
+        <text class="a1dH" x="350" y="84">THE LAB</text>
+        <text class="a1dS" x="350" y="104">20,000 real census adults</text>
+        <text class="a1dS" x="350" y="122">draws, answers, weights</text>
+        <text class="a1dS" x="350" y="140">then repeats 1,000 times</text>
+
+        <text class="a1dH" x="646" y="66">WHAT IT PRINTS</text>
+        <text class="a1dS" x="646" y="88">estimate vs truth</text>
+        <text class="a1dS" x="646" y="106">honest and naive</text>
+        <text class="a1dS" x="646" y="122">margins</text>
+        <text class="a1dS" x="646" y="140">error split in four</text>
+        <text class="a1dS" x="646" y="158">repeat coverage</text>
+
+        <text class="a1dN" x="30" y="226">The marigold line in the widget is the truth: 21.7% of the 20,000 report fair, bad or very bad health.</text>
+        <text class="a1dN" x="30" y="246">The plum dot and bars are this sample's estimate and its two margins.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - you set the choices, the lab replays the survey, and the error split tells you which choice cost what</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Read R0, the street intercept.</strong> The lab loads with R0 selected: a researcher on the high street on a weekday stops 1,000 people and 22% agree to answer. Copy the estimate line and the total error line.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · R0, as the widget prints it</span>Truth (census rows): 21.7%
+Estimate: 16.1% ± 4.8 (honest margin) · naive ±4.8
+Total error: -5.5 pts = coverage -4.9 · sampling +0.1 · nonresponse -0.7 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · Read the repeat line.</strong> The margin promises 95%. Copy what 1,000 repeat intercepts actually delivered.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · R0 over 1,000 repeats</span>Over 1000 repeat surveys: bias -4.9 pts · spread (SD) 2.5 pts · honest margin covers the truth 51% · naive 51%
+Average split over 1000: coverage -4.9 · sampling +0.0 · nonresponse +0.1 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Click R1, the address list.</strong> The council buys a list of every household address, draws 1,000 at random, and older residents answer more often than younger ones. Copy the same three lines.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · R1, as the widget prints it</span>Estimate: 25.7% ± 5.4 (honest margin) · naive ±5.4
+Total error: +4.0 pts = coverage -0.3 · sampling +1.9 · nonresponse +2.4 · weighting +0.0
+Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.0 pts · honest margin covers the truth 58% · naive 58%
+Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.6 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Draw three more samples on R1.</strong> Click "Draw another sample" three times and write each estimate. Then click "Back to sample 1". Notice that a single sample can land near the truth by chance while the design is still biased on average.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · your three draws</span>Sample 2: ____%   Sample 3: ____%   Sample 4: ____%
+Design bias over 1,000 repeats (from step 3): +5.2 pts</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Write the first page of the error budget.</strong> One row per error source; fill the R0 and R1 columns from the averages the lab prints, and the last column in your own words.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ottervale error budget, page 1</span>source        | R0 intercept | R1 address list | what the plan will spend on it
+specification | not measured | not measured    | ____________________________
+coverage      | -4.9 pts     | -0.3 pts        | ____________________________
+sampling      | +0.0 pts     | +0.0 pts        | ____________________________
+nonresponse   | +0.1 pts     | +5.6 pts        | ____________________________
+measurement   | not measured | not measured    | questionnaire v2 (session 2)
+adjustment    | none yet     | none yet        | weighting spec (session 5)</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Never trust a single draw.</strong> R1's sample 1 is off by 4.0 points while the design's bias is 5.2; another sample could be off by 1 or by 9. The design, judged over many draws, is the thing you are choosing. That is why the lab always prints the repeat line beside the single estimate.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Analyst session 2</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find one published survey</strong> in your field and copy its headline number and its margin of error.</li>
+      <li><strong>Write its error budget</strong> with the six rows from step 5, marking which rows the report says anything about.</li>
+      <li><strong>Name its frame:</strong> the list or method it drew people from, and one group that list cannot reach.</li>
+      <li><strong>Run the lab once</strong> with nonresponse set to "22% answer, evenly" and compare the repeat line with R1's. Write one sentence on what changed and why.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Analyst session 1 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · A report prints "45% ± 3 points". Which error does the ± 3 describe?</p>
+      <button class="qopt" type="button">A · Every error from question to weighting</button>
+      <button class="qopt" type="button">B · Sampling error only: how far another random draw from the same list would move</button>
+      <button class="qopt" type="button">C · Nonresponse error, because it is computed on respondents</button>
+      <button class="qopt" type="button">D · Coverage error, because it depends on the list size</button>
+      <p class="qwhy">The textbook margin assumes the list is the population, everyone answered and the question measured what was meant. It describes chance only.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · On the lab, R1's 1,000 repeat surveys show bias +5.2 points and the honest margin covers the truth 58% of the time. Why not 95%?</p>
+      <button class="qopt" type="button">A · The sample of 1,000 is too small</button>
+      <button class="qopt" type="button">B · The census rows are wrong</button>
+      <button class="qopt" type="button">C · The margin is computed with the wrong formula</button>
+      <button class="qopt" type="button">D · Older residents answer more, so every interval is centred too high; width cannot fix a shifted centre</button>
+      <p class="qwhy">Coverage of an interval falls when the estimate is biased. With answering spread evenly the same design covers the truth 94% of the time.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · Moving from the street intercept (R0) to the address list (R1) cuts coverage error from -4.9 to -0.3 points. Why does total bias not fall?</p>
+      <button class="qopt" type="button">A · The address list reaches the residents the intercept missed, and a different error, age-skewed nonresponse, now pushes the number the other way</button>
+      <button class="qopt" type="button">B · Address lists always have larger sampling error</button>
+      <button class="qopt" type="button">C · The intercept had weights and the address list does not</button>
+      <button class="qopt" type="button">D · Coverage error cannot be measured</button>
+      <p class="qwhy">Errors come from different hand-offs and can point in opposite directions. Removing one exposes the next; an error budget keeps them all in view.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Total survey error as a framework for data quality within a budget, inside fitness for use</span><span class="note">Biemer, "Total survey error: design, implementation, and evaluation", Public Opinion Quarterly 74(5), 2010, abstract read at source</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The error sources named: frame, sampling, interviewers, respondents, missing data, coding and editing</span><span class="note">Biemer 2010, introduction, reported from a summary</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">A 9% and a 22% response survey differed by 2 points or less on 28 of 40 measures</span><span class="note">Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The population: 20,000 adults from the Census 2021 public microdata teaching sample</span><span class="note">Office for National Statistics, 2023, Open Government Licence v3.0, file read; seeded sample</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every lab number on this page</span><span class="note">Computed by the widget on real census rows; who answers and who is reached are simulated and labelled; a Python reference agrees on every value</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Analyst session 1 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Six errors</b><span>Specification, coverage, sampling, nonresponse, measurement, processing and adjustment.</span></div>
+      <div class="cheat-item"><b>The margin covers one</b><span>The textbook margin of error describes sampling only, and assumes the rest away.</span></div>
+      <div class="cheat-item"><b>Bias does not shrink</b><span>A bigger sample narrows the interval around the same wrong centre.</span></div>
+      <div class="cheat-item"><b>Judge the design</b><span>One draw can land near the truth by chance. The repeat line is the design's record.</span></div>
+      <div class="cheat-item"><b>R0 and R1</b><span>Intercept bias -4.9, covers 51%. Address list bias +5.2, covers 58%.</span></div>
+      <div class="cheat-item"><b>Error budget</b><span>One row per source: expected size, and what the plan spends on it.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>The lab asks every resident the census question exactly as written, so its measurement error is zero. Real questionnaires are not so lucky. Analyst session 2 rewrites the cabinet member's draft for Ottervale, item by item, with the published experiments that show how far wording and order move an answer.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Analyst session 1 of 6 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="../index.html">← Course home</a> &nbsp;·&nbsp; <a href="a2-questions-that-do-not-lead.html">Next: Questions that do not lead →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

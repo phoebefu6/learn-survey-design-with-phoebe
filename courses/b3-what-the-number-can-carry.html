@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Leader session 3 of 4. What the number can carry: let the decision set the error you can tolerate, refuse to report cells too small to act on, and know when a survey is the wrong tool for the question.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="What the number can carry - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Leader session 3 of 4. The decision sets the error budget: tolerable error, small cells, and when to put the survey down.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/b3-what-the-number-can-carry.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What the number can carry - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Leader session 3 of 4. Tolerable error set by the decision, cells too small to report, and when a survey is the wrong tool.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Leader session 3 · What the number can carry - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Leader session 3 of 4</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Leader session 3 of 4</div>
+    <h1>What the number can carry: <span class="accent">the decision sets the error budget</span></h1>
+    <p class="sub">A survey number is never just right or wrong; it is close enough or not close enough for a particular decision. The same 20.2% ± 5.5 that is plenty for a newsletter can be useless for a vote that turns on 20%. Tonight you work out what Ottervale's resident survey can carry for the council's bus and library call, which of its numbers should never be printed, and when the council should not have run a survey at all. Ottervale is a constructed town; the lab underneath it is real census rows.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Leader</span>
+      <span class="chip audience">Managers, policy and insight leads who commission and read surveys</span>
+      <span class="chip audience">No code</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Error budget, small cells, the wrong tool</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: Ottervale's decision memo</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Last session you bought a survey with a brief and a methods statement. Tonight the results are back and the council wants to act on them. Three moves: start from the decision and ask how wrong the number can be before the decision would flip; find the cells too thin to report, before anyone quotes them; and recognise the situations where a survey, however well run, is the wrong instrument. The survey error lab supplies the evidence: Ottervale's question asked of 20,000 real census adults, so you can see what each number can and cannot carry against a known truth.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone works it through</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> A one-page decision memo for Ottervale's council: the decision, the error it can tolerate, what the survey can and cannot carry, the cells not to report, and the condition under which the council should not use the survey at all. It is the page that should sit on top of any survey result before a vote.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers the decision and the error it can tolerate</span>
+      <h2>Start from the call, then ask how wrong is too wrong</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Ottervale's council has a rule: keep the bus route if at least 20% of adults would be cut off without it. That threshold is constructed, and on the lab the census health measure stands in for the bus question. The survey comes back at 20.2% ± 5.5. The estimate sits a hair above the line, and the honest interval runs from well below 20% to well above it. Read plainly, the survey cannot settle the call. That is not a failure of the survey; it is a mismatch between the precision bought and the precision the decision needed.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 384" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn number line from 10 to 30 percent with the council's decision line at 20 percent, constructed. Row one: the lab's R3 sample 1, estimate 20.2 percent with an honest margin of plus or minus 5.5, an interval that runs across the line on both sides. Row two: the same estimate with a margin of plus or minus 3 points, still crossing the line. Below, the planner's price: plus or minus 5 points needs 1,441 addresses issued, plus or minus 3 points needs 3,996, at a 22 percent response rate and design effect 1.2. Constructed Ottervale example.">
+        <defs>
+          <filter id="b3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="61" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="b3aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="b3aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .b3aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .b3aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .b3aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .b3aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .b3aV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .b3aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="b3aH" x="30" y="28">DOES THE INTERVAL SETTLE THE 20% CALL?</text>
+        <text class="b3aS" x="330" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#b3aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="260" y="98" width="374" height="22" rx="4" fill="url(#b3aHc)"/>
+          <rect x="345" y="158" width="204" height="22" rx="4" fill="#F9EDF5"/>
+          <circle cx="447" cy="109" r="6" fill="#55064A" stroke="#55064A"/>
+          <circle cx="447" cy="169" r="6" fill="#55064A" stroke="#55064A"/>
+          <path d="M100 212 L780 212"/>
+          <path d="M100 206 L100 218 M270 206 L270 218 M440 206 L440 218 M610 206 L610 218 M780 206 L780 218"/>
+          <rect x="40" y="262" width="250" height="78" rx="10" transform="rotate(-0.6 165 301)" fill="#FFFFFF"/>
+          <rect x="315" y="262" width="250" height="78" rx="10" transform="rotate(0.5 440 301)" fill="#F9EDF5"/>
+          <rect x="590" y="262" width="250" height="78" rx="10" transform="rotate(-0.4 715 301)" fill="#FFFFFF"/>
+          <!-- doodle: a bus -->
+          <rect x="792" y="12" width="56" height="26" rx="5" stroke="#7F0A67"/>
+          <path d="M800 20 L812 20 M818 20 L830 20 M836 20 L842 20" stroke="#7F0A67"/>
+          <circle cx="804" cy="40" r="4" stroke="#7F0A67"/>
+          <circle cx="836" cy="40" r="4" stroke="#7F0A67"/>
+        </g>
+        <path d="M440 72 L440 222" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="b3aB" x="450" y="68">council's line: 20% (constructed)</text>
+
+        <text class="b3aL" x="40" y="106">R3 · sample 1</text>
+        <text class="b3aS" x="40" y="122">20.2% ± 5.5 (honest)</text>
+        <text class="b3aL" x="40" y="166">Same estimate at ±3</text>
+        <text class="b3aS" x="40" y="182">still crosses the line</text>
+
+        <text class="b3aS" x="100" y="236" text-anchor="middle">10%</text>
+        <text class="b3aS" x="270" y="236" text-anchor="middle">15%</text>
+        <text class="b3aS" x="440" y="236" text-anchor="middle">20%</text>
+        <text class="b3aS" x="610" y="236" text-anchor="middle">25%</text>
+        <text class="b3aS" x="780" y="236" text-anchor="middle">30%</text>
+
+        <text class="b3aH" x="56" y="284">±5 points</text>
+        <text class="b3aV" x="56" y="310">1,441</text>
+        <text class="b3aS" x="56" y="328">addresses to issue</text>
+        <text class="b3aH" x="331" y="284">±3 points</text>
+        <text class="b3aV" x="331" y="310">3,996</text>
+        <text class="b3aS" x="331" y="328">addresses to issue</text>
+        <text class="b3aH" x="606" y="284">THE PLANNER'S SETTINGS</text>
+        <text class="b3aS" x="606" y="304">expected share 22%</text>
+        <text class="b3aS" x="606" y="320">response 22%, design effect 1.2</text>
+
+        <text class="b3aN" x="30" y="366">A tighter margin narrows the bar; an estimate this close to the line can still straddle it. Lab truth: 21.7%.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - when the interval crosses the decision line, the survey has told you the call is close, not which way it goes</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Tolerable error is a property of the decision<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Ask the council one question before anyone looks at a margin: how far off could the number be before you would choose differently? If the bus would be kept at 20% and also at 15%, because the library extension is unaffordable either way, then a ±5.5 survey is more than enough and the vote is not really about the survey. If the call genuinely flips at 20%, the tolerable error is the distance between 20% and the values the council considers plausible, and that is usually only a few points.</p>
+        <p>Then read the result against it. The lab's R3 design, stratified by area and raked on age, sex and area, prints <strong>Estimate: 20.2% ± 5.5 (honest margin) · naive ±5.2</strong> on sample 1. The interval covers values on both sides of 20%. Honest reporting says the survey cannot tell whether Ottervale is above or below the line. On the bench you can see the truth, 21.7%; the council cannot, which is the whole point.</p>
+        <p>Notice what the honest margin includes: the design effect from stratifying and weighting. The naive ±5.2 is narrower and wrong for this design. Leader session 4 covers putting the honest one in the report.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>The price of a tighter answer<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The planner below starts at the settings Ottervale would use: an expected share of 22%, a 22% response rate and a design effect of 1.2. For ±3 points it asks for 733 completes at simple random, 879 after the design effect, and 3,996 addresses issued. For ±5 points: 264 completes, 317 after the design effect, 1,441 issued. Shrinking the margin by two points nearly triples the fieldwork.</p>
+        <div class="svy-widget" data-mode="size"></div>
+        <p>Two things the planner cannot do. It plans precision only, so no size buys back a frame that misses people or answering that tracks the answer (Part 3). And it cannot promise the estimate will land away from the line: a result at 20.2% with ±3 would still straddle 20%. Agree in advance what the council does when the survey lands inside the margin of the threshold, for example treat it as a tie and decide on other grounds. Writing that rule before fieldwork is cheaper than arguing it after.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Precision is a disclosure item, not a courtesy.</strong> The AAPOR Transparency Initiative asks every released survey to state its completes and its precision: a margin of error for a probability sample, a precision statement for a non-probability one. A council can turn that around: write the precision the decision needs into the brief, and treat a delivered margin wider than that as a survey that cannot carry the call. (AAPOR, Transparency Initiative disclosure elements, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers subgroup cells too small to report</span>
+      <h2>Cells too thin to print</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The town-wide number is built from about two hundred answers. The moment a councillor asks "and what about my area?", the number is built from far fewer. On the lab's R3 sample 1, the widget prints <strong>Answers per area: fewest 9 (area 1) · most 42 (area 8)</strong>. A per-area share from 9 answers carries a margin far too wide to act on, and each of those 9 people is more than a tenth of their area's figure. Decide the smallest cell you will report before fieldwork, and merge or suppress below it.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 316" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ten hand-drawn boxes for Ottervale's ten areas, standing on one baseline, height by number of answers on the lab's R3 sample 1. Area 1 is the smallest at 9 answers and is highlighted: one answer is more than a tenth of its figure, the weight that would pull too hard. Area 8 is the largest at 42 answers. The other eight areas are dashed boxes marked with a question mark: between 9 and 42, because the lab prints only the fewest and the most. Constructed Ottervale example; areas stand in for census regions.">
+        <defs>
+          <filter id="b3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="67" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="b3bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="b3bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .b3bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .b3bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .b3bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .b3bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .b3bV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .b3bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="b3bH" x="30" y="28">ANSWERS PER AREA · R3, SAMPLE 1</text>
+        <text class="b3bS" x="280" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#b3bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="48" width="290" height="84" rx="10" transform="rotate(-0.8 185 90)" fill="#FFFFFF"/>
+          <rect x="660" y="44" width="190" height="62" rx="10" transform="rotate(0.7 755 75)" fill="#FFFFFF"/>
+          <path d="M150 134 L92 212" marker-end="url(#b3bAr)"/>
+          <path d="M680 108 L652 120" marker-end="url(#b3bAr)"/>
+          <rect x="60" y="223" width="60" height="27" rx="3" transform="rotate(-1.5 90 236)" fill="#F5C04A"/>
+          <rect x="138" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="216" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="294" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="372" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="450" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="528" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="606" y="124" width="60" height="126" rx="3" transform="rotate(1 636 187)" fill="url(#b3bHc)"/>
+          <rect x="684" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <rect x="762" y="174" width="60" height="76" rx="3" stroke-dasharray="5 5" fill="#FFFFFF"/>
+          <path d="M40 252 L840 252"/>
+          <!-- doodle: a magnifier over the smallest cell -->
+          <circle cx="836" cy="20" r="9" stroke="#7F0A67"/>
+          <path d="M843 27 L852 36" stroke="#7F0A67"/>
+        </g>
+
+        <text class="b3bH" x="56" y="72">AREA 1 · 9 ANSWERS</text>
+        <text class="b3bS" x="56" y="92">each person is more than a tenth</text>
+        <text class="b3bS" x="56" y="108">of the area's figure: one weight</text>
+        <text class="b3bB" x="56" y="124">can pull the whole number</text>
+
+        <text class="b3bH" x="676" y="68">AREA 8 · 42 ANSWERS</text>
+        <text class="b3bS" x="676" y="88">the most, still a wide margin</text>
+
+        <text class="b3bV" x="78" y="216">9</text>
+        <text class="b3bV" x="624" y="116">42</text>
+        <text class="b3bL" x="163" y="216">?</text>
+        <text class="b3bL" x="241" y="216">?</text>
+        <text class="b3bL" x="319" y="216">?</text>
+        <text class="b3bL" x="397" y="216">?</text>
+        <text class="b3bL" x="475" y="216">?</text>
+        <text class="b3bL" x="553" y="216">?</text>
+        <text class="b3bL" x="709" y="216">?</text>
+        <text class="b3bL" x="787" y="216">?</text>
+
+        <text class="b3bS" x="90" y="270" text-anchor="middle">area 1</text>
+        <text class="b3bS" x="168" y="270" text-anchor="middle">area 2</text>
+        <text class="b3bS" x="246" y="270" text-anchor="middle">area 3</text>
+        <text class="b3bS" x="324" y="270" text-anchor="middle">area 4</text>
+        <text class="b3bS" x="402" y="270" text-anchor="middle">area 5</text>
+        <text class="b3bS" x="480" y="270" text-anchor="middle">area 6</text>
+        <text class="b3bS" x="558" y="270" text-anchor="middle">area 7</text>
+        <text class="b3bS" x="636" y="270" text-anchor="middle">area 8</text>
+        <text class="b3bS" x="714" y="270" text-anchor="middle">area 9</text>
+        <text class="b3bS" x="792" y="270" text-anchor="middle">area 10</text>
+
+        <text class="b3bN" x="30" y="298">Dashed: between 9 and 42; the lab prints only the fewest and the most. Areas stand in for census regions.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the town-wide total hides how thin each area is; the smallest cell decides what you can print</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Set the minimum before anyone sees a number<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A minimum cell size is a rule that says: below this many answers, we do not report the group's figure on its own. There is no universal number, and this page does not give you one. The council has to choose its own, and the right moment is before fieldwork, for two reasons. First, once a figure exists, someone will want it, and refusing a number that has been seen looks like hiding it. Second, a minimum chosen after the results are in can be chosen to keep the convenient cells and drop the awkward ones.</p>
+        <p>Choose it from the decision, as in Part 1: what is the widest margin at which a per-area figure would still change what the council does in that area? Then, below the minimum, either <strong>merge</strong> (report area 1 together with a neighbour) or <strong>suppress</strong> (print "too few answers to report"). Both are honest. Printing area 1's share from 9 people as if it were comparable to the town-wide figure is not.</p>
+        <p>If per-area figures matter to the decision, that belongs in the brief from Leader session 2: the planner in Part 1 sizes the whole sample, and a design that needs reliable area figures needs enough completes in the smallest area, not just in total.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Why the small cell pulls so hard<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Weighting makes each person stand for a number of residents. In a big cell, a single unusual answer is diluted among dozens of others. In a cell of 9, it is not: one person changes the area's figure by more than a tenth of its width, and if their weight is also large, by more again. That is the weight that pulls too hard. It is the same mechanism Analyst session 5 shows for the whole sample, concentrated in one area.</p>
+        <p>Small cells raise a second problem in people data: a cut small enough can identify the person behind the answer. Employee surveys use a minimum group size for anonymity as well as precision, taught in <a href="https://phoebefu6.github.io/learn-people-analytics-with-phoebe/courses/a5-surveys-as-evidence.html">People Analytics, a5 ↗</a>. A resident survey cut by area and age band can hit the same wall.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Capping a weight is a trade, not a fix.</strong> Kalton and Flores-Cervantes describe bounding or trimming large weights as a way to improve precision, at some cost in the bias reduction the weights were there to deliver. The same trade sits under every small cell: you can stop one person from pulling too hard, but only by letting the cell represent its residents less exactly. (Kalton and Flores-Cervantes, Journal of Official Statistics 19(2), 2003, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers when a survey is the wrong tool</span>
+      <h2>When to put the survey down</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A survey answers one kind of question well: roughly how many people in a defined population hold a view or are in a situation, when the people asked are reasonably likely to answer regardless of their answer. Change any part of that and the survey loses its footing. Three cases come up often enough to name: the people the decision is about are the least likely to answer; records already hold the answer; and the question is why, not how many.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 356" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn decision tree with three questions. Question 1: do records already hold the answer? Yes leads to use the records, for example bus pass and ticket data, a constructed example. No leads to question 2: is the question why, not how many? Yes leads to interviews first, then a causal design, because a survey describes and does not explain. No leads to question 3: will the people it is about be the least likely to answer? Yes leads to a targeted study that goes to those people; the lab's R5 world, where the honest margin covers the truth 5 percent of the time. No leads to a survey, highlighted, the lab's R3 world, covering the truth 94 percent of the time. Constructed Ottervale example.">
+        <defs>
+          <filter id="b3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="71" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="b3cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="b3cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .b3cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .b3cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .b3cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .b3cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .b3cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="b3cH" x="30" y="28">SURVEY, RECORDS, TARGETED STUDY, OR INTERVIEWS</text>
+        <text class="b3cS" x="400" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#b3cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="54" width="190" height="68" rx="10" transform="rotate(-1 125 88)" fill="#F9EDF5"/>
+          <rect x="260" y="54" width="190" height="68" rx="10" transform="rotate(0.8 355 88)" fill="#F9EDF5"/>
+          <rect x="490" y="54" width="190" height="68" rx="10" transform="rotate(-0.6 585 88)" fill="#F9EDF5"/>
+          <path d="M222 88 L256 88" marker-end="url(#b3cAr)"/>
+          <path d="M452 88 L486 88" marker-end="url(#b3cAr)"/>
+          <path d="M125 124 L125 196" marker-end="url(#b3cAr)"/>
+          <path d="M355 124 L355 196" marker-end="url(#b3cAr)"/>
+          <path d="M585 124 L585 196" marker-end="url(#b3cAr)"/>
+          <path d="M682 100 L764 196" marker-end="url(#b3cAr)"/>
+          <rect x="30" y="200" width="190" height="104" rx="10" transform="rotate(1 125 252)" fill="url(#b3cHc)"/>
+          <rect x="260" y="200" width="190" height="104" rx="10" transform="rotate(-0.8 355 252)" fill="#FFFFFF"/>
+          <rect x="490" y="200" width="190" height="104" rx="10" transform="rotate(0.6 585 252)" fill="#FFFFFF"/>
+          <rect x="700" y="200" width="150" height="104" rx="10" transform="rotate(-1 775 252)" fill="#F5C04A"/>
+          <!-- doodle: a signpost -->
+          <path d="M818 14 L818 46 M806 18 L834 18 L840 23 L834 28 L806 28 Z" stroke="#7F0A67"/>
+        </g>
+        <rect x="42" y="214" width="166" height="76" rx="6" fill="#FFFFFF"/>
+
+        <text class="b3cH" x="44" y="78">Q1</text>
+        <text class="b3cL" x="44" y="96">Do records already</text>
+        <text class="b3cL" x="44" y="112">hold the answer?</text>
+        <text class="b3cH" x="274" y="78">Q2</text>
+        <text class="b3cL" x="274" y="96">Is the question why,</text>
+        <text class="b3cL" x="274" y="112">not how many?</text>
+        <text class="b3cH" x="504" y="78">Q3</text>
+        <text class="b3cL" x="504" y="96">Will those it is about</text>
+        <text class="b3cL" x="504" y="112">be the last to answer?</text>
+
+        <text class="b3cS" x="230" y="80">no</text>
+        <text class="b3cS" x="460" y="80">no</text>
+        <text class="b3cS" x="732" y="140">no</text>
+        <text class="b3cS" x="132" y="164">yes</text>
+        <text class="b3cS" x="362" y="164">yes</text>
+        <text class="b3cS" x="592" y="164">yes</text>
+
+        <text class="b3cH" x="52" y="234">Use the records</text>
+        <text class="b3cS" x="52" y="254">bus pass and ticket data</text>
+        <text class="b3cS" x="52" y="270">(constructed example)</text>
+        <text class="b3cS" x="52" y="286">counts, nobody to ask</text>
+
+        <text class="b3cH" x="274" y="226">Interviews first</text>
+        <text class="b3cS" x="274" y="246">a survey describes</text>
+        <text class="b3cS" x="274" y="264">it does not explain why</text>
+        <text class="b3cS" x="274" y="282">then a causal design</text>
+
+        <text class="b3cH" x="504" y="226">Targeted study</text>
+        <text class="b3cS" x="504" y="246">go to the people the</text>
+        <text class="b3cS" x="504" y="264">decision is about</text>
+        <text class="b3cS" x="504" y="282">R5 world: covers 5%</text>
+
+        <text class="b3cH" x="714" y="226">Survey</text>
+        <text class="b3cB" x="714" y="246">how many, within</text>
+        <text class="b3cB" x="714" y="264">the honest margin</text>
+        <text class="b3cB" x="714" y="282">R3 world: covers 94%</text>
+
+        <text class="b3cN" x="30" y="338">Coverage figures are the lab's honest margin over 1,000 repeats; real census rows, answering simulated.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a survey is the last branch, not the first: it earns its place only when records cannot answer and the right people will</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>When the people it is about are the ones who do not answer<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The bus route matters most to people who would be cut off without it. If those same people are harder to reach and less inclined to fill in a council form, the survey under-counts exactly the group the decision turns on. The lab's R5 rung simulates this: answering is tied to the answer itself, so people in worse health answer less within every age group. It answers at about the same rate as R3, 227 against 226 of 1,000 issued, yet prints <strong>Estimate: 9.4% ± 3.6 (honest margin) · naive ±3.8</strong> against a truth of 21.7%.</p>
+        <p>Over 1,000 repeats R5's bias is -8.9 points and its honest margin covers the truth 5% of the time. Raking on age, sex and area does not help, because the missing people are missing inside those groups. The response rate gives no warning: it looks just like R3's. When there is a plausible reason the people the decision is about would be the least likely to answer, a survey is the wrong first tool. Go to them: a targeted study through the services they use, or records that count them without asking.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>When records already hold it, or the question is why<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Records.</strong> Suppose Ottervale's bus operator already logs pass use and ticket sales by stop (a constructed example; no figures are given). Those records count the people who actually ride, including the ones who would never answer a form, with no sampling error and no nonresponse. They have their own gaps, such as people who would ride if the timetable suited them, but if the council's question is "who uses this route", asking a sample is the slower, noisier way to learn something already written down.</p>
+        <p><strong>Why, not how many.</strong> A survey describes. It can tell the council roughly what share of adults would be cut off; it cannot tell them why people stopped using the library, or whether longer hours would bring them back. Those are questions about causes, and they need interviews to find the reasons and a causal design to test them. Leader session 4 shows how to report a survey so it is read as description, and <a href="https://phoebefu6.github.io/learn-causal-inference-with-phoebe/">Learn causal inference with Phoebe ↗</a> covers the designs that can carry a "why".</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The response-rate argument, left open<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>It is tempting to read R5 as "low response rates ruin surveys". The evidence does not settle that, and serious researchers disagree.</p>
+        <p><strong>One side:</strong> Pew's 2012 comparison ran a standard 5-day survey (1,507 interviews, 9% response) alongside a high-effort survey fielded from 5 January to 15 March (2,226 interviews, 22% response, with incentives and refusal-conversion letters). Of 40 comparisons, 28 differed by 2 points or less. Groves and Peytcheva's meta-analysis of 59 studies is reported to have found the response rate a weak predictor of bias.</p>
+        <p><strong>The other side:</strong> Groves (2006) argues that nonresponse can, but need not, cause bias, and that what matters is how strongly answering is linked to the thing measured. On that view the rate is the wrong gauge, and the same Pew comparison found 7 measures differing by 3 points and 5 by 4. The lab shows the mechanism without resolving the argument: at the same rate, evenly spread nonresponse is harmless (bias -0.3) and answer-linked nonresponse is not (bias -8.9).</p>
+        <p>For a leader the practical point survives either way: ask whether there is a reason answering would track the answer, not just what the rate was.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Most measures held, some moved.</strong> In Pew's 2012 test, doubling down on effort (ten weeks of fieldwork, incentives, letters to people who had refused) lifted the response rate from 9% to 22%. Across 40 comparisons, 28 moved by 2 points or less, 7 by 3 and 5 by 4. Whether that reassures you depends on whether your decision lives in the 28 or the 5, which is exactly the question Part 1 asks. (Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Write Ottervale's decision memo</h2>
+      <span class="tag demo">★ 22 min · everyone works it through</span>
+    </div>
+    <p class="lede">The council meets next week on the bus route against longer library hours. The constructed rule is the one from Part 1: keep the bus if at least 20% of adults would be cut off without it. The lab below is set to R3, the design Ottervale bought: an address list, stratified by area, raked on age, sex and area. You will read what it can carry, see how much a single survey moves between draws, look at the world where it would mislead, price a tighter answer, and write the memo that goes on top of the result.</p>
+
+    <div class="svy-widget" data-rung="r3"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 348" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn comparison of two worlds on the lab, both answered by about 23 percent of 1,000 issued. Left, R3, answering tracks age: 226 answered, bias minus 0.4 points over 1,000 repeats, honest margin covers the truth 94 percent of the time. Right, a wrong-way panel, R5, answering tracks the answer: 227 answered, bias minus 8.9 points, covers the truth 5 percent. Below, the five-part memo as a chain: decision, error budget, what it carries, cells to hold back, and, highlighted, when to stop. Constructed Ottervale example.">
+        <defs>
+          <filter id="b3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="73" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="b3dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="b3dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .b3dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .b3dL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .b3dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .b3dB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .b3dV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .b3dR { font: 800 11px Inter, sans-serif; fill: #991B1B; }
+          .b3dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="b3dH" x="30" y="28">SAME RESPONSE RATE, TWO DIFFERENT WORLDS</text>
+        <text class="b3dS" x="360" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#b3dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="44" width="400" height="150" rx="12" transform="rotate(-0.5 230 119)" fill="#F9EDF5"/>
+          <rect x="450" y="44" width="400" height="150" rx="12" transform="rotate(0.5 650 119)" fill="#FEF2F2" stroke="#991B1B"/>
+          <rect x="30" y="226" width="150" height="62" rx="8" transform="rotate(-1 105 257)" fill="#FFFFFF"/>
+          <rect x="200" y="226" width="150" height="62" rx="8" transform="rotate(0.8 275 257)" fill="#FFFFFF"/>
+          <rect x="370" y="226" width="150" height="62" rx="8" transform="rotate(-0.6 445 257)" fill="#FFFFFF"/>
+          <rect x="540" y="226" width="150" height="62" rx="8" transform="rotate(0.7 615 257)" fill="url(#b3dHc)"/>
+          <rect x="710" y="226" width="150" height="62" rx="8" transform="rotate(-0.8 785 257)" fill="#F5C04A"/>
+          <path d="M182 257 L196 257" marker-end="url(#b3dAr)"/>
+          <path d="M352 257 L366 257" marker-end="url(#b3dAr)"/>
+          <path d="M522 257 L536 257" marker-end="url(#b3dAr)"/>
+          <path d="M692 257 L706 257" marker-end="url(#b3dAr)"/>
+          <!-- doodle: a folded memo -->
+          <path d="M820 6 L846 6 L852 12 L852 40 L820 40 Z M846 6 L846 12 L852 12" stroke="#7F0A67"/>
+        </g>
+        <rect x="552" y="238" width="126" height="38" rx="5" fill="#FFFFFF"/>
+
+        <text class="b3dH" x="50" y="70">R3 · ANSWERING TRACKS AGE</text>
+        <text class="b3dS" x="50" y="90">answered 226 (23%) of 1,000 issued</text>
+        <text class="b3dV" x="50" y="124">bias -0.4</text>
+        <text class="b3dS" x="50" y="146">pts, over 1,000 repeat surveys</text>
+        <text class="b3dL" x="50" y="172">honest margin covers the truth 94%</text>
+
+        <text class="b3dH" x="470" y="70">R5 · ANSWERING TRACKS THE ANSWER</text>
+        <text class="b3dS" x="470" y="90">answered 227 (23%) of 1,000 issued</text>
+        <text class="b3dV" x="470" y="124">bias -8.9</text>
+        <text class="b3dS" x="470" y="146">pts, over 1,000 repeat surveys</text>
+        <text class="b3dR" x="470" y="172">honest margin covers the truth 5%</text>
+
+        <text class="b3dH" x="42" y="250">1 · Decision</text>
+        <text class="b3dS" x="42" y="270">bus or library, 20%</text>
+        <text class="b3dH" x="212" y="250">2 · Error budget</text>
+        <text class="b3dS" x="212" y="270">tolerable error</text>
+        <text class="b3dH" x="382" y="250">3 · It carries</text>
+        <text class="b3dS" x="382" y="270">town-wide, not areas</text>
+        <text class="b3dH" x="560" y="254">4 · Hold cells</text>
+        <text class="b3dS" x="560" y="270">below the minimum</text>
+        <text class="b3dH" x="722" y="250">5 · When to stop</text>
+        <text class="b3dB" x="722" y="270">if it looks like R5</text>
+
+        <text class="b3dN" x="30" y="318">The response rate cannot tell the two worlds apart; only a reason to expect answering to track the answer can.</text>
+        <text class="b3dS" x="30" y="336">Real census rows; who answers is simulated.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the memo's last line matters most: the condition under which the council should not trust the survey at all</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Read what R3 says, and what it cannot.</strong> The lab is on R3, sample 1. Copy the estimate line and the answers-per-area line. Then write one sentence: does the honest interval settle the 20% call?</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · R3, sample 1, as the widget prints it</span>Estimate: 20.2% ± 5.5 (honest margin) · naive ±5.2
+Answers per area: fewest 9 (area 1) · most 42 (area 8)
+
+Does the interval settle the 20% call?  ______________________
+(Hint: it runs from below 20% to above it.)</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · See how much one survey moves.</strong> Click "Draw another sample" three times and write each estimate. Your numbers will differ from your neighbour's; that spread is the sampling error the margin describes. Count how many land above 20% and how many below. Then click "Back to sample 1".</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · three more draws, your numbers</span>Draw 2:  ______ %   above or below 20%?  ______
+Draw 3:  ______ %   above or below 20%?  ______
+Draw 4:  ______ %   above or below 20%?  ______
+
+What would the council have decided on each draw?  ______________</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Visit the world where the survey misleads.</strong> Click R5. Copy the repeat line, then write what the council would have to believe about Ottervale to suspect it is in R5's world.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · R5, as the widget prints it</span>Over 1000 repeat surveys: bias -8.9 pts · spread (SD) 2.2 pts · honest margin covers the truth 5% · naive 4%
+
+We would suspect R5's world if:  ______________________________
+(Who would be cut off without the bus, and how likely are they
+ to return a council form?)</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Price a tighter answer.</strong> Scroll up to the planner in Part 1. Keep the expected share at 22%, the response rate at 22% and the design effect at 1.2, and set the margin to ±3 points. Copy the headline, then compare it with ±5.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · the planner, as it prints</span>3,996 addresses to issue for ±3 points
+  Completes at simple random: 733
+  Completes after the design effect 1.2: 879
+  Issued at a 22% response rate: 3,996
+
+At ±5 points:  1,441 addresses to issue
+Would ±3 have settled an estimate of 20.2%?  ______</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Write the decision memo.</strong> One page, five headings, in the council's words. Fill the blanks from Steps 1 to 4.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ottervale decision memo, v1 (constructed)</span>1 Decision:         keep the bus route if at least 20% of adults
+                    would be cut off without it (constructed rule)
+2 Error budget:     the call flips at 20%; we can tolerate +/- ___ points
+                    if inside the margin of 20%, we will: ____________
+3 What it carries:  town-wide estimate 20.2% +/- 5.5 (honest margin);
+                    it does / does not settle the call: ______
+4 Cells not to report: areas below ___ answers (set before fieldwork);
+                    area 1 has 9: merge with ______ or suppress
+5 Do not use the survey if: ______________________________
+                    (the people cut off are the least likely to answer;
+                     records such as pass and ticket data hold it;
+                     the question is why, not how many)</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>A memo that says "the survey cannot settle this" is a good memo.</strong> It stops the council quoting 20.2% as if it meant "above the line", and it moves the argument to where it belongs: the other evidence, the cost of each option, and a tie rule agreed in advance.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Leader session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Pick a decision</strong> your organisation made on a survey number, and write the threshold it turned on. Did the reported interval cross it?</li>
+      <li><strong>Find the smallest cell</strong> anyone quoted from that survey. Write how many answers sat behind it, or "not reported", which is itself an answer.</li>
+      <li><strong>Write a minimum cell size</strong> for your next survey, with one sentence on why that number fits your decision, and whether you will merge or suppress below it.</li>
+      <li><strong>Run the tree</strong> from Part 3 on one question your team plans to survey. If any branch other than "survey" fires, name the records, the targeted study or the interviews you would use instead.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Leader session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="1">
+      <p class="qtext">1 · The council keeps the bus if at least 20% of adults would be cut off without it. The survey prints 20.2% ± 5.5. What should the memo say?</p>
+      <button class="qopt" type="button">A · Keep the bus: the estimate is above 20%</button>
+      <button class="qopt" type="button">B · The interval runs from below 20% to above it, so the survey cannot settle the call; apply the tie rule agreed in advance</button>
+      <button class="qopt" type="button">C · Cut the bus: the lower end of the interval is below 20%</button>
+      <button class="qopt" type="button">D · Use the naive ±5.2 instead, because it is narrower</button>
+      <p class="qwhy">An interval that straddles the decision line says the call is close, not which way it goes. The naive margin ignores the design effect and is wrong for a weighted design.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">2 · On the lab's R3 sample 1, area 1 has 9 answers and area 8 has 42. A councillor asks for area 1's figure. What is the honest response?</p>
+      <button class="qopt" type="button">A · Print it with the town-wide margin, because the survey is weighted</button>
+      <button class="qopt" type="button">B · Print it, but only if it agrees with the town-wide figure</button>
+      <button class="qopt" type="button">C · Choose a minimum cell size now, after seeing the figure</button>
+      <button class="qopt" type="button">D · Apply the minimum cell size set before fieldwork: merge area 1 with a neighbour or suppress it</button>
+      <p class="qwhy">A figure from 9 answers carries a margin far too wide to act on, and each person is more than a tenth of it. The minimum belongs before fieldwork, so it cannot be chosen to keep convenient cells.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">3 · R5 answers at 23%, the same as R3, yet its honest margin covers the truth only 5% of the time. What does that teach about when a survey is the wrong tool?</p>
+      <button class="qopt" type="button">A · When the people the decision is about are the least likely to answer, the response rate gives no warning and weighting on age, sex and area cannot repair it</button>
+      <button class="qopt" type="button">B · Any survey under 25% response is useless</button>
+      <button class="qopt" type="button">C · A bigger sample would fix R5's bias</button>
+      <button class="qopt" type="button">D · Raking on more variables always fixes answer-linked nonresponse</button>
+      <p class="qwhy">The damage comes from answering being linked to the answer, not from the rate. Size narrows the margin around the wrong value; weights cannot see who is missing inside a group.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Standard vs high-effort survey, 9% vs 22% response; of 40 comparisons 28 within 2 points, 7 at 3, 5 at 4</span><span class="note">Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Completes and precision as a disclosure item</span><span class="note">AAPOR, Transparency Initiative disclosure elements, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Trimming weights improves precision at some cost in bias reduction</span><span class="note">Kalton and Flores-Cervantes, Journal of Official Statistics 19(2), 2003, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Nonresponse can, but need not, induce bias</span><span class="note">Groves, Public Opinion Quarterly 70(5), 2006, abstract read at source; the propensity framing is reported</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Response rate a weak predictor of bias across 59 studies</span><span class="note">Groves and Peytcheva, Public Opinion Quarterly 72(2), 2008; the finding is reported (secondary source)</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every lab and planner number on this page: R3, R5, answers per area, the planner</span><span class="note">Computed on real ONS Census 2021 rows; who answers is simulated</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">The 20% threshold, the bus pass and ticket records, the memo</span><span class="note">Constructed Ottervale example; no figures given for the records</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Leader session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>The decision sets the budget</b><span>Ask how far off the number can be before the call flips. That is the tolerable error.</span></div>
+      <div class="cheat-item"><b>Straddle = not settled</b><span>20.2% ± 5.5 against a 20% line cannot say which side. Agree a tie rule before fieldwork.</span></div>
+      <div class="cheat-item"><b>Tighter costs more</b><span>Planner at 22% response, design effect 1.2: ±5 needs 1,441 issued, ±3 needs 3,996.</span></div>
+      <div class="cheat-item"><b>Mind the smallest cell</b><span>R3: fewest 9 answers (area 1), most 42 (area 8). Set a minimum before fieldwork; merge or suppress below it.</span></div>
+      <div class="cheat-item"><b>Same rate, different world</b><span>R3 and R5 both answer at 23%. R5's bias is -8.9 and its margin covers the truth 5%.</span></div>
+      <div class="cheat-item"><b>Put the survey down when</b><span>those it is about will not answer; records already hold it; the question is why, not how many.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>You know what the number can carry. Leader session 4 is about saying so in public: the full margin with its design effect, the transparency items a reader needs, what not to put in the headline, and how to write a result that describes without claiming to explain.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Leader session 3 of 4 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="b2-commissioning-without-regret.html">← Prev: Commissioning without regret</a> &nbsp;·&nbsp; <a href="b4-reporting-it-honestly.html">Next: Reporting it honestly →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

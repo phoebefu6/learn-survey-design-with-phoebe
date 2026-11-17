@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Analyst session 3 of 6. Who you could have reached: target population against sampling frame, address lists, opt-in panels and street intercepts compared on real census rows, and a sample size planned from a target margin and an expected response rate.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Who you could have reached - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Analyst session 3 of 6. The list you draw from decides who can ever answer. Three frames compared on the bench, then a sample size planned for a target margin.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/a3-who-you-could-have-reached.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Who you could have reached - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Analyst session 3 of 6. No sample size reaches the people your list never held.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Analyst session 3 · Who you could have reached - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Analyst session 3 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Analyst session 3 of 6</div>
+    <h1>Who you could have reached: <span class="accent">the list before the sample</span></h1>
+    <p class="sub">Every survey draws from a list, and nobody off the list can ever be asked. Before you choose a design or a sample size, you choose who is reachable at all: households at an address, people who joined an online panel, whoever walks down the high street on a Tuesday. Tonight you compare three such lists on real census rows standing in for Ottervale, a constructed town council, and then plan how many addresses to issue so the answer is precise enough to act on.</p>
+    <div class="chip-row">
+      <span class="chip level">🟡 Analyst</span>
+      <span class="chip audience">Analysts, researchers and data scientists who run surveys</span>
+      <span class="chip audience">Hands-on in the browser</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Frames, reach and size</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: three frames, one decision</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Analyst session 1 named coverage as the first gap between the town and the number; Analyst session 2 fixed the questions. Tonight is about the list itself. The Ottervale council wants to hear from every adult aged 16 and over, and it has three ways to reach them: a list of household addresses, an online opt-in panel, or a researcher with a clipboard on the high street. Each one decides, before a single question is asked, who can and cannot be in the answer. The council, its quotes and its decisions are constructed; the 20,000 adults are real rows from the Office for National Statistics' Census 2021 teaching sample, so the lab can measure exactly what each list leaves out.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone builds it</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> One decision row for Ottervale's survey plan: the frame you would draw from, what it cannot reach, and how many addresses to issue for a margin of ±3 or ±5 points at the response rate you expect. You also leave with a rule that saves budgets: size the sample for precision only after you have chosen a list that can reach the people the decision is about.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers population against frame</span>
+      <h2>The list decides who can ever be asked</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">The target population is who the decision is about: for Ottervale, every adult aged 16 and over. The sampling frame is the list you can actually draw from. Where the frame misses part of the population, that is undercoverage; where it holds people or places outside the population, that is overcoverage. The sample can only ever be a subset of the frame, so a gap in the list is a gap in every survey drawn from it, however carefully drawn.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn street of five houses sits inside a box labelled address list, private households, holding 19,549 of the 20,000 adults. Outside the box stand a care home and a hall of residence, filled in marigold and labelled off the list. Below, a sample box is fed by an arrow from the address list; a dashed arrow from the sample toward the care home stops short, because the draw cannot reach what the list never held. Coverage error on the bench is minus 0.3 points. Constructed Ottervale example on real census rows.">
+        <defs>
+          <filter id="a3aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a3aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a3aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a3aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a3aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a3aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a3aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a3aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a3aH" x="30" y="28">THE LIST REACHES THE STREET, NOT THE CARE HOME</text>
+        <text class="a3aS" x="560" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a3aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- the frame -->
+          <rect x="30" y="60" width="530" height="200" rx="12" transform="rotate(-0.4 295 160)" fill="#F9EDF5"/>
+          <!-- five houses on the list -->
+          <rect x="56" y="150" width="64" height="54" rx="3" transform="rotate(-2 88 177)" fill="#FFFFFF"/>
+          <path d="M50 152 L88 122 L126 152"/>
+          <rect x="150" y="150" width="64" height="54" rx="3" transform="rotate(1.5 182 177)" fill="#FFFFFF"/>
+          <path d="M144 152 L182 122 L220 152"/>
+          <rect x="244" y="150" width="64" height="54" rx="3" transform="rotate(-1 276 177)" fill="#FFFFFF"/>
+          <path d="M238 152 L276 122 L314 152"/>
+          <rect x="338" y="150" width="64" height="54" rx="3" transform="rotate(2 370 177)" fill="#FFFFFF"/>
+          <path d="M332 152 L370 122 L408 152"/>
+          <rect x="432" y="150" width="64" height="54" rx="3" transform="rotate(-1.5 464 177)" fill="#FFFFFF"/>
+          <path d="M426 152 L464 122 L502 152"/>
+          <!-- doodle: a tree at the end of the street -->
+          <path d="M530 204 L530 176"/>
+          <path d="M530 150 C516 152 514 172 530 176 C546 172 544 152 530 150"/>
+          <!-- off the list: care home and hall of residence -->
+          <rect x="596" y="96" width="120" height="112" rx="4" transform="rotate(-1.2 656 152)" fill="#F5C04A"/>
+          <rect x="738" y="80" width="116" height="128" rx="4" transform="rotate(1.4 796 144)" fill="#F5C04A"/>
+          <!-- the sample, drawn from the frame -->
+          <rect x="180" y="300" width="200" height="54" rx="10" transform="rotate(0.8 280 327)" fill="#FFFFFF"/>
+          <path d="M280 264 L280 294" marker-end="url(#a3aAr)"/>
+          <!-- the draw that cannot reach -->
+          <path d="M386 318 L590 232" stroke-dasharray="7 7"/>
+        </g>
+        <rect x="608" y="112" width="96" height="40" rx="5" fill="#FFFFFF"/>
+        <rect x="750" y="98" width="92" height="40" rx="5" fill="#FFFFFF"/>
+
+        <text class="a3aH" x="46" y="84">ADDRESS LIST · private households</text>
+        <text class="a3aS" x="46" y="102">19,549 of the 20,000 adults are on it</text>
+        <text class="a3aS" x="56" y="226">on the list: every household address can be drawn</text>
+
+        <text class="a3aH" x="616" y="130">CARE HOME</text>
+        <text class="a3aS" x="616" y="146">communal</text>
+        <text class="a3aH" x="758" y="116">HALL OF</text>
+        <text class="a3aH" x="758" y="132">RESIDENCE</text>
+        <text class="a3aB" x="600" y="240">off the list: never drawn</text>
+
+        <text class="a3aH" x="196" y="324">SAMPLE</text>
+        <text class="a3aS" x="196" y="342">drawn only from the list</text>
+        <text class="a3aS" x="470" y="346">the draw cannot reach what the list never held</text>
+
+        <text class="a3aN" x="30" y="380">Coverage error on the bench: -0.3 points, the frame's share minus the truth. Small here; never assumed small.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a random draw is only as wide as the list it draws from; the people off the list are missing from every sample</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Population, frame, and the gap between them<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Target population.</strong> Who the decision is about. For Ottervale's bus route, every adult aged 16 and over who lives in the town, including those who cannot get about easily, who are exactly the people the route matters most to.</p>
+        <p><strong>Frame.</strong> The list you can draw a random sample from. An address list of private households is the usual choice for a town: every dwelling with a letterbox, each one with a known chance of being picked.</p>
+        <p><strong>Undercoverage.</strong> Population members the frame cannot reach. A private-household list leaves out people living in communal establishments: care homes, halls of residence, hostels, prisons. National surveys make the same choice deliberately. The ONS Labour Force Survey covers people in private households and excludes most communal establishments, with two named exceptions: people in NHS accommodation, and students in halls, who are counted through their parents' household.</p>
+        <p><strong>Why it matters here.</strong> Undercoverage moves the number only when the people left out differ on the thing you measure. Care home residents differ sharply on health and on bus use. On the bench, the address list holds 19,549 of the 20,000 adults and its coverage error is -0.3 points: small, because few adults are missed, but it points the expected way and no weighting of the people who were reachable can see the people who were not.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Overcoverage and duplicates<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Overcoverage</strong> is the other direction: entries on the frame that are not in the population. An address list holds empty homes, holiday lets, businesses at residential addresses and homes where everyone is under 16. These are usually caught at contact ("nobody here is eligible") and treated as out of scope, not as refusals. Counting them as nonrespondents makes the response rate look worse than it is; counting them as eligible inflates the base the survey reports against.</p>
+        <p><strong>Duplicates</strong> give some people more than one chance of selection: a family with two addresses, a panel member with two accounts, a respondent who answers a web link twice. A known duplicate can be corrected with a weight of one over the number of chances; an unknown one quietly over-represents whoever has more entries.</p>
+        <p><strong>Addresses are not people.</strong> An address list samples households. To reach one adult per household you select within it (a random adult, or the one with the next birthday), and people in larger households then have a smaller chance of selection, which a weight must put back. Analyst session 5 returns to weights.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The national labour survey makes the same trade.</strong> The Office for National Statistics' Labour Force Survey samples private households, so most people in communal establishments are outside its coverage, with named exceptions for NHS accommodation and students in halls. It is a design choice, written down in the survey's quality and methodology information, so users know which population the published figures describe. Write Ottervale's equivalent sentence before you field anything. (ONS, Labour Force Survey QMI, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers panels and intercepts</span>
+      <h2>Panels and intercepts reach whoever turned up</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Some frames are not lists at all. An opt-in online panel reaches only the people who chose to join one; a street intercept reaches whoever walks past the researcher at that hour. Neither gives each resident a known chance of selection, so there is no design to lean on: if joining or walking past is linked to the answer, the frame is biased before anyone is asked a question. On the bench the reach of both is simulated and labelled, so the lab can show what a linked reach does.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three hand-drawn horizontal bars of average coverage error over 1,000 repeat surveys, growing left from a marigold zero line that marks the truth. Address list of 19,549 adults: minus 0.3 points, misses communal residents. Online opt-in panel of 4,096: minus 9.6 points, reaches only people who joined. Street intercept of 2,854: minus 4.9 points, reaches only who walks past. Panel and intercept reach are simulated. Constructed Ottervale example on real census rows.">
+        <defs>
+          <filter id="a3bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a3bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a3bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a3bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a3bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a3bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a3bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a3bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a3bH" x="30" y="28">COVERAGE ERROR BY FRAME, IN POINTS</text>
+        <text class="a3bS" x="560" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a3bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M200 266 L600 266"/>
+          <path d="M200 260 L200 272 M400 260 L400 272"/>
+          <!-- address list -->
+          <rect x="588" y="58" width="12" height="30" rx="3" fill="#F9EDF5"/>
+          <!-- online opt-in panel -->
+          <rect x="216" y="136" width="384" height="30" rx="5" transform="rotate(-0.3 408 151)" fill="url(#a3bHc)"/>
+          <!-- street intercept -->
+          <rect x="404" y="214" width="196" height="30" rx="5" transform="rotate(0.4 502 229)" fill="url(#a3bHc)"/>
+          <!-- doodle: a laptop for the panel -->
+          <rect x="820" y="50" width="30" height="20" rx="2" stroke="#7F0A67"/>
+          <path d="M814 76 L856 76" stroke="#7F0A67"/>
+        </g>
+        <path d="M600 48 L600 262" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="a3bH" x="30" y="66">Address list</text>
+        <text class="a3bS" x="30" y="82">misses communal</text>
+        <text class="a3bS" x="30" y="96">residents</text>
+        <text class="a3bB" x="616" y="72">-0.3 pts</text>
+        <text class="a3bS" x="616" y="88">19,549 adults on the list</text>
+
+        <text class="a3bH" x="30" y="144">Online opt-in panel</text>
+        <text class="a3bS" x="30" y="160">reaches only people</text>
+        <text class="a3bS" x="30" y="174">who joined one</text>
+        <text class="a3bB" x="616" y="150">-9.6 pts</text>
+        <text class="a3bS" x="616" y="166">4,096 in the frame, reach simulated</text>
+
+        <text class="a3bH" x="30" y="222">Street intercept</text>
+        <text class="a3bS" x="30" y="238">reaches only who</text>
+        <text class="a3bS" x="30" y="252">walks past</text>
+        <text class="a3bB" x="616" y="228">-4.9 pts</text>
+        <text class="a3bS" x="616" y="244">2,854 in the frame, reach simulated</text>
+
+        <text class="a3bS" x="200" y="288" text-anchor="middle">-10</text>
+        <text class="a3bS" x="400" y="288" text-anchor="middle">-5</text>
+        <text class="a3bB" x="600" y="288" text-anchor="middle">0 = the truth</text>
+
+        <text class="a3bN" x="30" y="318">Average coverage split over 1,000 repeat surveys, as the lab prints it. Bars left of zero underestimate.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a frame built from who turned up misses the residents least able to turn up, and those are the ones the bus route is for</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Why the panel and the intercept start below the truth<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The panel.</strong> In the lab, joining the opt-in panel is simulated by age, and adults in fair, bad or very bad health join less often. The panel ends up with 4,096 of the 20,000 adults, and its share in poorer health sits 9.6 points below the truth before anyone is sampled. The lab's panel preset also has older people answering more, which pushes the number back up by 3.8 points on average; the two errors partly cancel, and the result still misses by 5.9 points.</p>
+        <p><strong>The intercept.</strong> A researcher on the high street on a weekday meets people by their daily activity: workers on a lunch break, shoppers, students. Reach is simulated by activity, and adults in poorer health are half as likely to be passing. The intercept frame holds 2,854 adults, and its coverage error is -4.9 points.</p>
+        <p><strong>The pattern.</strong> In both cases the people the frame misses are the people the question is about. That is the worst kind of coverage error: it points the wrong way for the decision, and a bigger sample from the same frame only repeats it more confidently.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the panel's numbers can and cannot claim<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>Without a known chance of selection, a panel's margin of error has no design to rest on. Any claim about the whole town relies on a model: an assumption that, within the groups you weight by, the people who joined answer like the people who did not. The lab's panel settings break that assumption on purpose, because joining is linked to health within each age group.</p>
+        <p>This is where professional opinion divides, and the disagreement is real. The 2010 AAPOR report on online panels is the cautious side. A later AAPOR task force (2013) argues that non-probability methods sit on a continuum of expected accuracy and that model-based approaches are the most promising, provided the assumptions are stated; Wang, Rothschild, Goel and Gelman (2015) brought an Xbox opt-in poll of 750,148 interviews into line with leading poll aggregators using multilevel regression and poststratification. Leader session 2 sets the two sides beside each other for a commissioning decision; tonight's job is only to see what the frame does before any model is applied.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The cautious side, in the profession's own words.</strong> AAPOR's 2010 report on online panels advises researchers to avoid nonprobability online panels when the goal is to estimate population values accurately. It found no accepted theoretical basis for projecting from them to a population, and reports that studies comparing them with benchmarks generally found them less accurate than probability methods. The report calls its own conclusions tentative. For the other side of the argument, see <a href="b2-commissioning-without-regret.html">Leader session 2, Commissioning without regret</a>. (Baker et al., AAPOR Report on Online Panels, Public Opinion Quarterly 74(4), 2010, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers sample size for a target margin</span>
+      <h2>Size the sample backwards from the margin you need</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Once the frame is chosen, size is arithmetic worked backwards. Start from the margin the decision can tolerate, work out how many completed interviews that margin needs, inflate for the design, then divide by the share of people you expect to answer. The answer is how many addresses to issue, which is the number the fieldwork quote is built on.</p>
+
+    <div class="svy-widget" data-mode="size"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn funnel read from left to right for a margin of plus or minus 3 points at an expected share of 22 percent. A tall hatched box of 3,996 issued addresses narrows through a 22 percent response rate to a short box of 879 completes, which narrows through a design effect of 1.2 to a marigold box of 733, the simple random equivalent the margin needs. Constructed Ottervale example; planner figures computed.">
+        <defs>
+          <filter id="a3cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a3cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a3cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a3cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a3cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a3cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a3cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a3cV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .a3cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a3cH" x="30" y="28">FROM ADDRESSES ISSUED TO THE PRECISION YOU PAID FOR, AT ±3 POINTS</text>
+        <text class="a3cS" x="560" y="46">Constructed Ottervale example</text>
+
+        <g filter="url(#a3cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="40" y="60" width="200" height="190" rx="10" transform="rotate(-0.6 140 155)" fill="url(#a3cHc)"/>
+          <rect x="350" y="128" width="170" height="54" rx="8" transform="rotate(0.6 435 155)" fill="#F9EDF5"/>
+          <rect x="640" y="132" width="170" height="46" rx="8" transform="rotate(-0.6 725 155)" fill="#F5C04A"/>
+          <path d="M244 155 L344 155" marker-end="url(#a3cAr)"/>
+          <path d="M524 155 L634 155" marker-end="url(#a3cAr)"/>
+          <!-- doodle: an envelope on the issued pile -->
+          <rect x="256" y="64" width="32" height="22" rx="2" fill="#FFFFFF" stroke="#7F0A67"/>
+          <path d="M256 66 L272 78 L288 66" stroke="#7F0A67"/>
+        </g>
+        <rect x="58" y="122" width="150" height="60" rx="6" fill="#FFFFFF"/>
+
+        <text class="a3cH" x="70" y="142">ISSUED</text>
+        <text class="a3cV" x="70" y="164">3,996</text>
+        <text class="a3cS" x="70" y="178">addresses</text>
+
+        <text class="a3cH" x="364" y="150">COMPLETES</text>
+        <text class="a3cV" x="364" y="172">879</text>
+
+        <text class="a3cH" x="654" y="152">WORTH, AS SRS</text>
+        <text class="a3cV" x="654" y="172">733</text>
+
+        <text class="a3cB" x="256" y="140">22% answer</text>
+        <text class="a3cB" x="534" y="140">deff 1.2</text>
+
+        <text class="a3cS" x="350" y="206">what fieldwork must return</text>
+        <text class="a3cS" x="640" y="206">what ±3 points needs</text>
+        <text class="a3cS" x="640" y="222">at simple random</text>
+
+        <text class="a3cN" x="30" y="276">Plan right to left: the margin sets 733, the design effect lifts it to 879, the response rate to 3,996.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - most of what you issue never answers; budget for the issued number, not the completes</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Three numbers, worked backwards<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Completes at simple random.</strong> For a proportion p and a margin m at 95%, completes = 1.96 squared × p(1 − p) ÷ m squared. With p = 22% and m = 3 points the planner prints 733; at ±5 points, 264. Halving the margin roughly quadruples the completes, which is why "a bit more precise" is never a small request.</p>
+        <p><strong>Design effect.</strong> Stratifying, clustering and weighting change how much each interview is worth. A design effect of 1.2 means 1.2 completes do the work of one simple random complete, so ±3 points needs 879 completes and ±5 points needs 317. Where the 1.2 comes from, and how to make it smaller, is Analyst session 4.</p>
+        <p><strong>Response rate.</strong> Issued = completes ÷ expected response rate. At 22% the planner prints 3,996 addresses for ±3 points and 1,441 for ±5. With no design effect, ±5 points needs 1,200 issued. If everyone answered, ±3 points would need only the 879.</p>
+        <p>This sizes a survey estimate: one share, with a margin around it. Sizing an A/B test is a different calculation, about the power to detect a difference between two groups, and it lives in <a href="https://phoebefu6.github.io/learn-experimentation-with-phoebe/courses/b2-power-and-sample-size.html">Experimentation, power and sample size ↗</a>.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>What the planner cannot buy<span class="mini">2 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>The planner sizes precision, and only precision. No sample size buys back coverage error or nonresponse bias. Issue 3,996 addresses from a street intercept and you get a narrower interval around a number that sits below the truth for the same reason it did at 1,000. On the bench, the address list at 4,000 issued has repeat surveys that cover the truth 3% of the time, because the bias from who answers did not shrink while the interval did.</p>
+        <p>Two other choices hide inside the planner. The expected share: 22% is the bench's truth, rounded, and you would normally use a past survey or 50%, the worst case, which gives the largest sample. And the response rate: assume one you have evidence for, from a previous wave or a comparable survey. An optimistic rate is the most common reason a survey comes back short of its completes.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>A response rate is bought with time and effort.</strong> In 2012 Pew Research Center ran its standard five-day phone survey, which reached a 9% response rate, beside a high-effort version fielded from January 5 to March 15 with incentives and refusal-conversion letters, which reached 22%. Ottervale's planner uses 22% as its expected rate; the constructed fieldwork quote should say what effort that rate assumes, because the same survey run for five days would return far fewer completes. (Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Three frames on the bench, one row for the plan</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The lab draws surveys from the 20,000 real adults and splits each one's error into coverage, sampling, nonresponse and weighting. Panel and intercept reach and who answers are simulated and labelled; the truth, 21.7% in fair, bad or very bad health, is real and stands in for an Ottervale question. You will read the street intercept, the address list and the opt-in panel side by side, then use the planner above to size the frame you choose. Sample 1 is fixed so your numbers match the page.</p>
+
+    <div class="svy-widget" data-rung="r0"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 316" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three hand-drawn boxes across the top, one per frame, each with its average error split over 1,000 repeat surveys. R0 street intercept: coverage minus 4.9, nonresponse plus 0.1, bias minus 4.9, covers the truth 51 percent. R1 address list: coverage minus 0.3, nonresponse plus 5.6, bias plus 5.2, covers 58 percent. Online opt-in panel: coverage minus 9.6, nonresponse plus 3.8, bias minus 5.9, covers 40 percent. Arrows from all three feed one marigold decision row: frame, design, addresses to issue. Constructed Ottervale example.">
+        <defs>
+          <filter id="a3dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a3dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a3dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a3dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a3dL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a3dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a3dB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a3dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a3dH" x="30" y="28">THREE FRAMES, ONE DECISION ROW</text>
+        <text class="a3dS" x="560" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a3dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="30" y="48" width="250" height="122" rx="10" transform="rotate(-0.6 155 109)" fill="#FFFFFF"/>
+          <rect x="315" y="48" width="250" height="122" rx="10" transform="rotate(0.5 440 109)" fill="#F9EDF5"/>
+          <rect x="600" y="48" width="250" height="122" rx="10" transform="rotate(-0.5 725 109)" fill="#FFFFFF"/>
+          <path d="M155 174 L300 218" marker-end="url(#a3dAr)"/>
+          <path d="M440 174 L440 216" marker-end="url(#a3dAr)"/>
+          <path d="M725 174 L580 218" marker-end="url(#a3dAr)"/>
+          <rect x="120" y="224" width="640" height="54" rx="10" transform="rotate(0.4 440 251)" fill="#F5C04A"/>
+          <!-- doodle: a pin on the decision row -->
+          <path d="M776 232 L790 246 M783 224 C792 226 794 236 786 240 L776 232 C778 226 780 224 783 224"/>
+        </g>
+
+        <text class="a3dH" x="46" y="72">R0 · Street intercept</text>
+        <text class="a3dS" x="46" y="94">coverage -4.9 pts</text>
+        <text class="a3dS" x="46" y="112">nonresponse +0.1 pts</text>
+        <text class="a3dL" x="46" y="138">bias -4.9 · covers 51%</text>
+
+        <text class="a3dH" x="331" y="72">R1 · Address list</text>
+        <text class="a3dS" x="331" y="94">coverage -0.3 pts</text>
+        <text class="a3dS" x="331" y="112">nonresponse +5.6 pts</text>
+        <text class="a3dL" x="331" y="138">bias +5.2 · covers 58%</text>
+
+        <text class="a3dH" x="616" y="72">Panel · Online opt-in</text>
+        <text class="a3dS" x="616" y="94">coverage -9.6 pts</text>
+        <text class="a3dS" x="616" y="112">nonresponse +3.8 pts</text>
+        <text class="a3dL" x="616" y="138">bias -5.9 · covers 40%</text>
+
+        <text class="a3dH" x="140" y="248">OTTERVALE PLAN, ROW 1</text>
+        <text class="a3dL" x="140" y="266">frame ____________ · design ____________ · issued ________ for ±__ points</text>
+
+        <text class="a3dN" x="30" y="302">Averages over 1,000 repeat surveys, as the lab prints them. Reach and answering are simulated.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - only the address list's error comes mostly from who answered, the error weighting can work on; coverage is out of reach</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Read R0, the street intercept.</strong> The lab loads with R0 selected: 1,000 people stopped on the high street, 22% of them agreeing to answer, evenly. Copy the repeat line and the average split.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · R0 over 1,000 repeats</span>Over 1000 repeat surveys: bias -4.9 pts · spread (SD) 2.5 pts · honest margin covers the truth 51% · naive 51%
+Average split over 1000: coverage -4.9 · sampling +0.0 · nonresponse +0.1 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · Click R1, the address list.</strong> Same 1,000 issued, now from the list of household addresses, with older residents answering more often. Copy the same two lines.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · R1 over 1,000 repeats</span>Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.0 pts · honest margin covers the truth 58% · naive 58%
+Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.6 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Set up the opt-in panel.</strong> Under "Your choices" set Frame to "Online opt-in panel", Design to "Simple random", Sample size to "1,000 issued", Who answers to "Skewed old (older answer more)" and Weighting to "No weighting", with trimming unticked. This is the lab's panel preset. Copy the repeat line and the average split.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · Panel over 1,000 repeats</span>Over 1000 repeat surveys: bias -5.9 pts · spread (SD) 2.6 pts · honest margin covers the truth 40% · naive 40%
+Average split over 1000: coverage -9.6 · sampling +0.0 · nonresponse +3.8 · weighting +0.0</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Size the survey with the planner.</strong> Scroll up to the planner in Part 3. Keep the expected share at 22%, the response rate at 22% and the design effect at 1.2. Read it at ±3 points, then switch the target margin to ±5 points.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · the planner at ±3 and ±5 points</span>3,996 addresses to issue for ±3 points
+Completes at simple random: 733
+Completes after the design effect 1.2: 879
+Issued at a 22% response rate: 3996
+
+1,441 addresses to issue for ±5 points
+Completes at simple random: 264
+Completes after the design effect 1.2: 317
+Issued at a 22% response rate: 1441</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Write the decision row.</strong> Choose the frame and the size, and name what the frame cannot reach and which error is still left for later sessions. The frame line is filled for Ottervale; the margin is your call.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ottervale plan, row 1</span>frame            : address list (households), 19,549 of 20,000 adults
+cannot reach     : care homes, halls, other communal establishments (coverage -0.3 pts)
+rejected         : panel (coverage -9.6 pts), intercept (coverage -4.9 pts)
+margin           : ±__ points   (±3 needs 3,996 issued; ±5 needs 1,441 issued)
+assumes          : 22% response, design effect 1.2 (session 4 checks the 1.2)
+still open       : nonresponse +5.6 pts on average if older residents answer more (session 5)</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Choose the frame on bias, then size it on precision.</strong> The panel and the intercept are cheaper per complete, and both start below the truth by more than the margin you are paying for. The address list starts close to the truth and leaves an error that weighting can work on. A sample size chosen first, on cost, would have bought a precise answer from the wrong list.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Analyst session 4</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Write the coverage sentence</strong> for a survey you run or read: the target population, the frame, and the groups the frame cannot reach, in the style of the Labour Force Survey's own statement.</li>
+      <li><strong>Find one overcoverage risk</strong> on that frame (empty addresses, ineligible members, duplicates) and say how fieldwork would recognise it.</li>
+      <li><strong>Run the planner at 50%</strong>, the worst-case share, for ±3 points with 22% response and design effect 1.2, and write one sentence on why the issued number changes. Your numbers will differ from the page's.</li>
+      <li><strong>Run the panel once with weighting</strong> set to "Rake: age, sex, area" and compare the repeat line with step 3. Write one sentence on what weighting could and could not repair.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Analyst session 3 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · Ottervale's council samples from a list of private household addresses. Which residents can this survey never reach, however many addresses it issues?</p>
+      <button class="qopt" type="button">A · Residents who refuse to answer</button>
+      <button class="qopt" type="button">B · Residents under 16</button>
+      <button class="qopt" type="button">C · Residents in communal establishments such as care homes and halls, who are not on the list</button>
+      <button class="qopt" type="button">D · Residents in the smallest area of the town</button>
+      <p class="qwhy">Refusal is nonresponse, under-16s are outside the target population, and small areas are on the list. Only people off the frame have no chance of selection at all.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · On the bench, the opt-in panel's coverage error is -9.6 points. Why would a larger panel sample not fix it?</p>
+      <button class="qopt" type="button">A · The error comes from who joined the panel, not from chance, so every sample from it starts below the truth</button>
+      <button class="qopt" type="button">B · The panel's sample size is fixed at 1,000</button>
+      <button class="qopt" type="button">C · Coverage error grows with sample size</button>
+      <button class="qopt" type="button">D · The panel has no margin of error</button>
+      <p class="qwhy">Coverage error is a property of the frame. More interviews from the same frame narrow the interval around the same shifted centre.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · The planner says ±3 points needs 879 completes with design effect 1.2, and 3,996 issued at 22% response. What should the fieldwork quote be built on?</p>
+      <button class="qopt" type="button">A · 733, the completes at simple random</button>
+      <button class="qopt" type="button">B · 879, because that is how many interviews you need</button>
+      <button class="qopt" type="button">C · 1,000, a round number that is close enough</button>
+      <button class="qopt" type="button">D · 3,996 addresses issued, because most of them will not answer and the 879 completes come from that issue</button>
+      <p class="qwhy">Completes are what you need back; issued addresses are what you must send out to get them at the response rate you expect.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The Labour Force Survey covers private households; most communal establishments are excluded, except NHS accommodation and students in halls via parents</span><span class="note">ONS, Labour Force Survey QMI, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Avoid nonprobability online panels when estimating population values; no accepted basis for projecting them; generally less accurate against benchmarks; conclusions called tentative</span><span class="note">Baker et al., AAPOR Report on Online Panels, Public Opinion Quarterly 74(4), 2010, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Non-probability methods sit on a continuum; model-based methods most promising, with assumptions stated</span><span class="note">Baker et al., Report of the AAPOR Task Force on Non-Probability Sampling, 2013, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Xbox opt-in poll of 750,148 interviews matched poll aggregators after multilevel regression and poststratification</span><span class="note">Wang, Rothschild, Goel and Gelman, International Journal of Forecasting 31(3), 2015, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">A standard survey at 9% response beside a high-effort survey at 22%, fielded January 5 to March 15 with incentives</span><span class="note">Pew Research Center, "Assessing the representativeness of public opinion surveys", 2012, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The population: 20,000 adults from the Census 2021 public microdata teaching sample</span><span class="note">Office for National Statistics, 2023, Open Government Licence v3.0, file read; seeded sample</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Sample-size planner figures: 733, 879 and 3,996 for ±3 points; 264, 317 and 1,441 for ±5; 1,200 issued with no design effect</span><span class="note">Computed by the planner from the textbook formula for a proportion at 95%</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every lab number on this page: frame sizes, coverage, repeat lines and average splits for R0, R1 and the panel</span><span class="note">Computed by the widget on real census rows; panel and intercept reach and who answers are simulated and labelled; a Python reference agrees on every value</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Analyst session 3 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Population vs frame</b><span>Who the decision is about, against the list you can draw from. The gap is coverage error.</span></div>
+      <div class="cheat-item"><b>Off the list, off every sample</b><span>Household address lists miss communal establishments: care homes, halls, hostels.</span></div>
+      <div class="cheat-item"><b>Three frames on the bench</b><span>Address list -0.3, opt-in panel -9.6, street intercept -4.9 points of coverage error.</span></div>
+      <div class="cheat-item"><b>Size backwards</b><span>Completes = 1.96² × p(1 − p) ÷ margin² × design effect; issued = completes ÷ response rate.</span></div>
+      <div class="cheat-item"><b>Ottervale at ±3 and ±5</b><span>3,996 issued for ±3 points; 1,441 for ±5. At 22% response and design effect 1.2.</span></div>
+      <div class="cheat-item"><b>Precision is not accuracy</b><span>No sample size buys back coverage error or nonresponse bias. Choose the frame first.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Tonight's planner took a design effect of 1.2 on trust. Analyst session 4 shows where it comes from: stratifying by area, clustering by street and drawing more addresses, each run on the bench, so you can see which design buys precision and which one spends the budget on interviews that tell you less than they cost.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Analyst session 3 of 6 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="a2-questions-that-do-not-lead.html">← Prev: Questions that do not lead</a> &nbsp;·&nbsp; <a href="a4-designs-that-spend-the-budget-well.html">Next: Designs that spend the budget well →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,804 @@
+{
+ "truth": 0.21655,
+ "runs": {
+  "r0": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 223,
+    "frameSize": 2854,
+    "frameMean": 0.16713384723195515,
+    "sampleMean": 0.16800000000000162,
+    "design": "srs",
+    "areaN": [
+     6,
+     26,
+     25,
+     20,
+     13,
+     27,
+     35,
+     38,
+     21,
+     12
+    ],
+    "ok": true,
+    "respMean": 0.16143497757847505,
+    "trimmed": 0,
+    "est": 0.16143497757847505,
+    "kish": 1.0000000000000009,
+    "honest": 0.048400157482291734,
+    "naive": 0.04829151501648381,
+    "deff": 1.0045045045045018,
+    "neff": 222.0000000000006
+   },
+   "err": {
+    "total": -0.05511502242152494,
+    "coverage": -0.04941615276804484,
+    "sampling": 0.0008661527680464687,
+    "nonresponse": -0.006565022421526567,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.168045562634802,
+    "bias": -0.048504437365197994,
+    "sd": 0.025015219500579076,
+    "rmse": 0.05457510101480864,
+    "coverHonest": 0.51,
+    "coverNaive": 0.509,
+    "biasCoverage": -0.04941615276804484,
+    "biasSampling": 0.00014015276804646632,
+    "biasNonresponse": 0.0007715626348002733,
+    "biasWeighting": 0,
+    "rr": 0.22023100000000032,
+    "deff": 1.0045784180958184
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 16.1% ± 4.8 (honest margin) · naive ±4.8",
+    "Total error: -5.5 pts = coverage -4.9 · sampling +0.1 · nonresponse -0.7 · weighting +0.0",
+    "Issued 1000 · answered 223 (22%) · design effect 1.00 · effective n 222",
+    "Frame: 2,854 of 20,000 adults could be reached",
+    "Answers per area: fewest 6 (area 1) · most 38 (area 8)",
+    "Over 1000 repeat surveys: bias -4.9 pts · spread (SD) 2.5 pts · honest margin covers the truth 51% · naive 51%",
+    "Average split over 1000: coverage -4.9 · sampling +0.0 · nonresponse +0.1 · weighting +0.0"
+   ]
+  },
+  "r1": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 249,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.23299999999999724,
+    "design": "srs",
+    "areaN": [
+     11,
+     39,
+     17,
+     29,
+     20,
+     29,
+     43,
+     31,
+     17,
+     13
+    ],
+    "ok": true,
+    "respMean": 0.25702811244979923,
+    "trimmed": 0,
+    "est": 0.25702811244979923,
+    "kish": 0.9999999999999991,
+    "honest": 0.05438845662196861,
+    "naive": 0.054279132980533815,
+    "deff": 1.0040322580645173,
+    "neff": 247.9999999999997
+   },
+   "err": {
+    "total": 0.040478112449799236,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.01933178167680935,
+    "nonresponse": 0.02402811244980199,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.2688391120937263,
+    "bias": 0.0522891120937263,
+    "sd": 0.030461052547949966,
+    "rmse": 0.06051468388646877,
+    "coverHonest": 0.581,
+    "coverNaive": 0.581,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.00047021832319042804,
+    "biasNonresponse": 0.05564111209372919,
+    "biasWeighting": 0,
+    "rr": 0.22834300000000002,
+    "deff": 1.0044140620639603
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 25.7% ± 5.4 (honest margin) · naive ±5.4",
+    "Total error: +4.0 pts = coverage -0.3 · sampling +1.9 · nonresponse +2.4 · weighting +0.0",
+    "Issued 1000 · answered 249 (25%) · design effect 1.00 · effective n 248",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 11 (area 1) · most 43 (area 7)",
+    "Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.0 pts · honest margin covers the truth 58% · naive 58%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.6 · weighting +0.0"
+   ]
+  },
+  "r2": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 226,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22701727945955882,
+    "design": "strat",
+    "areaN": [
+     9,
+     24,
+     16,
+     16,
+     21,
+     27,
+     35,
+     42,
+     21,
+     15
+    ],
+    "ok": true,
+    "respMean": 0.2211744581895462,
+    "trimmed": 0,
+    "est": 0.2211744581895462,
+    "kish": 1.0000072468396142,
+    "honest": 0.05199787568713496,
+    "naive": 0.05411148228003217,
+    "deff": 0.9234052540199894,
+    "neff": 244.7462790753275
+   },
+   "err": {
+    "total": 0.00462445818954621,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.013349061136370938,
+    "nonresponse": -0.005842821270012621,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.26909115812912476,
+    "bias": 0.05254115812912477,
+    "sd": 0.0294583513597874,
+    "rmse": 0.06023593414554457,
+    "coverHonest": 0.576,
+    "coverNaive": 0.58,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0000013058197905304324,
+    "biasNonresponse": 0.055424245625727266,
+    "biasWeighting": 0,
+    "rr": 0.22810400000000033,
+    "deff": 0.9996337330864625
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 22.1% ± 5.2 (honest margin) · naive ±5.4",
+    "Total error: +0.5 pts = coverage -0.3 · sampling +1.3 · nonresponse -0.6 · weighting +0.0",
+    "Issued 1000 · answered 226 (23%) · design effect 0.92 · effective n 245",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 9 (area 1) · most 42 (area 8)",
+    "Over 1000 repeat surveys: bias +5.3 pts · spread (SD) 2.9 pts · honest margin covers the truth 58% · naive 58%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting +0.0"
+   ]
+  },
+  "r3": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 226,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22701727945955882,
+    "design": "strat",
+    "areaN": [
+     9,
+     24,
+     16,
+     16,
+     21,
+     27,
+     35,
+     42,
+     21,
+     15
+    ],
+    "ok": true,
+    "respMean": 0.2211744581895462,
+    "trimmed": 0,
+    "est": 0.20169831486355955,
+    "kish": 1.2172925553351461,
+    "honest": 0.05483986358684409,
+    "naive": 0.05231623834628127,
+    "deff": 1.098802685652907,
+    "neff": 205.67841974804705
+   },
+   "err": {
+    "total": -0.014851685136440446,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.013349061136370938,
+    "nonresponse": -0.005842821270012621,
+    "weighting": -0.019476143325986656
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.2128603402199379,
+    "bias": -0.0036896597800620823,
+    "sd": 0.02806215712398021,
+    "rmse": 0.028303679120276235,
+    "coverHonest": 0.937,
+    "coverNaive": 0.928,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0000013058197905304324,
+    "biasNonresponse": 0.055424245625727266,
+    "biasWeighting": -0.05623081790918702,
+    "rr": 0.22810400000000033,
+    "deff": 1.1207338458591076
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 20.2% ± 5.5 (honest margin) · naive ±5.2",
+    "Total error: -1.5 pts = coverage -0.3 · sampling +1.3 · nonresponse -0.6 · weighting -1.9",
+    "Issued 1000 · answered 226 (23%) · design effect 1.10 · effective n 206",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 9 (area 1) · most 42 (area 8)",
+    "Over 1000 repeat surveys: bias -0.4 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 93%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting -5.6"
+   ]
+  },
+  "r4": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 226,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22701727945955882,
+    "design": "strat",
+    "areaN": [
+     9,
+     24,
+     16,
+     16,
+     21,
+     27,
+     35,
+     42,
+     21,
+     15
+    ],
+    "ok": true,
+    "respMean": 0.2211744581895462,
+    "trimmed": 10,
+    "est": 0.20058440504296757,
+    "kish": 1.1931650738061952,
+    "honest": 0.053622731332648735,
+    "naive": 0.05220796222414346,
+    "deff": 1.0549317868590053,
+    "neff": 214.23186106933144
+   },
+   "err": {
+    "total": -0.015965594957032425,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.013349061136370938,
+    "nonresponse": -0.005842821270012621,
+    "weighting": -0.020590053146578635
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.22110427759263881,
+    "bias": 0.004554277592638822,
+    "sd": 0.028052460517748498,
+    "rmse": 0.02841974640088561,
+    "coverHonest": 0.948,
+    "coverNaive": 0.944,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0000013058197905304324,
+    "biasNonresponse": 0.055424245625727266,
+    "biasWeighting": -0.04798688053648596,
+    "rr": 0.22810400000000033,
+    "deff": 1.0533214957077588
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 20.1% ± 5.4 (honest margin) · naive ±5.2",
+    "Total error: -1.6 pts = coverage -0.3 · sampling +1.3 · nonresponse -0.6 · weighting -2.1",
+    "Issued 1000 · answered 226 (23%) · design effect 1.05 · effective n 214",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 9 (area 1) · most 42 (area 8)",
+    "Over 1000 repeat surveys: bias +0.5 pts · spread (SD) 2.8 pts · honest margin covers the truth 95% · naive 94%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting -4.8"
+   ]
+  },
+  "r5": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 227,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22701727945955882,
+    "design": "strat",
+    "areaN": [
+     11,
+     30,
+     19,
+     13,
+     18,
+     26,
+     34,
+     41,
+     22,
+     13
+    ],
+    "ok": true,
+    "respMean": 0.11452385182308092,
+    "trimmed": 7,
+    "est": 0.09449781215691858,
+    "kish": 1.2119469761633188,
+    "honest": 0.03617469931684861,
+    "naive": 0.038053864865004214,
+    "deff": 0.9036751018559631,
+    "neff": 251.19647485450093
+   },
+   "err": {
+    "total": -0.12205218784308142,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.013349061136370938,
+    "nonresponse": -0.1124934276364779,
+    "weighting": -0.020026039666162343
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.12707975582837253,
+    "bias": -0.08947024417162747,
+    "sd": 0.02225413218762413,
+    "rmse": 0.09219637190017234,
+    "coverHonest": 0.046,
+    "coverNaive": 0.04,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0000013058197905304324,
+    "biasNonresponse": -0.060094925784546914,
+    "biasWeighting": -0.026492230890477707,
+    "rr": 0.22066400000000005,
+    "deff": 0.9955133704228899
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 9.4% ± 3.6 (honest margin) · naive ±3.8",
+    "Total error: -12.2 pts = coverage -0.3 · sampling +1.3 · nonresponse -11.2 · weighting -2.0",
+    "Issued 1000 · answered 227 (23%) · design effect 0.90 · effective n 251",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 11 (area 1) · most 41 (area 8)",
+    "Over 1000 repeat surveys: bias -8.9 pts · spread (SD) 2.2 pts · honest margin covers the truth 5% · naive 4%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse -6.0 · weighting -2.6"
+   ]
+  },
+  "panel": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 194,
+    "frameSize": 4096,
+    "frameMean": 0.1201171875,
+    "sampleMean": 0.11800000000000001,
+    "design": "srs",
+    "areaN": [
+     8,
+     26,
+     19,
+     10,
+     22,
+     21,
+     33,
+     30,
+     17,
+     8
+    ],
+    "ok": true,
+    "respMean": 0.11340206185567009,
+    "trimmed": 0,
+    "est": 0.11340206185567009,
+    "kish": 0.9999999999999961,
+    "honest": 0.044735392363240235,
+    "naive": 0.04461994599694056,
+    "deff": 1.0051813471502595,
+    "neff": 192.99999999999991
+   },
+   "err": {
+    "total": -0.1031479381443299,
+    "coverage": -0.09643281249999999,
+    "sampling": -0.0021171874999999923,
+    "nonresponse": -0.004597938144329919,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.15789723900473912,
+    "bias": -0.05865276099526087,
+    "sd": 0.02624857399710997,
+    "rmse": 0.06425833805234113,
+    "coverHonest": 0.404,
+    "coverNaive": 0.4,
+    "biasCoverage": -0.09643281249999999,
+    "biasSampling": -0.00041318749999999803,
+    "biasNonresponse": 0.038193239004739095,
+    "biasWeighting": 0,
+    "rr": 0.18655000000000008,
+    "deff": 1.0054133636797515
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 11.3% ± 4.5 (honest margin) · naive ±4.5",
+    "Total error: -10.3 pts = coverage -9.6 · sampling -0.2 · nonresponse -0.5 · weighting +0.0",
+    "Issued 1000 · answered 194 (19%) · design effect 1.01 · effective n 193",
+    "Frame: 4,096 of 20,000 adults could be reached",
+    "Answers per area: fewest 8 (area 1) · most 33 (area 7)",
+    "Over 1000 repeat surveys: bias -5.9 pts · spread (SD) 2.6 pts · honest margin covers the truth 40% · naive 40%",
+    "Average split over 1000: coverage -9.6 · sampling +0.0 · nonresponse +3.8 · weighting +0.0"
+   ]
+  },
+  "panelRake": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 194,
+    "frameSize": 4096,
+    "frameMean": 0.1201171875,
+    "sampleMean": 0.11800000000000001,
+    "design": "srs",
+    "areaN": [
+     8,
+     26,
+     19,
+     10,
+     22,
+     21,
+     33,
+     30,
+     17,
+     8
+    ],
+    "ok": true,
+    "respMean": 0.11340206185567009,
+    "trimmed": 0,
+    "est": 0.13019278483176364,
+    "kish": 1.1207633488595632,
+    "honest": 0.05553590097033752,
+    "naive": 0.047354381396170285,
+    "deff": 1.3753945796338305,
+    "neff": 141.05043227060585
+   },
+   "err": {
+    "total": -0.08635721516823636,
+    "coverage": -0.09643281249999999,
+    "sampling": -0.0021171874999999923,
+    "nonresponse": -0.004597938144329919,
+    "weighting": 0.016790722976093547
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.15986622800323969,
+    "bias": -0.05668377199676031,
+    "sd": 0.027172553922683952,
+    "rmse": 0.06286014392651257,
+    "coverHonest": 0.485,
+    "coverNaive": 0.439,
+    "biasCoverage": -0.09643281249999999,
+    "biasSampling": -0.00041318749999999803,
+    "biasNonresponse": 0.038193239004739095,
+    "biasWeighting": 0.001968988998500271,
+    "rr": 0.18655000000000008,
+    "deff": 1.136862536758941
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 13.0% ± 5.6 (honest margin) · naive ±4.7",
+    "Total error: -8.6 pts = coverage -9.6 · sampling -0.2 · nonresponse -0.5 · weighting +1.7",
+    "Issued 1000 · answered 194 (19%) · design effect 1.38 · effective n 141",
+    "Frame: 4,096 of 20,000 adults could be reached",
+    "Answers per area: fewest 8 (area 1) · most 33 (area 7)",
+    "Over 1000 repeat surveys: bias -5.7 pts · spread (SD) 2.7 pts · honest margin covers the truth 49% · naive 44%",
+    "Average split over 1000: coverage -9.6 · sampling +0.0 · nonresponse +3.8 · weighting +0.2"
+   ]
+  },
+  "cluster": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 223,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.21545595054095648,
+    "design": "cluster",
+    "areaN": [
+     6,
+     25,
+     24,
+     23,
+     34,
+     20,
+     27,
+     26,
+     25,
+     13
+    ],
+    "ok": true,
+    "respMean": 0.29093836246550187,
+    "trimmed": 0,
+    "est": 0.29093836246550187,
+    "kish": 1.002497738176951,
+    "honest": 0.06618207111085243,
+    "naive": 0.059613707114851526,
+    "deff": 1.2325043159175926,
+    "neff": 180.93242929861688
+   },
+   "err": {
+    "total": 0.07438836246550187,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.001787732217768595,
+    "nonresponse": 0.07548241192454538,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.26888456911807834,
+    "bias": 0.05233456911807835,
+    "sd": 0.03054024642440453,
+    "rmse": 0.06059384272711439,
+    "coverHonest": 0.633,
+    "coverNaive": 0.578,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0002641583053626954,
+    "biasNonresponse": 0.05548050910025289,
+    "biasWeighting": 0,
+    "rr": 0.227460015411617,
+    "deff": 1.1755304310446826
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 29.1% ± 6.6 (honest margin) · naive ±6.0",
+    "Total error: +7.4 pts = coverage -0.3 · sampling +0.2 · nonresponse +7.5 · weighting +0.0",
+    "Issued 1000 · answered 223 (22%) · design effect 1.23 · effective n 181",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 6 (area 1) · most 34 (area 5)",
+    "Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.1 pts · honest margin covers the truth 63% · naive 58%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting +0.0"
+   ]
+  },
+  "post": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 226,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22701727945955882,
+    "design": "strat",
+    "areaN": [
+     9,
+     24,
+     16,
+     16,
+     21,
+     27,
+     35,
+     42,
+     21,
+     15
+    ],
+    "ok": true,
+    "respMean": 0.2211744581895462,
+    "emptyCells": 0,
+    "trimmed": 0,
+    "est": 0.2033000103062351,
+    "kish": 1.231784579386958,
+    "honest": 0.05456282437380561,
+    "naive": 0.05247083287851701,
+    "deff": 1.0813287999372698,
+    "neff": 209.0021092688096
+   },
+   "err": {
+    "total": -0.013249989693764896,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.013349061136370938,
+    "nonresponse": -0.005842821270012621,
+    "weighting": -0.017874447883311106
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.21285901135537824,
+    "bias": -0.003690988644621751,
+    "sd": 0.027927503385713988,
+    "rmse": 0.028170353965362115,
+    "coverHonest": 0.941,
+    "coverNaive": 0.937,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.0000013058197905304324,
+    "biasNonresponse": 0.055424245625727266,
+    "biasWeighting": -0.05623214677374641,
+    "rr": 0.22810400000000033,
+    "deff": 1.116384549722712
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 20.3% ± 5.5 (honest margin) · naive ±5.2",
+    "Total error: -1.3 pts = coverage -0.3 · sampling +1.3 · nonresponse -0.6 · weighting -1.8",
+    "Issued 1000 · answered 226 (23%) · design effect 1.08 · effective n 209",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 9 (area 1) · most 42 (area 8)",
+    "Over 1000 repeat surveys: bias -0.4 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 94%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting -5.6"
+   ]
+  },
+  "uniform": {
+   "draw": {
+    "issued": 1000,
+    "respondents": 223,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.23299999999999724,
+    "design": "srs",
+    "areaN": [
+     13,
+     32,
+     13,
+     19,
+     22,
+     22,
+     42,
+     31,
+     16,
+     13
+    ],
+    "ok": true,
+    "respMean": 0.21076233183856505,
+    "trimmed": 0,
+    "est": 0.21076233183856505,
+    "kish": 0.9999999999999992,
+    "honest": 0.05365126718105865,
+    "naive": 0.05353083769769584,
+    "deff": 1.004504504504502,
+    "neff": 222.00000000000054
+   },
+   "err": {
+    "total": -0.0057876681614349446,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.01933178167680935,
+    "nonresponse": -0.02223766816143219,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.21311432683236342,
+    "bias": -0.0034356731676365715,
+    "sd": 0.027564648470206482,
+    "rmse": 0.027777935405657393,
+    "coverHonest": 0.942,
+    "coverNaive": 0.942,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.00047021832319042804,
+    "biasNonresponse": -0.00008367316763385821,
+    "biasWeighting": 0,
+    "rr": 0.22023100000000032,
+    "deff": 1.0045784180958222
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 21.1% ± 5.4 (honest margin) · naive ±5.4",
+    "Total error: -0.6 pts = coverage -0.3 · sampling +1.9 · nonresponse -2.2 · weighting +0.0",
+    "Issued 1000 · answered 223 (22%) · design effect 1.00 · effective n 222",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 13 (area 1) · most 42 (area 7)",
+    "Over 1000 repeat surveys: bias -0.3 pts · spread (SD) 2.8 pts · honest margin covers the truth 94% · naive 94%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +0.0 · weighting +0.0"
+   ]
+  },
+  "big": {
+   "draw": {
+    "issued": 4000,
+    "respondents": 951,
+    "frameSize": 19549,
+    "frameMean": 0.2136682183231879,
+    "sampleMean": 0.22225000000001138,
+    "design": "srs",
+    "areaN": [
+     52,
+     107,
+     87,
+     83,
+     93,
+     112,
+     133,
+     143,
+     90,
+     51
+    ],
+    "ok": true,
+    "respMean": 0.2723449001051484,
+    "trimmed": 0,
+    "est": 0.2723449001051484,
+    "kish": 0.9999999999999885,
+    "honest": 0.028308488482163427,
+    "naive": 0.02829360102992062,
+    "deff": 1.0010526315789359,
+    "neff": 950.0000000000109
+   },
+   "err": {
+    "total": 0.0557949001051484,
+    "coverage": -0.0028817816768121063,
+    "sampling": 0.008581781676823497,
+    "nonresponse": 0.05009490010513701,
+    "weighting": 0
+   },
+   "reps": {
+    "n": 1000,
+    "meanEst": 0.26875703299912473,
+    "bias": 0.05220703299912474,
+    "sd": 0.013716702470311178,
+    "rmse": 0.05397890533560995,
+    "coverHonest": 0.034,
+    "coverNaive": 0.034,
+    "biasCoverage": -0.0028817816768121063,
+    "biasSampling": -0.00011571832317645389,
+    "biasNonresponse": 0.05520453299911373,
+    "biasWeighting": 0,
+    "rr": 0.22803025000000027,
+    "deff": 1.0010985171432059
+   },
+   "lines": [
+    "Truth (census rows): 21.7%",
+    "Estimate: 27.2% ± 2.8 (honest margin) · naive ±2.8",
+    "Total error: +5.6 pts = coverage -0.3 · sampling +0.9 · nonresponse +5.0 · weighting +0.0",
+    "Issued 4000 · answered 951 (24%) · design effect 1.00 · effective n 950",
+    "Frame: 19,549 of 20,000 adults could be reached",
+    "Answers per area: fewest 51 (area 10) · most 143 (area 8)",
+    "Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 1.4 pts · honest margin covers the truth 3% · naive 3%",
+    "Average split over 1000: coverage -0.3 · sampling +0.0 · nonresponse +5.5 · weighting +0.0"
+   ]
+  }
+ },
+ "size": {
+  "0.03-0.22-1": {
+   "srs": 733,
+   "completes": 733,
+   "issued": 3332
+  },
+  "0.03-0.22-1.2": {
+   "srs": 733,
+   "completes": 879,
+   "issued": 3996
+  },
+  "0.03-1-1": {
+   "srs": 733,
+   "completes": 733,
+   "issued": 733
+  },
+  "0.03-1-1.2": {
+   "srs": 733,
+   "completes": 879,
+   "issued": 879
+  },
+  "0.05-0.22-1": {
+   "srs": 264,
+   "completes": 264,
+   "issued": 1200
+  },
+  "0.05-0.22-1.2": {
+   "srs": 264,
+   "completes": 317,
+   "issued": 1441
+  },
+  "0.05-1-1": {
+   "srs": 264,
+   "completes": 264,
+   "issued": 264
+  },
+  "0.05-1-1.2": {
+   "srs": 264,
+   "completes": 317,
+   "issued": 317
+  }
+ }
+}

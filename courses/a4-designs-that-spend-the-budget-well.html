@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- social:start -->
+<meta name="description" content="Analyst session 4 of 6. Designs that spend the budget well: simple random, systematic, stratified and cluster samples, the design effect and the effective sample size, scored on real census rows for the constructed town of Ottervale.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Learn with Phoebe">
+<meta property="og:title" content="Designs that spend the budget well - learn survey design and sampling with phoebe">
+<meta property="og:description" content="Analyst session 4 of 6. Stratify when areas differ, cluster when fieldwork costs, and never buy a bigger sample to fix a bias.">
+<meta property="og:url" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/courses/a4-designs-that-spend-the-budget-well.html">
+<meta property="og:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Designs that spend the budget well - learn survey design and sampling with phoebe">
+<meta name="twitter:description" content="Analyst session 4 of 6. The design effect tells you how many answers your design is really worth.">
+<meta name="twitter:image" content="https://phoebefu6.github.io/learn-survey-design-with-phoebe/assets/og-cover.png">
+<!-- social:end -->
+<title>Analyst session 4 · Designs that spend the budget well - learn survey design and sampling with phoebe</title>
+<link rel="stylesheet" href="../assets/style.css?v=1">
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="wrap">
+    <span class="crumb"><a href="../index.html">learn-survey-design-with-phoebe</a> / Analyst session 4 of 6</span>
+    <button class="btn" id="toggle-all" type="button">Expand all</button>
+    <button class="btn primary" id="zoom-toggle" type="button">Projector zoom: off</button>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Learn Survey Design &amp; Sampling with Phoebe · Analyst session 4 of 6</div>
+    <h1>Designs that spend the budget well: <span class="accent">precision per pound</span></h1>
+    <p class="sub">Once the list is chosen, the design decides how the budget turns into precision. A sorted list picked every k-th entry spreads the sample for free; strata narrow the margin only when the strata differ on the answer; clusters cut the fieldwork bill and quietly shrink what each answer is worth. Tonight you price each one on real census rows standing in for Ottervale, a constructed town council, and you meet the trap every budget falls into once: buying a bigger sample to fix a bias.</p>
+    <div class="chip-row">
+      <span class="chip level">🟠 Analyst</span>
+      <span class="chip audience">Analysts, researchers and data scientists who run surveys</span>
+      <span class="chip audience">Hands-on in the browser</span>
+      <span class="chip time">45 min</span>
+    </div>
+    <div class="agenda">
+      <span class="a1" style="flex:1">0-3 · Welcome</span>
+      <span class="a2" style="flex:4">3-18 · Four designs, one budget</span>
+      <span class="a3" style="flex:5">18-40 · Build-along: spend Ottervale's budget</span>
+      <span class="a4" style="flex:1">40-45 · Q&amp;A</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section" id="intro">
+    <div class="section-kicker">
+      <span class="klabel">Part 0</span>
+      <h2>Where we start</h2>
+    </div>
+    <p class="lede">Analyst session 3 chose Ottervale's list: an address list of private households, 19,549 of the 20,000 adults, with a planner that turned a target margin into a number of addresses to issue. That planner assumed a design effect. Tonight you find out where a design effect comes from, why one design earns less than 1 and another costs more, and what each is worth in effective answers. The council, its budget and its choices are constructed; the 20,000 adults are real rows from the Office for National Statistics' Census 2021 teaching sample, so every margin on the bench is scored against a truth you can check. The streets the cluster design draws from are simulated, and labelled wherever they appear.</p>
+
+    <div class="legend">
+      <span class="pill">🎫 Clear all three quiz questions to stamp your passport</span>
+      <span class="pill">Live = presented in the 45 minutes</span>
+      <span class="pill">Self-study = the full depth, after class</span>
+      <span class="pill">★ Build-along = everyone builds it</span>
+    </div>
+
+    <div class="callout win">
+      <p><strong>★ What you walk out with tonight.</strong> The design page of Ottervale's survey plan: the design, how the sample is allocated across the ten areas, how many addresses to issue, the design effect you expect, and one sentence on why. Beside it, four measured runs that show what each choice bought: simple random, stratified by area, clustered by street, and four times the sample with the same bias still in it.</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-1">
+    <div class="section-kicker">
+      <span class="klabel">Part 1 · covers simple random and systematic samples</span>
+      <h2>Simple random, and every k-th name on a sorted list</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">A simple random sample gives every entry on the frame the same chance and every pair of entries the same chance of being picked together. It is the baseline every other design is measured against: its variance is the denominator of the design effect. A systematic sample takes a random start and then every k-th entry, where k is the frame size divided by the sample size. On a list sorted by area it spreads the picks across areas without you asking, which is why survey practitioners call it implicit stratification. On a list with a repeating pattern it can fail badly.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 404" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two hand-drawn lists of 16 addresses, each sampled by taking every fourth entry. Left: the list is sorted by area, four addresses per area, and the four picks land one in each area, spreading the sample for free. Right: the list runs through blocks of flats floor by floor, ground, first, second, third, repeating every four entries, so every pick lands on a ground-floor flat. Constructed Ottervale example.">
+        <defs>
+          <filter id="a4aSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="41" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a4aHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a4aAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a4aH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a4aL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a4aS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a4aB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a4aN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+          .a4aR { font: 800 11px Inter, sans-serif; fill: #991B1B; }
+        </style>
+
+        <text class="a4aH" x="30" y="28">EVERY 4TH ENTRY, TWO LISTS</text>
+        <text class="a4aS" x="560" y="28">Constructed Ottervale example</text>
+        <text class="a4aL" x="30" y="58">Sorted by area: picks spread out</text>
+        <text class="a4aL" x="460" y="58">Blocks of flats: picks line up</text>
+
+        <g filter="url(#a4aSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- left list: 16 rows, picks at rows 3, 7, 11, 15 -->
+          <rect x="110" y="78" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="95" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="112" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="110" y="129" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="146" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <rect x="110" y="163" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <rect x="110" y="180" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="110" y="197" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <rect x="110" y="214" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="231" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="248" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="110" y="265" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="110" y="282" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <rect x="110" y="299" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <rect x="110" y="316" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="110" y="333" width="190" height="13" rx="3" fill="#F9EDF5"/>
+          <!-- area brackets -->
+          <path d="M98 79 L92 79 L92 141 L98 141"/>
+          <path d="M98 147 L92 147 L92 209 L98 209"/>
+          <path d="M98 215 L92 215 L92 277 L98 277"/>
+          <path d="M98 283 L92 283 L92 345 L98 345"/>
+          <!-- ticks -->
+          <path d="M310 118 L315 123 L324 112" stroke="#7F0A67"/>
+          <path d="M310 186 L315 191 L324 180" stroke="#7F0A67"/>
+          <path d="M310 254 L315 259 L324 248" stroke="#7F0A67"/>
+          <path d="M310 322 L315 327 L324 316" stroke="#7F0A67"/>
+
+          <!-- right list: 16 rows, floors repeat every 4, picks at rows 1, 5, 9, 13 -->
+          <rect x="520" y="78" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="520" y="95" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="112" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="129" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="146" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="520" y="163" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="180" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="197" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="214" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="520" y="231" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="248" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="265" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="282" width="190" height="13" rx="3" fill="url(#a4aHc)"/>
+          <rect x="520" y="299" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="316" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <rect x="520" y="333" width="190" height="13" rx="3" fill="#FFFFFF"/>
+          <path d="M486 84 L491 89 L500 78" stroke="#991B1B"/>
+          <path d="M486 152 L491 157 L500 146" stroke="#991B1B"/>
+          <path d="M486 220 L491 225 L500 214" stroke="#991B1B"/>
+          <path d="M486 288 L491 293 L500 282" stroke="#991B1B"/>
+          <!-- doodle: a stair-step block of flats -->
+          <path d="M820 120 L820 70 L848 70 L848 120 Z" stroke="#7F0A67"/>
+          <path d="M820 82 L848 82 M820 95 L848 95 M820 108 L848 108" stroke="#7F0A67"/>
+        </g>
+
+        <text class="a4aS" x="30" y="114">area 1</text>
+        <text class="a4aS" x="30" y="182">area 2</text>
+        <text class="a4aS" x="30" y="250">area 3</text>
+        <text class="a4aS" x="30" y="318">area 4</text>
+
+        <text class="a4aS" x="720" y="88">ground</text>
+        <text class="a4aS" x="720" y="105">1st floor</text>
+        <text class="a4aS" x="720" y="122">2nd floor</text>
+        <text class="a4aS" x="720" y="139">3rd floor</text>
+        <text class="a4aS" x="720" y="156">ground</text>
+        <text class="a4aS" x="720" y="224">ground</text>
+        <text class="a4aS" x="720" y="292">ground</text>
+
+        <text class="a4aB" x="110" y="368">one pick in each area, free</text>
+        <text class="a4aR" x="520" y="368">every pick on a ground floor</text>
+        <text class="a4aN" x="30" y="392">The interval k matches the list's own period on the right, so chance chooses only the start.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - a sorted list turns every k-th into a spread; a list that repeats every k turns it into one kind of household</figcaption>
+    </figure>
+
+    <details class="card" open>
+      <summary><span class="mode live">Live</span>Simple random, then every k-th<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Simple random.</strong> Number the frame, let a random draw choose the entries. On the bench this is R1: the address list, 1,000 issued, older residents answering more. It is the reference design. Its spread over 1,000 repeat surveys is 3.0 points, and every other design on this page is compared with that.</p>
+        <p><strong>Systematic.</strong> With 19,549 entries and 1,000 to issue, k is 19,549 divided by 1,000. Pick a random start between 1 and k, then take every k-th address down the list, rounding the step as you go. One random number decides the whole sample, so it is quick to run by hand and easy to audit. If the list is sorted by area, then by street, the sample cannot bunch in one corner of town: every stretch of the list gets its share.</p>
+        <p><strong>No bench numbers here.</strong> The lab offers simple random, stratified and clustered designs, not systematic. Treat a systematic sample from a well-sorted list as behaving at least as well as a stratified one on the sort variable, and check the list for a pattern before you trust it.</p>
+        <p>Why a sample's estimate wanders, and how that spread shrinks with size, is taught in <a href="https://phoebefu6.github.io/learn-statistics-with-phoebe/courses/a4-what-a-sample-can-say.html">Statistics, sampling distributions ↗</a>. Here the spread is taken as given and the question is which design buys the least of it.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>When systematic goes wrong<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>A systematic sample is only as random as the list's order. The failure is periodicity: the list repeats a pattern on a cycle that matches k, or divides into it. A housing register that runs through every block floor by floor, a staff list in teams of ten with the manager first, a delivery log with one row per weekday: in each, the random start chooses which kind of entry you get, and then you get only that kind.</p>
+        <p>The check takes five minutes. Look at how the list is sorted. Read the first 50 entries and look for a cycle. If there is one, either re-sort the list on something meaningful (area, then street, then house number), or break the cycle by drawing a fresh random start every few hundred entries. Write the sort order into the methods statement: a reader cannot judge a systematic sample without it.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>The population on the bench is itself a published sample.</strong> The Office for National Statistics released a teaching file holding 1% of the person records from Census 2021 for England and Wales, with 19 variables and region as its finest geography. The bench draws its 20,000 Ottervale stand-ins from the adults in that file with a fixed seed, so anyone can rebuild the same town and check the same truth. A sample design is only reproducible when the draw is written down. (Office for National Statistics, Public microdata teaching sample, England and Wales: Census 2021, 2023, Open Government Licence v3.0, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-2">
+    <div class="section-kicker">
+      <span class="klabel">Part 2 · covers stratified samples</span>
+      <h2>Strata pay only when they differ on the answer</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">Stratifying splits the frame into groups before you draw, here Ottervale's ten areas, and samples each one separately, usually in proportion to its size. Chance can no longer give one area too many addresses and another too few. What that removes from the error is the variation between areas. If the areas differ a lot on the answer, that is a large slice and the margin narrows. If they barely differ, there is little to remove, and stratifying by area buys almost nothing.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top: ten hand-drawn area boxes of different sizes, each with a hatched slice at the bottom showing the sample issued in proportion to its size. On R2, sample 1, answers per area run from 9 in area 1 to 42 in area 8. Bottom left: three areas whose levels differ sharply, where stratifying removes the gap between areas from the error. Bottom right: Ottervale's areas, whose share in poorer health is nearly level, so the spread over 1,000 repeats only moves from 3.0 points for simple random to 2.9 for stratified. Constructed Ottervale example on real census rows.">
+        <defs>
+          <filter id="a4bSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="43" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a4bHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a4bAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a4bH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a4bL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a4bS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a4bB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a4bV { font: 800 18px Inter, sans-serif; fill: #55064A; }
+          .a4bN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a4bH" x="30" y="28">TEN AREAS, EACH SAMPLED IN PROPORTION TO ITS SIZE</text>
+        <text class="a4bS" x="560" y="28">Constructed Ottervale example, real census rows</text>
+
+        <g filter="url(#a4bSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- ten area boxes, bottoms at y=170; heights stand for size (shape only) -->
+          <rect x="30" y="122" width="72" height="48" rx="6" fill="#FFFFFF" transform="rotate(-1 66 146)"/>
+          <rect x="112" y="92" width="72" height="78" rx="6" fill="#FFFFFF" transform="rotate(1 148 131)"/>
+          <rect x="194" y="76" width="72" height="94" rx="6" fill="#FFFFFF" transform="rotate(-0.8 230 123)"/>
+          <rect x="276" y="98" width="72" height="72" rx="6" fill="#FFFFFF" transform="rotate(0.9 312 134)"/>
+          <rect x="358" y="88" width="72" height="82" rx="6" fill="#FFFFFF" transform="rotate(-1 394 129)"/>
+          <rect x="440" y="80" width="72" height="90" rx="6" fill="#FFFFFF" transform="rotate(0.8 476 125)"/>
+          <rect x="522" y="64" width="72" height="106" rx="6" fill="#FFFFFF" transform="rotate(-0.7 558 117)"/>
+          <rect x="604" y="54" width="72" height="116" rx="6" fill="#FFFFFF" transform="rotate(1 640 112)"/>
+          <rect x="686" y="84" width="72" height="86" rx="6" fill="#FFFFFF" transform="rotate(-0.9 722 127)"/>
+          <rect x="768" y="100" width="72" height="70" rx="6" fill="#FFFFFF" transform="rotate(0.7 804 135)"/>
+          <!-- proportional sample slices -->
+          <rect x="38" y="158" width="56" height="8" rx="2" fill="url(#a4bHc)"/>
+          <rect x="120" y="151" width="56" height="15" rx="2" fill="url(#a4bHc)"/>
+          <rect x="202" y="148" width="56" height="18" rx="2" fill="url(#a4bHc)"/>
+          <rect x="284" y="152" width="56" height="14" rx="2" fill="url(#a4bHc)"/>
+          <rect x="366" y="150" width="56" height="16" rx="2" fill="url(#a4bHc)"/>
+          <rect x="448" y="148" width="56" height="18" rx="2" fill="url(#a4bHc)"/>
+          <rect x="530" y="145" width="56" height="21" rx="2" fill="url(#a4bHc)"/>
+          <rect x="612" y="143" width="56" height="23" rx="2" fill="url(#a4bHc)"/>
+          <rect x="694" y="149" width="56" height="17" rx="2" fill="url(#a4bHc)"/>
+          <rect x="776" y="152" width="56" height="14" rx="2" fill="url(#a4bHc)"/>
+
+          <!-- bottom left panel: areas that differ -->
+          <rect x="30" y="232" width="390" height="140" rx="10" fill="#F9EDF5" transform="rotate(-0.4 225 302)"/>
+          <rect x="60" y="270" width="70" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="170" y="270" width="70" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="280" y="270" width="70" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="64" y="330" width="62" height="16" rx="3" fill="url(#a4bHc)"/>
+          <rect x="174" y="296" width="62" height="50" rx="3" fill="url(#a4bHc)"/>
+          <rect x="284" y="314" width="62" height="32" rx="3" fill="url(#a4bHc)"/>
+
+          <!-- bottom right panel: Ottervale's areas, nearly level -->
+          <rect x="460" y="232" width="390" height="140" rx="10" fill="#F9EDF5" transform="rotate(0.4 655 302)"/>
+          <rect x="484" y="270" width="66" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="560" y="270" width="66" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="636" y="270" width="66" height="80" rx="5" fill="#FFFFFF"/>
+          <rect x="488" y="324" width="58" height="22" rx="3" fill="url(#a4bHc)"/>
+          <rect x="564" y="322" width="58" height="24" rx="3" fill="url(#a4bHc)"/>
+          <rect x="640" y="325" width="58" height="21" rx="3" fill="url(#a4bHc)"/>
+          <rect x="722" y="274" width="116" height="76" rx="6" fill="#F5C04A" transform="rotate(-1.5 780 312)"/>
+          <!-- doodle: a pair of scissors cutting the frame -->
+          <circle cx="852" cy="52" r="5" stroke="#7F0A67"/>
+          <circle cx="852" cy="68" r="5" stroke="#7F0A67"/>
+          <path d="M856 55 L874 66 M856 65 L874 54" stroke="#7F0A67"/>
+        </g>
+
+        <text class="a4bS" x="60" y="190">1</text>
+        <text class="a4bS" x="142" y="190">2</text>
+        <text class="a4bS" x="224" y="190">3</text>
+        <text class="a4bS" x="306" y="190">4</text>
+        <text class="a4bS" x="388" y="190">5</text>
+        <text class="a4bS" x="470" y="190">6</text>
+        <text class="a4bS" x="552" y="190">7</text>
+        <text class="a4bS" x="634" y="190">8</text>
+        <text class="a4bS" x="716" y="190">9</text>
+        <text class="a4bS" x="794" y="190">10</text>
+        <text class="a4bB" x="30" y="212">R2, sample 1: answers per area run from 9 (area 1) to 42 (area 8)</text>
+
+        <text class="a4bL" x="46" y="256">If areas differed on the answer</text>
+        <text class="a4bS" x="60" y="364">stratifying removes the gap between them</text>
+        <text class="a4bL" x="476" y="256">Ottervale's areas: nearly level</text>
+        <text class="a4bS" x="484" y="364">little gap to remove</text>
+        <text class="a4bS" style="fill:#2A1526" x="734" y="292">spread (SD)</text>
+        <text class="a4bV" x="734" y="316">3.0</text>
+        <text class="a4bS" style="fill:#2A1526" x="772" y="316">R1 simple</text>
+        <text class="a4bV" x="734" y="340">2.9</text>
+        <text class="a4bS" style="fill:#2A1526" x="772" y="340">R2 by area</text>
+
+        <text class="a4bN" x="30" y="398">Hatched slices show shares, drawn for shape. SD is over 1,000 repeats: R1 simple random vs R2 stratified.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - stratifying removes only the variation between strata, so it pays exactly as much as the strata differ</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>R1 against R2: what stratifying by area bought<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>R2 is R1 with one change: the 1,000 addresses are issued area by area in proportion to each area's size. Over 1,000 repeat surveys, the spread falls from 3.0 points to 2.9. The bias does not move: about +5.2 for R1 and +5.3 for R2, because older residents still answer more and nothing in the design touches that.</p>
+        <p>Why so little? The bench's truth is the share of adults in fair, bad or very bad health, and that share barely differs between Ottervale's ten areas (the nine English regions and Wales, standing in). With little difference between strata, there is little between-area variation for stratifying to remove. On a question where areas genuinely differ, say how far each area is from the bus depot, the same design would narrow the margin much more.</p>
+        <p>On sample 1, R2's design effect prints as 0.92 and its effective n as 245 from 226 answers: better than a simple random sample of the same size. Read that as one draw where chance helped as well as the design. The repeat line, 2.9 against 3.0, is the design's real record.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>Boosting a small area: a trade, not a free lunch<span class="mini">3 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p>On R2's sample 1, area 1 returns only 9 answers. If the council needs a number for area 1 on its own, 9 answers cannot carry it. Disproportionate allocation fixes that: issue more addresses in area 1 than its share of the town, so it returns enough answers to report.</p>
+        <p>The price comes at the town level. Area 1's residents are now over-represented, so each one must be weighted down to put the town back in proportion, and unequal weights widen the margin of every town-wide estimate. You buy a usable area figure with a larger design effect overall. The lab has no boost option, so there is no bench number for the size of that cost; your numbers will differ with how hard you boost. Decide which estimate the decision rests on, the town or the area, and allocate for that one.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>What unequal weights cost, by a rule of thumb.</strong> Leslie Kish's approximation, reported in a later paper by Roderick Little and Sonya Vartivarian, says weighting raises the variance by roughly the squared coefficient of variation of the weights, so the design effect from weighting is about one plus that. It works best when the weighting variable is only weakly tied to the answer. A boosted area makes the weights unequal on purpose, and this rule gives a first estimate of what the boost will cost the town-wide margin. The lab computes its design effect directly rather than by the rule. (Kish 1992, reported in Little and Vartivarian, Survey Methodology 31(2), 2005.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="part-3">
+    <div class="section-kicker">
+      <span class="klabel">Part 3 · covers cluster samples, design effect and effective sample size</span>
+      <h2>Clusters save fieldwork and spend effective answers</h2>
+      <span class="tag concept">5 min live</span>
+    </div>
+    <p class="lede">An interviewer who knocks on ten doors on one street does a day's work in an afternoon. That is the case for a cluster sample: draw streets first, then residents within each street. The catch is that neighbours resemble each other. Ten answers from one street repeat part of the same information, so they are worth fewer than ten answers from ten streets. The design effect puts a number on that loss, and the effective sample size tells you what your answers are really worth.</p>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Top left: ten hand-drawn houses in a row on one street, all hatched alike, because neighbours resemble each other. Top right: ten houses on ten different streets, filled in different ways, each bringing new information. Bottom: on the cluster preset, sample 1, the naive margin is plus or minus 6.0 points and the honest margin plus or minus 6.6, with a design effect of 1.23 and an effective sample of 181 from 223 answers. Streets are simulated. Constructed Ottervale example.">
+        <defs>
+          <filter id="a4cSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="47" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a4cHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a4cAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a4cH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a4cL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a4cS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a4cB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a4cN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a4cH" x="30" y="28">ONE STREET, TEN DOORS</text>
+        <text class="a4cS" x="30" y="44">neighbours resemble each other</text>
+        <text class="a4cH" x="460" y="28">TEN STREETS, ONE DOOR EACH</text>
+        <text class="a4cS" x="460" y="44">each answer brings new information</text>
+
+        <g filter="url(#a4cSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- one street, ten alike houses -->
+          <path d="M50 102 L50 84 L62 72 L74 84 L74 102 Z" fill="url(#a4cHc)"/>
+          <path d="M86 102 L86 84 L98 72 L110 84 L110 102 Z" fill="url(#a4cHc)"/>
+          <path d="M122 102 L122 84 L134 72 L146 84 L146 102 Z" fill="url(#a4cHc)"/>
+          <path d="M158 102 L158 84 L170 72 L182 84 L182 102 Z" fill="url(#a4cHc)"/>
+          <path d="M194 102 L194 84 L206 72 L218 84 L218 102 Z" fill="url(#a4cHc)"/>
+          <path d="M230 102 L230 84 L242 72 L254 84 L254 102 Z" fill="url(#a4cHc)"/>
+          <path d="M266 102 L266 84 L278 72 L290 84 L290 102 Z" fill="url(#a4cHc)"/>
+          <path d="M302 102 L302 84 L314 72 L326 84 L326 102 Z" fill="url(#a4cHc)"/>
+          <path d="M338 102 L338 84 L350 72 L362 84 L362 102 Z" fill="url(#a4cHc)"/>
+          <path d="M374 102 L374 84 L386 72 L398 84 L398 102 Z" fill="url(#a4cHc)"/>
+          <path d="M40 112 L410 112"/>
+          <path d="M40 124 L410 124" stroke-dasharray="10 8"/>
+          <!-- ten streets, mixed houses, two rows of five -->
+          <path d="M480 102 L480 84 L492 72 L504 84 L504 102 Z" fill="#FFFFFF"/>
+          <path d="M472 110 L512 110"/>
+          <path d="M556 96 L556 78 L568 66 L580 84 L580 96 Z" fill="url(#a4cHc)"/>
+          <path d="M548 104 L588 104"/>
+          <path d="M632 104 L632 86 L644 74 L656 86 L656 104 Z" fill="#F9EDF5"/>
+          <path d="M624 112 L664 112"/>
+          <path d="M708 98 L708 80 L720 68 L732 80 L732 98 Z" fill="#FFFFFF"/>
+          <path d="M700 106 L740 106"/>
+          <path d="M784 102 L784 84 L796 72 L808 84 L808 102 Z" fill="#F9EDF5"/>
+          <path d="M776 110 L816 110"/>
+          <path d="M490 172 L490 154 L502 142 L514 154 L514 172 Z" fill="#F9EDF5"/>
+          <path d="M482 180 L522 180"/>
+          <path d="M566 166 L566 148 L578 136 L590 148 L590 166 Z" fill="#FFFFFF"/>
+          <path d="M558 174 L598 174"/>
+          <path d="M642 174 L642 156 L654 144 L666 156 L666 174 Z" fill="url(#a4cHc)"/>
+          <path d="M634 182 L674 182"/>
+          <path d="M718 168 L718 150 L730 138 L742 150 L742 168 Z" fill="#F9EDF5"/>
+          <path d="M710 176 L750 176"/>
+          <path d="M794 172 L794 154 L806 142 L818 154 L818 172 Z" fill="#FFFFFF"/>
+          <path d="M786 180 L826 180"/>
+          <!-- margins -->
+          <rect x="200" y="238" width="300" height="22" rx="5" fill="#F9EDF5" transform="rotate(-0.4 350 249)"/>
+          <rect x="200" y="274" width="330" height="22" rx="5" fill="#F5C04A" transform="rotate(0.4 365 285)"/>
+          <!-- doodle: a clipboard -->
+          <rect x="410" y="150" width="22" height="28" rx="3" stroke="#7F0A67"/>
+          <path d="M415 160 L427 160 M415 168 L424 168" stroke="#7F0A67"/>
+        </g>
+
+        <text class="a4cL" x="40" y="148">10 answers, part of them repeating each other</text>
+        <text class="a4cS" x="40" y="166">fieldwork cheap: one walk, ten doors</text>
+        <text class="a4cS" x="470" y="206">fieldwork dear: ten trips</text>
+
+        <text class="a4cH" x="30" y="226">CLUSTER PRESET, SAMPLE 1: THE MARGIN THE DESIGN EARNED</text>
+        <text class="a4cL" x="30" y="254">naive ±6.0</text>
+        <text class="a4cL" x="30" y="290">honest ±6.6</text>
+        <text class="a4cS" x="560" y="254">design effect 1.23</text>
+        <text class="a4cB" x="560" y="290">effective n 181 from 223 answers</text>
+
+        <text class="a4cN" x="30" y="326">Streets are simulated: groups of 20 similar neighbours, 10 residents taken per street.</text>
+        <text class="a4cN" x="30" y="344">Constructed Ottervale example on real census rows.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - the honest margin is wider because 223 clustered answers carry the information of 181 scattered ones</figcaption>
+    </figure>
+
+    <details class="card">
+      <summary><span class="mode live">Live</span>Design effect and effective n, as the lab computes them<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>Design effect</strong> = the honest variance of your estimate divided by the variance a simple random sample with the same number of answers would have had. Above 1, the design cost you precision. Below 1, it bought you some.</p>
+        <p><strong>Effective sample size</strong> = respondents divided by the design effect. It answers the question every budget holder should ask: how many simple random answers is this design really worth?</p>
+        <p>The cluster preset is R1 with the design switched to "Clustered by street": the address list, 1,000 issued, older residents answering more, no weighting. On sample 1, 223 answer, the design effect is 1.23 and the effective n is 181. The naive margin a calculator would print is ±6.0; the honest margin, computed from the actual spread between streets, is ±6.6. Over 1,000 repeats the honest margin covers the truth 63% of the time and the naive one 58%. Neither reaches 95%, because the bias is still +5.2: clustering changes the variance, and nonresponse is untouched.</p>
+      </div>
+    </details>
+
+    <details class="card">
+      <summary><span class="mode self">Self-study</span>The textbook approximation, and the big-sample trap<span class="mini">4 min</span><span class="caret">▶</span></summary>
+      <div class="body">
+        <p><strong>The textbook approximation.</strong> For equal-sized clusters, the design effect from clustering is approximately 1 + (cluster size - 1) x intra-cluster correlation, where the intra-cluster correlation measures how much more alike two people in the same cluster are than two people drawn at random. It shows why a small correlation still matters: with 10 per street, even a modest correlation is multiplied by 9. Use it to plan before fieldwork, from a correlation you can defend. After fieldwork, compute the design effect from the data, as the lab does, and report that. Taking fewer residents per street and more streets lowers the cost in precision and raises the cost in travel; the right split depends on both prices.</p>
+        <p><strong>The big-sample trap.</strong> Set the lab to simple random with 4,000 addresses issued, older residents still answering more, no weighting: the big preset. The margin narrows to ±2.8 and the spread over 1,000 repeats falls to 1.4 points. The bias stays at +5.2. A tight interval around the wrong centre covers the truth in 3% of repeats. Four times the budget bought a more confident wrong answer, because sample size buys down sampling error and nothing else. Analyst session 5 goes after the bias itself.</p>
+      </div>
+    </details>
+
+    <div class="callout example">
+      <span class="ex-pill">Real world</span>
+      <p><strong>Three quarters of a million interviews, still unrepresentative.</strong> Wei Wang, David Rothschild, Sharad Goel and Andrew Gelman analysed opt-in polls run on the Xbox gaming platform in the 45 days before the 2012 US presidential election: 750,148 interviews from 345,858 people, far from representative on age and sex. Size alone did not fix that. Only after multilevel regression and poststratification did their estimates line up with the leading poll aggregators. Whether such modelling makes opt-in samples fit for population estimates is still argued: AAPOR's 2010 report on online panels advises against them for that goal, and its 2013 task force calls model-based methods the most promising; Leader session 2 lays out both sides. (Wang et al., International Journal of Forecasting 31(3), 2015, read at source.)</p>
+    </div>
+  </section>
+
+  <section class="section" id="demo-1">
+    <div class="section-kicker">
+      <span class="klabel">Build-along</span>
+      <h2>Spend Ottervale's budget across four designs</h2>
+      <span class="tag demo">★ 22 min · everyone builds</span>
+    </div>
+    <p class="lede">The lab loads on R1, the simple random sample from the address list. You will run four designs against the same truth, copy three lines from each, and then write the design page of the plan. Read each run twice: once for the margin, which the design controls, and once for the bias, which it does not. Sample 1 is fixed so your numbers match the page.</p>
+
+    <div class="svy-widget" data-rung="r1"></div>
+
+    <figure class="zoomable">
+      <svg viewBox="0 0 880 348" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A hand-drawn strip of four runs on a percentage scale from 15 to 35, with a marigold truth line at 21.7 percent. Each run is a bar centred at the truth plus the design's bias over 1,000 repeats, about 5 points above it, with the width of its sample 1 honest margin. R1 simple random: plus or minus 5.4, bias plus 5.2, covers 58 percent. R2 stratified: plus or minus 5.2, bias plus 5.3, covers 58 percent. Cluster preset: plus or minus 6.6, bias plus 5.2, covers 63 percent. Big preset with 4,000 issued: plus or minus 2.8, bias plus 5.2, covers 3 percent. Constructed Ottervale example.">
+        <defs>
+          <filter id="a4dSk" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+          <pattern id="a4dHc" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-38)"><line x1="0" y1="0" x2="0" y2="7" stroke="#7F0A67" stroke-width="1" opacity=".5"/></pattern>
+          <marker id="a4dAr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#2A1526" stroke-width="1.6" stroke-linecap="round"/></marker>
+        </defs>
+        <style>
+          .a4dH { font: 800 12px Inter, sans-serif; fill: #2A1526; }
+          .a4dL { font: 600 12px Inter, sans-serif; fill: #2A1526; }
+          .a4dS { font: 400 11px Inter, sans-serif; fill: #654F60; }
+          .a4dB { font: 800 11px Inter, sans-serif; fill: #6E4A00; }
+          .a4dN { font: 400 12px Inter, sans-serif; fill: #654F60; }
+        </style>
+
+        <text class="a4dH" x="30" y="28">FOUR RUNS: THE MARGIN MOVES, THE CENTRE DOES NOT</text>
+        <text class="a4dS" x="560" y="28">Constructed Ottervale example</text>
+
+        <g filter="url(#a4dSk)" fill="none" stroke="#2A1526" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M140 270 L840 270"/>
+          <path d="M140 264 L140 276 M315 264 L315 276 M490 264 L490 276 M665 264 L665 276 M840 264 L840 276"/>
+          <!-- R1: centre 26.9, ±5.4 -->
+          <path d="M368 70 L746 70" stroke="#7F0A67" stroke-width="4"/>
+          <circle cx="557" cy="70" r="5" fill="#7F0A67" stroke="#7F0A67"/>
+          <!-- R2: centre 27.0, ±5.2 -->
+          <path d="M378 122 L742 122" stroke="#7F0A67" stroke-width="4"/>
+          <circle cx="560" cy="122" r="5" fill="#7F0A67" stroke="#7F0A67"/>
+          <!-- cluster: centre 26.9, ±6.6 -->
+          <path d="M326 174 L788 174" stroke="#9B2A84" stroke-width="4"/>
+          <circle cx="557" cy="174" r="5" fill="#9B2A84" stroke="#9B2A84"/>
+          <!-- big: centre 26.9, ±2.8 -->
+          <path d="M459 226 L655 226" stroke="#55064A" stroke-width="6"/>
+          <circle cx="557" cy="226" r="5" fill="#55064A" stroke="#55064A"/>
+          <!-- doodle: a coin purse -->
+          <rect x="826" y="40" width="26" height="20" rx="6" stroke="#7F0A67"/>
+          <path d="M832 40 L834 34 L844 34 L846 40" stroke="#7F0A67"/>
+        </g>
+        <path d="M374 52 L374 262" stroke="#F5C04A" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+        <text class="a4dL" x="30" y="68">R1</text>
+        <text class="a4dS" x="30" y="83">simple random</text>
+        <text class="a4dL" x="30" y="120">R2</text>
+        <text class="a4dS" x="30" y="135">by area</text>
+        <text class="a4dL" x="30" y="172">Cluster</text>
+        <text class="a4dS" x="30" y="187">streets</text>
+        <text class="a4dL" x="30" y="224">Big</text>
+        <text class="a4dS" x="30" y="239">4,000 issued</text>
+
+        <text class="a4dS" x="400" y="92">±5.4 · bias +5.2 · covers 58%</text>
+        <text class="a4dS" x="400" y="144">±5.2 · bias +5.3 · covers 58%</text>
+        <text class="a4dS" x="400" y="196">±6.6 · bias +5.2 · covers 63%</text>
+        <text class="a4dB" x="400" y="248">±2.8 · bias +5.2 · covers 3%</text>
+
+        <text class="a4dS" x="315" y="292" text-anchor="middle">20%</text>
+        <text class="a4dS" x="490" y="292" text-anchor="middle">25%</text>
+        <text class="a4dS" x="665" y="292" text-anchor="middle">30%</text>
+        <text class="a4dS" x="140" y="292" text-anchor="middle">15%</text>
+        <text class="a4dS" x="840" y="292" text-anchor="middle">35%</text>
+        <text class="a4dB" x="384" y="50">truth 21.7%</text>
+
+        <text class="a4dN" x="30" y="318">Bars sit at the truth plus each design's bias over 1,000 repeats; widths are sample 1's honest margins.</text>
+        <text class="a4dN" x="30" y="338">Margins and coverage as the lab prints them; who answers and the streets are simulated.</text>
+      </svg>
+      <figcaption>🔍 Click to zoom - every design sits about 5 points high; the narrowest bar misses the truth most often</figcaption>
+    </figure>
+
+    <div class="steps">
+      <div class="step">
+        <p><strong>Step 1 · Read R1, the simple random sample.</strong> The lab loads with R1 selected: the address list, 1,000 issued at random, older residents answering more, no weighting. Copy the estimate line, the design line and the repeat line.</p>
+        <div class="prompt-box good"><span class="label">★ Step 1 · R1, as the widget prints it</span>Estimate: 25.7% ± 5.4 (honest margin) · naive ±5.4
+Issued 1000 · answered 249 (25%) · design effect 1.00 · effective n 248
+Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.0 pts · honest margin covers the truth 58% · naive 58%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 2 · Click R2, stratified by area.</strong> Same list, same size, same answering; the addresses are now issued area by area in proportion. Copy the same three lines and compare the spread with R1's.</p>
+        <div class="prompt-box good"><span class="label">★ Step 2 · R2, as the widget prints it</span>Estimate: 22.1% ± 5.2 (honest margin) · naive ±5.4
+Issued 1000 · answered 226 (23%) · design effect 0.92 · effective n 245
+Over 1000 repeat surveys: bias +5.3 pts · spread (SD) 2.9 pts · honest margin covers the truth 58% · naive 58%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 3 · Click R1, then set Design to "Clustered by street".</strong> This is the cluster preset: the address list, clustered, 1,000 issued, skewed old, no weighting. The lab draws streets, then 10 residents per street. Copy the three lines.</p>
+        <div class="prompt-box good"><span class="label">★ Step 3 · cluster preset, as the widget prints it</span>Estimate: 29.1% ± 6.6 (honest margin) · naive ±6.0
+Issued 1000 · answered 223 (22%) · design effect 1.23 · effective n 181
+Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 3.1 pts · honest margin covers the truth 63% · naive 58%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 4 · Set Design to "Simple random" and Sample size to "4,000 issued".</strong> This is the big preset: four times the fieldwork, everything else as R1. Copy the estimate line and the repeat line.</p>
+        <div class="prompt-box good"><span class="label">★ Step 4 · big preset, as the widget prints it</span>Estimate: 27.2% ± 2.8 (honest margin) · naive ±2.8
+Over 1000 repeat surveys: bias +5.2 pts · spread (SD) 1.4 pts · honest margin covers the truth 3% · naive 3%</div>
+      </div>
+      <div class="step">
+        <p><strong>Step 5 · Write the design page of Ottervale's plan.</strong> Choose from what you measured. Fill each line, and make the last one say what the design cannot fix.</p>
+        <div class="prompt-box good"><span class="label">★ Step 5 · Ottervale survey plan, design page</span>design        : ______________________ (simple random / systematic from a sorted list / stratified / clustered)
+allocation    : ______________________ (proportional by area, or boost area __ and accept a larger design effect)
+size          : ______ addresses issued (from the Analyst session 3 planner)
+expected deff : ______ (stratified by area: about 1 on this question; clustered: 1.23 on the bench)
+why           : ________________________________________________
+what it cannot fix: older residents answer more; bias +5.2 pts until weighting (Analyst session 5)</div>
+      </div>
+    </div>
+
+    <div class="callout tip">
+      <p><strong>Price the design, then the size.</strong> The cluster design turned 223 answers into the precision of 181, which may be worth it if travel is the biggest line in the fieldwork quote. Stratifying cost nothing and bought a little. Quadrupling the sample bought a margin of ±2.8 around a number still 5 points high. Choose the design for precision per pound, and spend the rest of the budget on the error the design does not touch.</p>
+    </div>
+  </section>
+
+  <section class="section" id="exercise">
+    <div class="section-kicker">
+      <span class="klabel">Homework</span>
+      <h2>Before Analyst session 5</h2>
+      <span class="tag exercise">30 min</span>
+    </div>
+    <ol>
+      <li><strong>Find the design</strong> of one published survey in your field: simple random, systematic, stratified, clustered or a mix, and what it stratified or clustered on.</li>
+      <li><strong>Check its margin.</strong> Does the report state a design effect or an effective sample size? If not, say whether its printed margin is likely to be too narrow, and why.</li>
+      <li><strong>Pick a stratifier</strong> for a question you care about: one variable on the frame that you expect to differ strongly on the answer, and one that would buy almost nothing.</li>
+      <li><strong>Run the lab once</strong> with Design "Clustered by street" and "Draw another sample" three times. Write each draw's design effect beside sample 1's 1.23; your numbers will differ.</li>
+    </ol>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="section-kicker">
+      <span class="klabel">Check yourself</span>
+      <h2>Three questions</h2>
+    </div>
+    <p>Clear all three and Analyst session 4 gets stamped in your passport.</p>
+
+    <div class="quiz-q" data-answer="2">
+      <p class="qtext">1 · On the bench, stratifying by area moves the spread over 1,000 repeats from 3.0 to only 2.9 points. Why so little?</p>
+      <button class="qopt" type="button">A · Stratified samples always have a design effect above 1</button>
+      <button class="qopt" type="button">B · 1,000 addresses is too few to stratify</button>
+      <button class="qopt" type="button">C · The share in poorer health barely differs between areas, so there is little between-area variation to remove</button>
+      <button class="qopt" type="button">D · Stratifying only reduces bias, not spread</button>
+      <p class="qwhy">Stratifying removes the variation between strata from the error. It pays as much as the strata differ on the answer, and Ottervale's areas are nearly level on this question.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="0">
+      <p class="qtext">2 · The cluster preset prints "design effect 1.23 · effective n 181" from 223 answers. What does that mean?</p>
+      <button class="qopt" type="button">A · The honest variance is 1.23 times what a simple random sample of the same size would give, so the 223 clustered answers are worth about 181 simple random ones</button>
+      <button class="qopt" type="button">B · Some of the answers were discarded as duplicates</button>
+      <button class="qopt" type="button">C · The estimate is biased by 1.23 points</button>
+      <button class="qopt" type="button">D · 181 residents refused to answer</button>
+      <p class="qwhy">Design effect is honest variance over simple random variance; effective n is respondents divided by it. Neighbours resemble each other, so clustered answers repeat part of the same information.</p>
+    </div>
+
+    <div class="quiz-q" data-answer="3">
+      <p class="qtext">3 · With 4,000 addresses issued, the margin narrows to ±2.8 but the honest margin covers the truth in only 3% of 1,000 repeats. Why did the bigger sample not help?</p>
+      <button class="qopt" type="button">A · Larger samples have larger design effects</button>
+      <button class="qopt" type="button">B · The lab ran out of addresses</button>
+      <button class="qopt" type="button">C · The response rate fell when the sample grew</button>
+      <button class="qopt" type="button">D · Sample size buys down sampling error only; the +5.2 bias from older residents answering more is untouched, so a narrower interval misses the truth more often</button>
+      <p class="qwhy">Bias does not shrink with size. A tighter interval around the same wrong centre is more confident and more often wrong.</p>
+    </div>
+
+    <p class="quiz-score"></p>
+  </section>
+
+  <section class="section" id="official">
+    <div class="section-kicker">
+      <span class="klabel">Sources covered</span>
+      <h2>What this session teaches, and where it came from</h2>
+    </div>
+    <div class="covered">
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Design effect from unequal weights is about one plus the squared coefficient of variation of the weights</span><span class="note">Kish 1992, reported in Little and Vartivarian, "Does weighting for nonresponse increase the variance of survey means?", Survey Methodology 31(2), 2005</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">Xbox opt-in polls: 750,148 interviews from 345,858 people, unrepresentative until modelled</span><span class="note">Wang, Rothschild, Goel and Gelman, "Forecasting elections with non-representative polls", International Journal of Forecasting 31(3), 2015, read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">AAPOR on opt-in panels (2010) and on non-probability sampling (2013), both sides of the argument</span><span class="note">Baker et al., AAPOR Report on Online Panels, POQ 74(4), 2010; Baker et al., AAPOR Task Force on Non-Probability Sampling, 2013; read at source</span></div>
+      <div class="covered-row"><span class="status pill solid">✓</span><span class="name">The population: 20,000 adults from the Census 2021 public microdata teaching sample, 1% of person records</span><span class="note">Office for National Statistics, 2023, Open Government Licence v3.0, file read; seeded sample</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Every lab number on this page: R1, R2, the cluster preset and the big preset</span><span class="note">Computed by the widget on real census rows; who answers and the streets (groups of 20 similar neighbours) are simulated and labelled; a Python reference agrees on every value</span></div>
+      <div class="covered-row"><span class="status pill light">◐</span><span class="name">Design effect for clusters as 1 + (cluster size - 1) x intra-cluster correlation</span><span class="note">Taught as the textbook approximation, not attributed to a source; the bench reports the computed design effect instead</span></div>
+    </div>
+    <p class="mono" style="margin-top:14px">Every fact on this page, and its verification tier, is recorded in the course's source map.</p>
+  </section>
+
+  <section class="cheat" id="cheatsheet">
+    <h3>Analyst session 4 cheat sheet <span>· pin this</span></h3>
+    <div class="grid-2">
+      <div class="cheat-item"><b>Every k-th</b><span>Random start, fixed step. Sort the list first; check it for a repeating pattern.</span></div>
+      <div class="cheat-item"><b>Strata pay when they differ</b><span>By area on this question: spread 3.0 to 2.9. Pick strata that differ on the answer.</span></div>
+      <div class="cheat-item"><b>Design effect</b><span>Honest variance over simple random variance. Above 1 costs precision; below 1 buys it.</span></div>
+      <div class="cheat-item"><b>Effective n</b><span>Respondents over design effect. Clustered by street: 223 answers worth 181.</span></div>
+      <div class="cheat-item"><b>Boost with care</b><span>Boosting a small area buys an area figure and widens every town-wide margin.</span></div>
+      <div class="cheat-item"><b>Big is not right</b><span>4,000 issued: ±2.8, bias +5.2, covers the truth 3%. Size never fixes bias.</span></div>
+    </div>
+  </section>
+
+  <div class="callout next">
+    <span class="nx-pill">Next session</span>
+    <p>Every design tonight sat about 5 points high, because older residents answer more and no design can see who will. Analyst session 5 takes on that bias directly: what a response rate does and does not tell you, and how post-stratification, raking and trimming pull the number back toward the truth, at a price in variance you now know how to read.</p>
+  </div>
+
+  <footer class="pagefoot">
+    <span>Analyst session 4 of 6 · learn-survey-design-with-phoebe · by Phoebe Fu &nbsp;·&nbsp; 📚 <a href="https://phoebefu6.github.io/learn-with-phoebe/">Learn with Phoebe ↗</a></span>
+    <span><a href="a3-who-you-could-have-reached.html">← Prev: Who you could have reached</a> &nbsp;·&nbsp; <a href="a5-who-stopped-answering.html">Next: Who stopped answering, and weighting them back →</a></span>
+  </footer>
+
+</main>
+
+<script src="../assets/svy-sample.js?v=1"></script>
+<script src="../assets/svy-live.js?v=1"></script>
+<script src="../assets/app.js?v=1"></script>
+</body>
+</html>
